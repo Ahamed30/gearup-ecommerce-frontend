@@ -9,8 +9,8 @@ export const DesktopSearchBox = ({
   isDesktopSearchBoxOpen,
 }: DesktopSearchBoxProps) => {
   const searchBoxClassName = classNames(
-    `items-center justify-center w-full mt-8`,
-    isDesktopSearchBoxOpen ? `flex` : `hidden`
+    `items-center justify-center w-full mt-8 hidden`,
+    isDesktopSearchBoxOpen ? `lg:flex` : `hidden`
   );
 
   return (

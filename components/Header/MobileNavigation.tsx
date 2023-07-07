@@ -13,7 +13,7 @@ export const MobileNavigation = ({
   const fontRubik = rubik?.className;
 
   const containerClassName = classNames(
-    `${fontRubik} w-full font-semibold text-base pt-4`,
+    `${fontRubik} w-full font-semibold text-base pt-4 lg:hidden`,
     isMobileNavBarOpen ? `block` : `hidden`
   );
 
