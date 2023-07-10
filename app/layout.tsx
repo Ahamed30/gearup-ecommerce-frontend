@@ -48,6 +48,7 @@ export default async function RootLayout({
         id
         name
         url
+        link
       }
     }
   }`;

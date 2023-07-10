@@ -11,9 +11,9 @@ export const SocialIcon = ({ socialIcons }: SocialIconProps) => {
   if (!socialIcons) return;
   const fontRubik = rubik?.className;
 
-  const iconImageContent = socialIcons?.map(({ id, name, url }) => {
+  const iconImageContent = socialIcons?.map(({ id, name, url, link }) => {
     return (
-      <Link href="/">
+      <Link target="_blank" href={`${link}`} key={id}>
         <Image key={id} width={24} height={24} src={`${url}`} alt={`${name}`} />
       </Link>
     );
