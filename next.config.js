@@ -1,4 +1,11 @@
+require("dotenv").config();
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
 
-module.exports = nextConfig
+const nextConfig = {
+  images: {
+    domains: ["media.graphassets.com"],
+    dangerouslyAllowSVG: true,
+  },
+};
+
+module.exports = nextConfig;
