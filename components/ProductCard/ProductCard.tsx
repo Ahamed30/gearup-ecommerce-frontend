@@ -1,7 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import { buttonClass, newProductClass, productNameClass } from "./styles";
+import { ProductCardType } from "@/types";
 
-export const ProductCard = () => {
+interface ProductCardProps {
+  product?: ProductCardType;
+}
+
+export const ProductCard = ({ product }: ProductCardProps) => {
+  if (!product) return;
+
+  const { productName, price, newProduct, productImages } = product;
+
+  //  need to update carousel
+  const imageUrl = productImages?.length == 1 ? productImages[0].url : "";
+
   return (
     <div className="w-full">
       <div
@@ -9,19 +23,23 @@ export const ProductCard = () => {
         style={{ paddingBottom: "100%" }}
       >
         <div className="w-full p-4">
-          <Image
-            src={"/shoe1.jpg"}
-            alt={"Shoe"}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-[28px] p-2"
-          />
+          {productImages?.length == 1 && (
+            <Image
+              src={`${imageUrl}`}
+              alt={"Shoe"}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-[28px] p-2"
+            />
+          )}
         </div>
-        <div className={newProductClass}>New</div>
+        {newProduct && <div className={newProductClass}>New</div>}
       </div>
-      <p className={productNameClass}>ADIDAS 4DFWD X PARLEY RUNNING SHOES</p>
+      <p title={`${productName}`} className={productNameClass}>
+        {productName}
+      </p>
       <button className={buttonClass}>
-        View Product - <span className="text-[#FFA52F]"> $125</span>
+        View Product - <span className="text-[#FFA52F]"> ${price}</span>
       </button>
     </div>
   );

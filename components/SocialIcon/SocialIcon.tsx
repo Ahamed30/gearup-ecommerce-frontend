@@ -11,6 +11,8 @@ export const SocialIcon = ({ socialIcons }: SocialIconProps) => {
   if (!socialIcons) return;
   const fontRubik = rubik?.className;
 
+  const titleClassName = `${fontRubik} text-[#FFA52F] text-[20px] lg:text-[24px] font-semibold mb-[16px]`;
+
   const iconImageContent = socialIcons?.map(({ id, name, url, link }) => {
     return (
       <Link target="_blank" href={`${link}`} key={id}>
@@ -21,11 +23,7 @@ export const SocialIcon = ({ socialIcons }: SocialIconProps) => {
 
   return (
     <div className="gap-2">
-      <p
-        className={`${fontRubik} text-[#FFA52F] text-[20px] lg:text-[24px] font-semibold mb-[16px]`}
-      >
-        Follow us
-      </p>
+      <p className={titleClassName}>Follow us</p>
       <div className="inline-flex gap-5 hover:color-[#99979b]">
         {iconImageContent}
       </div>

@@ -3,6 +3,7 @@ import "./globals.css";
 import "@/styles";
 import { Footer } from "@/components/Footer";
 import { getCMSData } from "@/utils/getCMSData";
+import { footerQuery, headerQuery } from "@/query";
 
 export const metadata = {
   title: "GearUp",
@@ -14,44 +15,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const headerQuery = `{ 
-    headers {
-      id
-      name
-      navLinks {
-        id
-        name
-        link
-      }
-    } 
-  }`;
-  const footerQuery = `{
-    footers{
-      id
-    	subscribeForm {
-        id
-        headerText
-        subText
-      }
-      leftColumnTitle
-      leftColumnDescription
-      linkColumns {
-        id
-        title
-        links{
-          id
-          name
-          link
-        }
-      }
-      socialIcons {
-        id
-        name
-        url
-        link
-      }
-    }
-  }`;
   const headerData = await getCMSData(headerQuery);
   const footerData = await getCMSData(footerQuery);
 
