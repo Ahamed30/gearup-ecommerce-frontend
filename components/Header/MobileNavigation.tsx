@@ -1,14 +1,17 @@
 import Link from "next/link";
-import { MobileSearchBox } from "../SearchBox";
 import classNames from "classnames";
+import { MobileSearchBox } from "../SearchBox";
+import { LinkType } from "@/types";
 import { rubik } from "@/styles";
 
 interface MobileNavigationProps {
   isMobileNavBarOpen?: Boolean;
+  navLinks?: Array<LinkType>;
 }
 
 export const MobileNavigation = ({
   isMobileNavBarOpen,
+  navLinks,
 }: MobileNavigationProps) => {
   const fontRubik = rubik?.className;
 
@@ -17,27 +20,24 @@ export const MobileNavigation = ({
     isMobileNavBarOpen ? `block` : `hidden`
   );
 
+  const navLinkContent = navLinks?.map((navLink) => {
+    const { id, link, name } = navLink;
+
+    return (
+      <Link
+        key={id}
+        href={`${link}`}
+        className="block mt-1 text-black hover:text-[#8F8C91] hover:bg-gray-100 px-1 py-3"
+      >
+        {name}
+      </Link>
+    );
+  });
+
   return (
     <div className={containerClassName}>
       <MobileSearchBox />
-      <Link
-        href="#responsive-header"
-        className="block mt-1 text-black hover:text-black hover:bg-gray-100 px-1 py-3"
-      >
-        New Drops🔥
-      </Link>
-      <a
-        href="#responsive-header"
-        className="block mt-1 text-black hover:text-black hover:bg-gray-100 px-1 py-3"
-      >
-        Apparels
-      </a>
-      <a
-        href="#responsive-header"
-        className="block mt-1 text-black hover:text-black hover:bg-gray-100 px-1 py-3"
-      >
-        Shoes
-      </a>
+      {navLinkContent}
     </div>
   );
 };
