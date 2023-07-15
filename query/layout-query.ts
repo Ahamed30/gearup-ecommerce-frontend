@@ -1,39 +1,34 @@
 export const headerQuery = `{ 
-    headers {
+  headers {
+    id
+    name
+    navLinks {
       id
       name
-      navLinks {
-        id
-        name
-        link
-      }
-    } 
-  }`;
+      link
+    }
+  } 
+}`;
 
 export const footerQuery = `{
-    footers{
+  footers{
+    id
+    subscribeForm {
       id
-    	subscribeForm {
-        id
-        headerText
-        subText
-      }
-      leftColumnTitle
-      leftColumnDescription
-      linkColumns {
-        id
-        title
-        links{
-          id
-          name
-          link
-        }
-      }
-      socialIcons {
+      headerText
+      subText
+    }
+    leftColumnTitle
+    leftColumnDescription
+    linkColumns {
+      id
+      title
+      links{
         id
         name
-        url
         link
       }
     }
-  }`;
+    socialIcons 
+  }
+}`;

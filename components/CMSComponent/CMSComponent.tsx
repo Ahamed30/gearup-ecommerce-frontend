@@ -8,15 +8,12 @@ interface CMSComponentProps {
 }
 
 export const CMSComponent = async ({ data }: CMSComponentProps) => {
-  return data?.components?.map(async ({ id, name }) => {
-    switch (name) {
-      case "Featured products":
+  return data?.components?.map(async ({ id, __typename }) => {
+    switch (__typename) {
+      case "ProductGrid":
         const productGridData = await getCMSData(getProductGridQuery(id));
         return (
-          <ProductGrid
-            key={id}
-            products={productGridData?.productGrid?.products}
-          />
+          <ProductGrid key={id} productGrid={productGridData?.productGrid} />
         );
     }
   });

@@ -2,7 +2,7 @@ import { Key } from "react";
 
 interface ComponentType {
   id: Key;
-  name?: String;
+  __typename?: String;
 }
 
 export interface HomePageType {

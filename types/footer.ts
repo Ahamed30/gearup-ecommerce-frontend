@@ -9,5 +9,5 @@ export interface FooterType {
   leftColumnTitle?: String;
   leftColumnDescription?: String;
   linkColumns?: Array<LinkColumnType>;
-  socialIcons?: Array<AssetType>;
+  socialIcons?: Array<String>;
 }

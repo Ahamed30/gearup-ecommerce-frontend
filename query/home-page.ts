@@ -1,11 +1,11 @@
 export const homePageQuery = `{
-    homePages {
-      id
-      components {
-        ... on ProductGrid {
-          id
-          name
-        }
+  homePages {
+    id
+    components {
+      ... on ProductGrid {
+        id
+        __typename
       }
     }
-  }`;
+  }
+}`;

@@ -6,5 +6,6 @@ export interface ProductCardType {
   productName?: String;
   price?: String;
   newProduct?: Boolean;
+  offerPercent?: String;
   productImages?: Array<AssetType>;
 }

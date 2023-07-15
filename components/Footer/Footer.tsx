@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { SubscribeForm } from "../SubscribeForm";
 import { FooterContent } from "./FooterContent";
-import Link from "next/link";
 import { openSans } from "@/styles";
 import { FooterType } from "@/types";
 
@@ -32,7 +32,7 @@ export const Footer = ({ data }: FooterProps) => {
       <Link
         href={`https://github.com/Ahamed30`}
         target="_blank"
-        className={`${fontOpenSans} flex justify-center items-center`}
+        className={`${fontOpenSans} flex justify-center text-center`}
       >
         © All rights reserved | Made with ❤️ by Dhanish Ahamed
       </Link>
