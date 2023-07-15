@@ -8,7 +8,9 @@ export async function getCMSData(query: String) {
       "Content-Type": "application/json",
     },
     next: { revalidate: 10 },
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch((err) => console.error("Error while getting the CMS data", err));
 
   return data?.data;
 }

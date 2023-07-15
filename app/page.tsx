@@ -1,11 +1,9 @@
-export default function Home() {
-  return (
-    <div className="flex h-screen">
-      <div className="m-auto font-serif">
-        <h1 className="font-serif text-3xl">
-          Get Ready to Gear Up! GearUp is Coming Soon...
-        </h1>
-      </div>
-    </div>
-  );
+import { CMSComponent } from "@/components/CMSComponent";
+import { homePageQuery } from "@/query";
+import { getCMSData } from "@/utils/getCMSData";
+
+export default async function Home() {
+  const homePageData = await getCMSData(homePageQuery);
+
+  return <CMSComponent data={homePageData.homePages[0]} />;
 }

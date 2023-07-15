@@ -1,5 +1,6 @@
 import Image from "next/image";
 import classNames from "classnames";
+import { desktopSearchInputClass } from "./style";
 
 interface DesktopSearchBoxProps {
   isDesktopSearchBoxOpen?: Boolean;
@@ -22,7 +23,7 @@ export const DesktopSearchBox = ({
         <input
           type="text"
           placeholder="Search"
-          className="pl-10 pr-3 py-2 border border-gray-300 rounded-md w-[750px] focus:outline-none focus:border-indigo-500"
+          className={desktopSearchInputClass}
         />
       </div>
     </div>

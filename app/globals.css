@@ -5,3 +5,9 @@
 :root {
   background: var(--gray, #e7e7e3);
 }
+
+@media (max-width: 350px) {
+  .xs\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
