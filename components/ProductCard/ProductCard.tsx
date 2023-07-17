@@ -35,9 +35,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               <Image
                 src={`${imageUrl}`}
                 alt={"Shoe"}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-[28px] p-2"
+                fill
+                className="rounded-[28px] p-2 object-cover"
               />
             )}
           </div>
