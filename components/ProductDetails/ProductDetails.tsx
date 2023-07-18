@@ -33,8 +33,12 @@ export const ProductDetails = () => {
           </p>
         </div>
         <div className="mb-[32px]">
-          {SHOE_SIZE.map((size) => {
-            return <button className={sizeClassName}>{size}</button>;
+          {SHOE_SIZE.map((size, index) => {
+            return (
+              <button className={sizeClassName} key={index}>
+                {size}
+              </button>
+            );
           })}
         </div>
         <div className="flex gap-[8px] mb-[8px]">
