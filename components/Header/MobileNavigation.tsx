@@ -1,12 +1,12 @@
-import Link from "next/link";
 import classNames from "classnames";
+import Link from "next/link";
 import { MobileSearchBox } from "../SearchBox";
 import { LinkType } from "@/types";
 import { rubik } from "@/styles";
 
 interface MobileNavigationProps {
   isMobileNavBarOpen?: Boolean;
-  navLinks?: Array<LinkType>;
+  navLinks?: LinkType[];
 }
 
 export const MobileNavigation = ({

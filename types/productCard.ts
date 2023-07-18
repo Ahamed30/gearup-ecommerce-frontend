@@ -7,5 +7,5 @@ export interface ProductCardType {
   price?: String;
   newProduct?: Boolean;
   offerPercent?: String;
-  productImages?: Array<AssetType>;
+  productImages?: AssetType[];
 }

@@ -4,5 +4,5 @@ import { LinkType } from "./link";
 export interface HeaderType {
   id?: Key;
   name?: String;
-  navLinks?: Array<LinkType>;
+  navLinks?: LinkType[];
 }

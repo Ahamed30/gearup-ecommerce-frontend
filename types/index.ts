@@ -9,3 +9,4 @@ export * from "./productCard";
 export * from "./productGrid";
 export * from "./helper";
 export * from "./breakpoint";
+export * from "./product";

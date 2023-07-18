@@ -7,5 +7,5 @@ interface ComponentType {
 
 export interface HomePageType {
   id?: Key;
-  components?: Array<ComponentType>;
+  components?: ComponentType[];
 }

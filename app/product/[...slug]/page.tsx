@@ -1,3 +1,5 @@
+import { getCMSData } from "@/utils/getCMSData";
+import { getProductQuery } from "@/query";
 import { ProductDescription } from "@/components/ProductDescription";
 
 interface PageProps {
@@ -8,7 +10,7 @@ export default async function ProductPage({ params }: PageProps) {
 
   const [id] = slug;
 
-  console.log("id", id);
+  const productData = await getCMSData(getProductQuery(id));
 
-  return <ProductDescription />;
+  return <ProductDescription productData={productData.product} />;
 }

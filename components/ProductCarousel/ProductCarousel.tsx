@@ -2,31 +2,27 @@
 
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Thumbs, Pagination } from "swiper/modules";
+import { Thumbs, Pagination } from "swiper/modules";
 import Image from "next/image";
 import type { Swiper as SwiperType } from "swiper";
-import { Breakpoint } from "@/types";
+import { AssetType, Breakpoint } from "@/types";
 import { useIsBreakpoint } from "@/hooks/useIsBreakpoint";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
 
-export const ProductCarousel = () => {
-  const images = [
-    "/shoe1.jpg",
-    "/shoe2.jpg",
-    "/shoe1.jpg",
-    "/shoe2.jpg",
-    "/shoe1.jpg",
-    "/shoe2.jpg",
-  ];
+interface ProductCarouselProps {
+  productImages: AssetType[];
+}
+
+export const ProductCarousel = ({ productImages }: ProductCarouselProps) => {
   const [activeImage, setActiveImage] = useState<SwiperType>();
 
   const isTablet = useIsBreakpoint(Breakpoint.Medium);
   const isMobile = useIsBreakpoint(Breakpoint.Small);
 
   return (
-    <div className="w-full md:w-1/2 lg:w-2/3 mb-[16px]">
+    <div className="w-full md:w-3/5 mb-[24px]">
       <Swiper
         loop
         spaceBetween={10}
@@ -36,12 +32,12 @@ export const ProductCarousel = () => {
         thumbs={{ swiper: activeImage }}
         className="mb-[16px]"
       >
-        {images.map((image, index) => {
+        {productImages.map((image) => {
           return (
-            <SwiperSlide key={index}>
-              <div className="relative w-full h-[400px]">
+            <SwiperSlide key={image.id}>
+              <div className="relative w-full h-[300px] lg:h-[450px]">
                 <Image
-                  src={image}
+                  src={`${image.url}`}
                   alt="Image"
                   fill
                   className="rounded-[16px] object-cover"
@@ -54,16 +50,16 @@ export const ProductCarousel = () => {
       <Swiper
         onSwiper={setActiveImage}
         spaceBetween={10}
-        slidesPerView={isTablet || isMobile ? 3.5 : 5.5}
+        slidesPerView={isTablet || isMobile ? 3.5 : 4.5}
         modules={[Thumbs]}
         className="product-images-slider-thumbs"
       >
-        {images.map((image, index) => {
+        {productImages.map((image) => {
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={image.id}>
               <div className="relative w-30 h-20">
                 <Image
-                  src={image}
+                  src={`${image.url}`}
                   alt="Image"
                   fill
                   className="absolute top-0 left-0 w-full rounded-[8px] object-cover"

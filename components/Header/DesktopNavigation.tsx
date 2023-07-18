@@ -3,7 +3,7 @@ import { LinkType } from "@/types";
 import { navLinkContentClass } from "./style";
 
 interface DesktopNavigationProps {
-  navLinks?: Array<LinkType>;
+  navLinks?: LinkType[];
 }
 
 export const DesktopNavigation = ({ navLinks }: DesktopNavigationProps) => {
