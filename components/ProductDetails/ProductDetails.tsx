@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { ProductSize } from "../ProductSize";
+import { ProductType } from "@/types";
 import {
   newReleaseClassName,
   normalPriceClassName,
@@ -13,15 +15,18 @@ import {
   buyNowClassName,
   aboutClassName,
 } from "./styles";
-import { ProductSize } from "../ProductSize";
-import { ProductType } from "@/types";
 
 interface ProductDetailsProps {
   productData?: ProductType;
 }
 
 export const ProductDetails = ({ productData }: ProductDetailsProps) => {
-  if (!productData) return;
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [isFavourite, setIsFavouriteSelected] = useState<boolean>(false);
+
+  if (!productData) {
+    return null;
+  }
 
   const {
     newProduct,
@@ -31,8 +36,6 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
     size,
     productDescription,
   } = productData;
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [isFavourite, setIsFavouriteSelected] = useState<Boolean>(false);
 
   const handleSizeSelect = (size: string) => {
     setSelectedSize(size);
@@ -44,15 +47,13 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
 
   return (
     <div>
-      {newProduct ? <p className={newReleaseClassName}>New Release</p> : null}
+      {newProduct && <p className={newReleaseClassName}>New Release</p>}
       <p className={productNameClassName}>{productName}</p>
       <div className="mb-[32px]">
         <span className={normalPriceClassName}>
           {salePrice ? <s>${price}</s> : `$${price}`}
         </span>
-        {salePrice ? (
-          <span className={salePriceClassName}>${salePrice}</span>
-        ) : null}
+        {salePrice && <span className={salePriceClassName}>${salePrice}</span>}
       </div>
       <div>
         <div className={titleClassName}>
