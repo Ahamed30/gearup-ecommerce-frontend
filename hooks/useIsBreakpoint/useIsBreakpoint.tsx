@@ -1,4 +1,4 @@
-import { Breakpoint } from "@/types/breakpoint";
+import { Breakpoint } from "@/types";
 import { useBreakpoint } from "../useBreakPoint";
 
 export function useIsBreakpoint(...breakpoints: Breakpoint[]): boolean {

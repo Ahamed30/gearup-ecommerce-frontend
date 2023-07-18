@@ -1,4 +1,4 @@
-import { ProductCarousel } from "@/components/ProductCarousel";
+import { ProductDescription } from "@/components/ProductDescription";
 
 interface PageProps {
   params?: { slug: string[] };
@@ -10,5 +10,5 @@ export default async function ProductPage({ params }: PageProps) {
 
   console.log("id", id);
 
-  return <ProductCarousel />;
+  return <ProductDescription />;
 }

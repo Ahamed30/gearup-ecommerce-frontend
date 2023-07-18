@@ -17,7 +17,7 @@ export const Header = ({ data }: HeaderProps) => {
   const [isDesktopSearchBoxOpen, setIsDesktopSearchBoxOpen] = useState(false);
   const { navLinks } = data;
 
-  const onClickMobileMenuBar = () => {
+  const onClickMobileMenuBar: () => void = () => {
     setIsMobileNavBarOpen(!isMobileNavBarOpen);
   };
 

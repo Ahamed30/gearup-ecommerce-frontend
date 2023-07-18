@@ -1,5 +1,5 @@
-import { Breakpoint, BreakpointSize } from "@/types/breakpoint";
 import { useState, useCallback, useEffect } from "react";
+import { Breakpoint, BreakpointSize } from "@/types";
 
 interface Size {
   width: number | undefined;

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs, Pagination } from "swiper/modules";
 import Image from "next/image";
 import type { Swiper as SwiperType } from "swiper";
-import { Breakpoint } from "@/types/breakpoint";
+import { Breakpoint } from "@/types";
 import { useIsBreakpoint } from "@/hooks/useIsBreakpoint";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -26,7 +26,7 @@ export const ProductCarousel = () => {
   const isMobile = useIsBreakpoint(Breakpoint.Small);
 
   return (
-    <div className="w-full md:w-1/2 mb-[16px]">
+    <div className="w-full md:w-1/2 lg:w-2/3 mb-[16px]">
       <Swiper
         loop
         spaceBetween={10}
@@ -54,7 +54,7 @@ export const ProductCarousel = () => {
       <Swiper
         onSwiper={setActiveImage}
         spaceBetween={10}
-        slidesPerView={isTablet || isMobile ? 3.5 : 4.5}
+        slidesPerView={isTablet || isMobile ? 3.5 : 5.5}
         modules={[Thumbs]}
         className="product-images-slider-thumbs"
       >
