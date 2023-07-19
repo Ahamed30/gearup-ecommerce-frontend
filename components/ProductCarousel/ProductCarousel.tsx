@@ -56,7 +56,7 @@ export const ProductCarousel = ({ productImages }: ProductCarouselProps) => {
       >
         {productImages.map((image) => {
           return (
-            <SwiperSlide key={image.id}>
+            <SwiperSlide key={image.id} className="cursor-pointer">
               <div className="relative w-30 h-20">
                 <Image
                   src={`${image.url}`}

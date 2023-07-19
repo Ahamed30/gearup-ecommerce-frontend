@@ -11,16 +11,3 @@
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
-
-.product-images-slider-thumbs {
-  .swiper-slide {
-    cursor: pointer;
-  }
-
-  &-wrapper {
-    width: 100%;
-    padding-top: 65%;
-    overflow: hidden;
-    position: relative;
-  }
-}
