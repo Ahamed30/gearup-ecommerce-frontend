@@ -9,7 +9,7 @@ export const headerTextClassName = `${fontRubik} text-white leading-normal text-
 export const subTextClassName = `${fontOpenSans} text-stone-200 text-base lgtext-xl font-semibold mb-[24px] lg:mb-[32px]`;
 
 export const inputBoxContainer =
-  "w-[250px] lg:w-[290px] px-4 py-2.5 rounded-lg border border border border border-white justify-start items-center inline-flex mr-[8px] mb-[16px]";
+  "w-[250px] lg:w-[290px] px-4 py-2.5 rounded-lg border border-white justify-start items-center inline-flex mr-[8px] mb-[16px]";
 
 export const inputBox =
   "grow shrink basis-0 opacity-75 text-stone-200 placeholder-[#E7E7E3] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none";
