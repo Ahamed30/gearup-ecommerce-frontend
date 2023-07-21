@@ -16,6 +16,15 @@ export const PromoCode = () => {
   //     togglePromoBox();
   //   };
 
+  // const handleKeyDown = (event: { key: string }) => {
+  //   if (event.key === "Enter") {
+  //     // Handle Enter key press event
+  //     const promoCodeItem = { name: "Promo Code", price: "$12" };
+  //     setItems((prevItems) => [...prevItems, promoCodeItem]);
+  //     // togglePromoBox();
+  //   }
+  // };
+
   return (
     <div>
       <Typography

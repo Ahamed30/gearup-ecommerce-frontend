@@ -1,12 +1,16 @@
+import type { Key } from "react";
 import { AssetType } from "./asset";
 
 export interface ProductType {
-  productName?: String;
-  productDescription?: String;
-  price?: String;
-  salePrice?: String;
+  id: Key;
+  productName: string;
+  productDescription?: string;
+  price: number;
+  salePrice?: number;
   size?: string[];
-  newProduct?: Boolean;
-  offerPercent?: String;
+  newProduct?: boolean;
+  offerPercent?: string;
+  heroImage: AssetType;
   productImages: AssetType[];
+  color?: string;
 }

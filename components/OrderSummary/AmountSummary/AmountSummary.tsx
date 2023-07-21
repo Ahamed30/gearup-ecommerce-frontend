@@ -1,32 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useCart } from "@/context/CartContext";
 import { Typography } from "@/components/Typography";
 
 interface OrderSummaryProps {
   isBordered?: boolean;
 }
 
+type itemsType = {
+  name: string;
+  price: number | string;
+};
+
 export const AmountSummary = ({ isBordered }: OrderSummaryProps) => {
-  const [inputValue, setInputValue] = useState("");
+  // const [inputValue, setInputValue] = useState("");
+  const { cart } = useCart();
 
-  const [items, setItems] = useState([
-    { name: "1 ITEM", price: "$130.00" },
-    { name: "Delivery", price: "$6.99" },
-    { name: "Sales Tax", price: "-" },
-  ]);
-  const total = "$136.99";
+  const [items, setItems] = useState<itemsType[]>([]);
+  const total = cart?.cartSubTotal ?? 0;
 
-  const handleInputChange = (event: { target: { value: string } }) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleKeyDown = (event: { key: string }) => {
-    if (event.key === "Enter") {
-      // Handle Enter key press event
-      const promoCodeItem = { name: "Promo Code", price: "$12" };
-      setItems((prevItems) => [...prevItems, promoCodeItem]);
-      // togglePromoBox();
-    }
-  };
+  useEffect(() => {
+    cart?.items?.forEach((product) => {
+      setItems((prevItems) => [
+        ...prevItems,
+        {
+          name: product.productName,
+          price: (product.salePrice ?? product.price) * product.quantity,
+        },
+      ]);
+    });
+  }, []);
 
   return (
     <div>

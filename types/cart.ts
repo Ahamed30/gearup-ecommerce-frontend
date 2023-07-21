@@ -1,11 +1,15 @@
+import type { Key } from "react";
+import { AssetType } from "./asset";
+
 export type CartItemType = {
-  id: string;
+  id: Key;
   quantity: number;
-  productImage: string;
+  heroImage: AssetType;
   productName: string;
   price: number;
-  salePrice: number;
-  size: number;
+  salePrice?: number;
+  size: string;
+  color?: string;
 };
 
 export type Cart = {

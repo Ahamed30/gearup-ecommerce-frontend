@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { MobileNavigation } from "./MobileNavigation";
 import { DesktopNavigation } from "./DesktopNavigation";
 import { DesktopSearchBox } from "../SearchBox";
 import { UnStyledButton } from "../Button";
 import { HeaderType } from "@/types";
 import { graduate } from "@/styles";
+import { useCart } from "@/context/CartContext";
 
 interface HeaderProps {
   data: HeaderType;
@@ -16,6 +18,8 @@ interface HeaderProps {
 export const Header = ({ data }: HeaderProps) => {
   const [isMobileNavBarOpen, setIsMobileNavBarOpen] = useState(false);
   const [isDesktopSearchBoxOpen, setIsDesktopSearchBoxOpen] = useState(false);
+  const { cart } = useCart();
+  const router = useRouter();
   const { navLinks } = data;
 
   const onClickMobileMenuBar: () => void = () => {
@@ -37,7 +41,10 @@ export const Header = ({ data }: HeaderProps) => {
           <Image width={20} height={20} src={"/nav-menu.svg"} alt="Nav Menu" />
         </div>
         <div className="flex justify-center items-center text-black">
-          <span className={`${graduate?.className} font-bold text-[32px]`}>
+          <span
+            className={`${graduate?.className} font-bold text-[32px] cursor-pointer`}
+            onClick={() => router.push("/")}
+          >
             GearUp
           </span>
         </div>
@@ -57,8 +64,11 @@ export const Header = ({ data }: HeaderProps) => {
             <Image width={20} height={20} src={"/user.svg"} alt="User Icon" />
           </UnStyledButton>
           {/* TODO: Need to change this to cart icon */}
-          <UnStyledButton className="flex flex-col justify-center items-center px-[6px] lg:py-[4px] lg:px-[8px] border rounded-3xl bg-[#FFA52F]">
-            0
+          <UnStyledButton
+            onClick={() => router.push("/cart")}
+            className="flex flex-col justify-center items-center px-[6px] lg:py-[4px] lg:px-[8px] border rounded-3xl bg-[#FFA52F]"
+          >
+            {cart?.itemCount ?? 0}
           </UnStyledButton>
         </div>
       </div>

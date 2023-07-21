@@ -11,7 +11,7 @@ export const getProductGridQuery = (id: Key) => {
             salePrice
             newProduct
             offerPercent
-            productImages {
+            heroImage {
               id
               url
             }

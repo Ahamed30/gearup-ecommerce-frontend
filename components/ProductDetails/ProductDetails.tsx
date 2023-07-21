@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useCart } from "@/context/CartContext";
 import { ProductSize } from "../ProductSize";
-import { ProductType } from "@/types";
+import { CartItemType, ProductType } from "@/types";
 import { Typography } from "../Typography";
 import { Button, UnStyledButton } from "../Button";
 import {
@@ -18,27 +19,53 @@ interface ProductDetailsProps {
 
 export const ProductDetails = ({ productData }: ProductDetailsProps) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [isSizeSelected, setIsSizeSelected] = useState<boolean>(true);
   const [isFavourite, setIsFavouriteSelected] = useState<boolean>(false);
 
   if (!productData) {
     return null;
   }
+  console.log("...", productData);
+  const { addToCart } = useCart();
 
   const {
+    id,
     newProduct,
     productName,
     price,
     salePrice,
     size,
     productDescription,
+    heroImage,
+    color,
   } = productData;
 
   const handleSizeSelect = (size: string) => {
+    if (selectedSize == null) setIsSizeSelected(true);
     setSelectedSize(size);
   };
 
   const handleFavoriteClick = () => {
     setIsFavouriteSelected(!isFavourite);
+  };
+
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      setIsSizeSelected(false);
+      return;
+    }
+    const currItem: CartItemType = {
+      id,
+      quantity: 1,
+      heroImage,
+      productName,
+      price,
+      salePrice,
+      size: selectedSize,
+      color,
+    };
+
+    addToCart(currItem);
   };
 
   return (
@@ -98,9 +125,21 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
           selectedSize={selectedSize}
           handleSizeSelect={handleSizeSelect}
         />
+        {!isSizeSelected && (
+          <Typography
+            variant="headline"
+            color="#EF4444"
+            className="text-base mb-[16px]"
+          >
+            Please select a size*
+          </Typography>
+        )}
       </div>
       <div className="flex gap-[8px] mb-[8px]">
-        <UnStyledButton className={addToCartButtonClassName}>
+        <UnStyledButton
+          className={addToCartButtonClassName}
+          onClick={handleAddToCart}
+        >
           Add to cart
         </UnStyledButton>
         <UnStyledButton
