@@ -8,6 +8,7 @@ export const getProductGridQuery = (id: Key) => {
             id
             productName
             price
+            salePrice
             newProduct
             offerPercent
             productImages {

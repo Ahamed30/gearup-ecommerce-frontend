@@ -5,7 +5,8 @@ export interface ProductCardType {
   id?: Key;
   productName?: String;
   price?: String;
+  salePrice?: String;
   newProduct?: Boolean;
   offerPercent?: String;
-  productImages?: Array<AssetType>;
+  productImages?: AssetType[];
 }
