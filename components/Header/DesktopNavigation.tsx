@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { LinkType } from "@/types";
-import { rubik } from "@/styles";
 import { navLinkContentClass } from "./style";
 
 interface DesktopNavigationProps {
-  navLinks?: Array<LinkType>;
+  navLinks?: LinkType[];
 }
 
 export const DesktopNavigation = ({ navLinks }: DesktopNavigationProps) => {

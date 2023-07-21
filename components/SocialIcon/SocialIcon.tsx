@@ -3,7 +3,7 @@ import Link from "next/link";
 import { rubik } from "@/styles";
 
 interface SocialIconProps {
-  socialIcons?: Array<String>;
+  socialIcons?: String[];
 }
 
 export const SocialIcon = ({ socialIcons }: SocialIconProps) => {

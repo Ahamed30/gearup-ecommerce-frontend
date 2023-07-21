@@ -8,6 +8,6 @@ export interface FooterType {
   subscribeForm?: SubscribeFormType;
   leftColumnTitle?: String;
   leftColumnDescription?: String;
-  linkColumns?: Array<LinkColumnType>;
-  socialIcons?: Array<String>;
+  linkColumns?: LinkColumnType[];
+  socialIcons?: String[];
 }
