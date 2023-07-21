@@ -1,13 +1,8 @@
 import { SubscribeFormType } from "@/types";
-import {
-  headerTextClassName,
-  inputBox,
-  inputBoxContainer,
-  logoContainer,
-  logoNameClass,
-  subTextClassName,
-  submitButton,
-} from "./style";
+import { headerTextClassName, logoContainer, logoNameClass } from "./style";
+import { Typography } from "../Typography";
+import { TextInput } from "../TextInput";
+import { Button } from "../Button";
 
 export interface SubscribeFormProps {
   subscribeFormData?: SubscribeFormType;
@@ -22,15 +17,37 @@ export const SubscribeForm = ({ subscribeFormData }: SubscribeFormProps) => {
     <div className="p-[24px] lg:p-[40px]">
       <div className="lg:flex lg:flex-row lg:justify-between gap-16">
         <div className="w-full">
-          <h3 className={headerTextClassName}>{headerText}</h3>
-          <p className={subTextClassName}>{subText}</p>
-          <div className={inputBoxContainer}>
-            <input className={inputBox} placeholder="Email address" />
+          <Typography
+            as="h3"
+            variant="headline"
+            color="#FFFFFF"
+            className={headerTextClassName}
+          >
+            {headerText}
+          </Typography>
+          <Typography
+            color="#E7E5E4"
+            className="text-base lg:text-xl font-semibold mb-[24px] lg:mb-[32px]"
+          >
+            {subText}
+          </Typography>
+          <div className="flex flex-row gap-4">
+            <TextInput
+              type="email"
+              className="w-1/2"
+              state="dark"
+              placeholder="Email address"
+            />
+            <Button
+              color="primary"
+              className="flex justify-center items-center uppercase"
+            >
+              Submit
+            </Button>
           </div>
-
-          <button className={submitButton}>Submit</button>
         </div>
         <div className={logoContainer}>
+          {/* {TODO: Need to update a logo} */}
           <h1 className={logoNameClass}>GearUp</h1>
         </div>
       </div>

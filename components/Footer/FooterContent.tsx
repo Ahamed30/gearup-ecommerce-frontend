@@ -1,13 +1,12 @@
-import React from "react";
+import Link from "next/link";
 import { SocialIcon } from "../SocialIcon";
 import { FooterType, LinkType } from "@/types";
-import Link from "next/link";
+import { Typography } from "../Typography";
 import {
   gridContentLinkClassName,
   leftColumnDescriptionClassName,
   leftColumnTitleClassName,
   rightColumnContainer,
-  rightColumnTitleClassName,
 } from "./style";
 
 interface FooterContentProps {
@@ -33,7 +32,13 @@ export const FooterContent = ({ footerData }: FooterContentProps) => {
     const { id, title, links } = linkColumn;
     return (
       <div key={id} className={rightColumnContainer}>
-        <p className={rightColumnTitleClassName}>{title}</p>
+        <Typography
+          variant="headline"
+          className="text-[20px] lg:text-[24px] font-semibold mb-[8px]"
+          color="#FFA52F"
+        >
+          {title}
+        </Typography>
         {gridContent(links)}
       </div>
     );
@@ -42,10 +47,20 @@ export const FooterContent = ({ footerData }: FooterContentProps) => {
     <div className="p-[24px] pb-[40px] lg:p-[40px]">
       <div className="lg:flex lg:flex-row lg:justify-between gap-12">
         <div className="w-full">
-          <h1 className={leftColumnTitleClassName}>{leftColumnTitle}</h1>
-          <p className={leftColumnDescriptionClassName}>
+          <Typography
+            as="h1"
+            variant="headline"
+            color="#FFA52F"
+            className={leftColumnTitleClassName}
+          >
+            {leftColumnTitle}
+          </Typography>
+          <Typography
+            color="#E7E7E3"
+            className={leftColumnDescriptionClassName}
+          >
             {leftColumnDescription}
-          </p>
+          </Typography>
         </div>
         <div className="w-full">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-15">

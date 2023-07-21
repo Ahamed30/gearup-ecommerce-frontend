@@ -2,13 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  buttonClass,
-  newProductClass,
-  offerPercentClass,
-  productNameClass,
-} from "./styles";
+import classNames from "classnames";
+import { Button } from "../Button";
+import { Typography } from "../Typography";
 import { ProductCardType } from "@/types";
+import { buttonClass, productNameClass, tagClass } from "./styles";
 
 interface ProductCardProps {
   product?: ProductCardType;
@@ -40,17 +38,41 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               />
             )}
           </div>
-          {newProduct && <div className={newProductClass}>New</div>}
+          {newProduct && (
+            <div className={classNames(tagClass, "bg-[#4A69E2]")}>
+              <Typography
+                variant="headline"
+                className="text-[12px] font-semibold"
+                color="#FFFFFF"
+              >
+                New
+              </Typography>
+            </div>
+          )}
           {!newProduct && offerPercent && (
-            <div className={offerPercentClass}>{`${offerPercent} off`}</div>
+            <div className={classNames(tagClass, "bg-[#FFA52F]")}>
+              <Typography
+                className="text-[12px] font-semibold"
+                variant="headline"
+              >{`${offerPercent} off`}</Typography>
+            </div>
           )}
         </div>
-        <p title={`${productName}`} className={productNameClass}>
+        {/* {TODO: Need hover the text} */}
+        <Typography
+          variant="headline"
+          title={`${productName}`}
+          className={productNameClass}
+        >
           {productName}
-        </p>
-        <button className={buttonClass}>
-          View Product - <span className="px-1 text-[#FFA52F]"> ${price}</span>
-        </button>
+        </Typography>
+        <Button color="primary" size="md" className={buttonClass}>
+          {" "}
+          View Product -
+          <Typography as="span" variant="headline" color="#FFA52F">
+            &nbsp;${price}
+          </Typography>
+        </Button>
       </div>
     </Link>
   );

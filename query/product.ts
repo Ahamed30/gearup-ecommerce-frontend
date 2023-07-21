@@ -1,4 +1,4 @@
-import { Key } from "react";
+import type { Key } from "react";
 
 export const getProductQuery = (id: Key) => {
   return `{

@@ -5,8 +5,9 @@ import Image from "next/image";
 import { MobileNavigation } from "./MobileNavigation";
 import { DesktopNavigation } from "./DesktopNavigation";
 import { DesktopSearchBox } from "../SearchBox";
-import { graduate } from "@/styles";
+import { UnStyledButton } from "../Button";
 import { HeaderType } from "@/types";
+import { graduate } from "@/styles";
 
 interface HeaderProps {
   data: HeaderType;
@@ -41,7 +42,7 @@ export const Header = ({ data }: HeaderProps) => {
           </span>
         </div>
         <div className="flex absolute right-0 top-3">
-          <button
+          <UnStyledButton
             className="hidden lg:block mr-[40px]"
             onClick={onClickMobileSearchBox}
           >
@@ -51,13 +52,14 @@ export const Header = ({ data }: HeaderProps) => {
               src={"/search.svg"}
               alt="Search Icon"
             />
-          </button>
-          <button className="mr-[16px] lg:mr-[40px]">
+          </UnStyledButton>
+          <UnStyledButton className="mr-[16px] lg:mr-[40px]">
             <Image width={20} height={20} src={"/user.svg"} alt="User Icon" />
-          </button>
-          <button className="flex flex-col justify-center items-center px-[6px] lg:py-[4px] lg:px-[8px] border rounded-3xl bg-[#FFA52F]">
+          </UnStyledButton>
+          {/* TODO: Need to change this to cart icon */}
+          <UnStyledButton className="flex flex-col justify-center items-center px-[6px] lg:py-[4px] lg:px-[8px] border rounded-3xl bg-[#FFA52F]">
             0
-          </button>
+          </UnStyledButton>
         </div>
       </div>
       <MobileNavigation

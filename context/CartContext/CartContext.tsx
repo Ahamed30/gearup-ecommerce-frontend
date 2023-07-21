@@ -1,5 +1,5 @@
-import { Cart, CartItemType } from "@/types";
 import { createContext, useContext, type ReactNode, useState } from "react";
+import { Cart, CartItemType } from "@/types";
 
 interface CartContextType {
   addToCart: (item: CartItemType) => void; // when updating via backend these can be update to Promise<void> from void
