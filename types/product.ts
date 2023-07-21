@@ -1,12 +1,12 @@
-import { Key } from "react";
 import { AssetType } from "./asset";
 
-export interface ProductCardType {
-  id?: Key;
+export interface ProductType {
   productName?: String;
+  productDescription?: String;
   price?: String;
   salePrice?: String;
+  size?: string[];
   newProduct?: Boolean;
   offerPercent?: String;
-  productImages?: AssetType[];
+  productImages: AssetType[];
 }

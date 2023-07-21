@@ -18,7 +18,7 @@ export const FooterContent = ({ footerData }: FooterContentProps) => {
   const { leftColumnTitle, leftColumnDescription, linkColumns, socialIcons } =
     footerData;
 
-  const gridContent = (links: Array<LinkType>) => {
+  const gridContent = (links: LinkType[]) => {
     return links?.map((navLink) => {
       const { id, name, link } = navLink;
       return (
