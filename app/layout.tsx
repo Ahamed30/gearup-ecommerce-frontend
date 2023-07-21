@@ -4,6 +4,7 @@ import "@/styles";
 import { Footer } from "@/components/Footer";
 import { getCMSData } from "@/utils/getCMSData";
 import { footerQuery, headerQuery } from "@/query";
+import { Provider } from "@/context";
 
 export const metadata = {
   title: "GearUp",
@@ -23,9 +24,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="mx-auto max-w-full w-[1440px] py-8 px-[16px] lg:px-[60px]">
-        <Header data={header?.headers[0]} />
-        {children}
-        <Footer data={footer?.footers[0]} />
+        <Provider>
+          <Header data={header?.headers[0]} />
+          {children}
+          <Footer data={footer?.footers[0]} />
+        </Provider>
       </body>
     </html>
   );

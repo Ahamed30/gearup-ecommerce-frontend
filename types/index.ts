@@ -7,6 +7,7 @@ export * from "./asset";
 export * from "./homePage";
 export * from "./productCard";
 export * from "./productGrid";
+export * from "./cart";
 export * from "./helper";
 export * from "./breakpoint";
 export * from "./product";
