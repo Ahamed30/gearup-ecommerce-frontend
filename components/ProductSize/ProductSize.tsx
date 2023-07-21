@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { SHOE_SIZE } from "@/constants";
 import { rubik } from "@/styles";
+import { UnStyledButton } from "../Button";
 
 interface ProductSizeProps {
   size?: string[];
@@ -38,14 +39,14 @@ export const ProductSize = ({
         );
 
         return (
-          <button
+          <UnStyledButton
             className={sizeClassName}
             key={index}
             onClick={() => handleSizeSelect(currSize)}
             disabled={!isSizeAvailable}
           >
             {currSize}
-          </button>
+          </UnStyledButton>
         );
       })}
     </div>

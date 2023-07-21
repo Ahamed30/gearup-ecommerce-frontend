@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { rubik } from "@/styles";
+import { Typography } from "../Typography";
 
 interface SocialIconProps {
   socialIcons?: String[];
@@ -8,9 +8,6 @@ interface SocialIconProps {
 
 export const SocialIcon = ({ socialIcons }: SocialIconProps) => {
   if (!socialIcons) return;
-  const fontRubik = rubik?.className;
-
-  const titleClassName = `${fontRubik} text-[#FFA52F] text-[20px] lg:text-[24px] font-semibold mb-[16px]`;
 
   const iconImageContent = socialIcons?.map((iconName, index) => {
     return (
@@ -32,7 +29,13 @@ export const SocialIcon = ({ socialIcons }: SocialIconProps) => {
 
   return (
     <div className="gap-2">
-      <p className={titleClassName}>Follow us</p>
+      <Typography
+        variant="headline"
+        color="#FFA52F"
+        className="text-[20px] lg:text-[24px] font-semibold mb-[16px]"
+      >
+        Follow us
+      </Typography>
       <div className="inline-flex gap-5">{iconImageContent}</div>
     </div>
   );

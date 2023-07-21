@@ -1,4 +1,4 @@
-import { Key } from "react";
+import type { Key } from "react";
 import { AssetType } from "./asset";
 
 export interface ProductCardType {

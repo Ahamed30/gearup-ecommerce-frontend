@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes } from "react";
+import type { InputHTMLAttributes, ReactNode } from "react";
 import classNames from "classnames";
 import { openSans } from "@/styles";
 import { Typography } from "../Typography";
@@ -6,24 +6,28 @@ import { Typography } from "../Typography";
 const fontOpenSans = openSans?.className;
 
 export const commonInputContainer =
-  "px-4 py-2.5 rounded-lg border justify-start items-center inline-flex";
+  "px-2 py-2.5 rounded-lg border justify-start items-center inline-flex";
 
-export const inputBox = `${fontOpenSans} w-full placeholder-[#79767C] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none`;
+export const inputBox = `${fontOpenSans} w-full px-2 placeholder-[#79767C] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none`;
 
 export type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
-  state?: "default" | "error" | "valid";
+  state?: "default" | "error" | "valid" | "dark";
   title?: string;
   helper?: string;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
 };
 
 export const stateBorderColor = {
   default: "border-[#232321]",
+  dark: "border-[#FFFFFF]",
   error: "border-[#DA1E28]",
   valid: "border-[#008B28]",
 };
 
 export const stateTextColor = {
   default: "#1F1A24",
+  dark: "#FFFFFF",
   error: "#DA1E28",
   valid: "#008B28",
 };
@@ -33,6 +37,8 @@ export const TextInput = ({
   className,
   title,
   helper,
+  startIcon,
+  endIcon,
   ...props
 }: TextInputProps) => {
   return (
@@ -41,7 +47,7 @@ export const TextInput = ({
         <Typography
           variant="paragraph"
           className="text-[14px] font-normal mb-[8px]"
-          color="#1F1A24"
+          color={state}
         >
           {title}
         </Typography>
@@ -49,10 +55,20 @@ export const TextInput = ({
       <div
         className={classNames(commonInputContainer, stateBorderColor[state])}
       >
+        {startIcon && (
+          <div className="flex items-center cursor-pointer">{startIcon}</div>
+        )}
         <input
-          className={classNames(inputBox, `text-[${stateTextColor}]`)}
+          className={classNames(
+            inputBox,
+            state === "dark" && "placeholder-[#E7E7E3]"
+          )}
+          style={{ color: stateTextColor[state] }}
           {...props}
         />
+        {endIcon && (
+          <div className="flex items-center ml-2 cursor-pointer">{endIcon}</div>
+        )}
       </div>
       {helper && (
         <Typography

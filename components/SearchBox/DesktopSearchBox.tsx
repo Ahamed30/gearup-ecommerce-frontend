@@ -1,6 +1,6 @@
 import Image from "next/image";
 import classNames from "classnames";
-import { desktopSearchInputClass } from "./style";
+import { TextInput } from "../TextInput";
 
 interface DesktopSearchBoxProps {
   isDesktopSearchBoxOpen?: Boolean;
@@ -16,16 +16,14 @@ export const DesktopSearchBox = ({
 
   return (
     <div className={searchBoxClassName}>
-      <div className="relative">
-        <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+      <TextInput
+        type="text"
+        placeholder="Search"
+        startIcon={
           <Image width={20} height={20} src={"/search.svg"} alt="Search Icon" />
-        </span>
-        <input
-          type="text"
-          placeholder="Search"
-          className={desktopSearchInputClass}
-        />
-      </div>
+        }
+        className="w-1/2"
+      />
     </div>
   );
 };

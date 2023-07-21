@@ -1,4 +1,4 @@
-import { Key } from "react";
+import type { Key } from "react";
 
 interface ComponentType {
   id: Key;

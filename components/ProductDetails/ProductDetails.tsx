@@ -4,16 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { ProductSize } from "../ProductSize";
 import { ProductType } from "@/types";
+import { Typography } from "../Typography";
+import { Button, UnStyledButton } from "../Button";
 import {
   newReleaseClassName,
-  normalPriceClassName,
-  salePriceClassName,
-  productNameClassName,
-  titleClassName,
   addToCartButtonClassName,
   favouriteButtonClassName,
-  buyNowClassName,
-  aboutClassName,
 } from "./styles";
 
 interface ProductDetailsProps {
@@ -47,20 +43,55 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
 
   return (
     <div>
-      {newProduct && <p className={newReleaseClassName}>New Release</p>}
-      <p className={productNameClassName}>{productName}</p>
+      {newProduct && (
+        <Typography
+          variant="headline"
+          color="#FFFFFF"
+          className={newReleaseClassName}
+        >
+          New Release
+        </Typography>
+      )}
+      <Typography
+        variant="headline"
+        className="text-2xl lg:text-3xl font-semibold lg:uppercase mb-[16px]"
+      >
+        {productName}
+      </Typography>
       <div className="mb-[32px]">
-        <span className={normalPriceClassName}>
+        <Typography
+          as="span"
+          variant="headline"
+          color="#4A69E2"
+          className="text-2xl font-semibold mr-[16px]"
+        >
           {salePrice ? <s>${price}</s> : `$${price}`}
-        </span>
-        {salePrice && <span className={salePriceClassName}>${salePrice}</span>}
+        </Typography>
+        {salePrice && (
+          <Typography
+            as="span"
+            variant="headline"
+            color="#EF4444"
+            className="text-2xl font-semibold"
+          >
+            ${salePrice}
+          </Typography>
+        )}
       </div>
       <div>
-        <div className={titleClassName}>
-          <p>Size</p>
-          <p className="underline underline-offset-2 cursor-pointer">
+        <div className="flex justify-between mb-[8px]">
+          <Typography
+            variant="headline"
+            className="text-base font-semibold uppercase"
+          >
+            Size
+          </Typography>
+          <Typography
+            variant="headline"
+            className="text-base font-semibold uppercase underline underline-offset-2 cursor-pointer"
+          >
             Size Chart
-          </p>
+          </Typography>
         </div>
         <ProductSize
           size={size}
@@ -69,8 +100,10 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
         />
       </div>
       <div className="flex gap-[8px] mb-[8px]">
-        <button className={addToCartButtonClassName}>Add to cart</button>
-        <button
+        <UnStyledButton className={addToCartButtonClassName}>
+          Add to cart
+        </UnStyledButton>
+        <UnStyledButton
           className={favouriteButtonClassName}
           onClick={handleFavoriteClick}
         >
@@ -80,12 +113,21 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
             src={isFavourite ? "/heart-red.svg" : "/heart.svg"}
             alt="Add to favourite"
           />
-        </button>
+        </UnStyledButton>
       </div>
-      <button className={buyNowClassName}>Buy it now</button>
+      <Button color="secondary" className="w-full uppercase mb-[16px]">
+        Buy it now
+      </Button>
       <div>
-        <p className={titleClassName}>About this product</p>
-        <p className={aboutClassName}>{productDescription}</p>
+        <Typography
+          variant="headline"
+          className="text-base font-semibold uppercase mb-[8px]"
+        >
+          About this product
+        </Typography>
+        <Typography className="text-[16px] font-normal mb-[32px]">
+          {productDescription}
+        </Typography>
       </div>
     </div>
   );

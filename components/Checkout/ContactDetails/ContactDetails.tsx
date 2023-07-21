@@ -5,7 +5,7 @@ import { subTextClassName, titleClassName } from "../style";
 
 export const ContactDetails = () => {
   return (
-    <div className="mb-[16px]">
+    <div className="mb-[16px] lg:mb-[32px]">
       <Typography
         variant="headline"
         className={classNames(titleClassName, "mb-[8px]")}

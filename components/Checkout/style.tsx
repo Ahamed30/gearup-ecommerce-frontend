@@ -9,4 +9,4 @@ export const cardTextClassName = `text-base font-semibold`;
 
 export const newsTextClassName = `mb-[8px] text-base font-semibold`;
 
-export const buttonClass = `w-full md:w-1/2  px-[16px] py-[14px] flex justify-between items-center bg-[#232321] rounded-[8px] hover:bg-[#4A69E2] cursor-pointer`;
+export const buttonClass = `w-full md:w-1/2 flex justify-between items-center cursor-pointer`;

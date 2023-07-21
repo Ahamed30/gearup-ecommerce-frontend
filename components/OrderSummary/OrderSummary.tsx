@@ -1,91 +1,33 @@
-import { useState } from "react";
-import Image from "next/image";
-import {
-  buttonClassName,
-  inputBox,
-  inputBoxContainer,
-  itemClassName,
-  orderContainer,
-  promoTextClassName,
-  titleClassName,
-  totalClassName,
-} from "./style";
+import classNames from "classnames";
+import { Button } from "../Button";
+import { AmountSummary } from "./AmountSummary";
+import { PromoCode } from "../PromoCode";
 
-export const OrderSummary = () => {
-  const [promoBoxOpen, setPromoBoxOpen] = useState<Boolean>(false);
-  const [inputValue, setInputValue] = useState("");
+interface OrderSummaryProps {
+  step?: "checkout" | "cart";
+}
 
-  const [items, setItems] = useState([
-    { name: "1 ITEM", price: "$130.00" },
-    { name: "Delivery", price: "$6.99" },
-    { name: "Sales Tax", price: "-" },
-  ]);
-  const total = "$136.99";
-
-  const togglePromoBox = () => {
-    setPromoBoxOpen(!promoBoxOpen);
-  };
-
-  const handleInputChange = (event: { target: { value: string } }) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleClick = () => {
-    const promoCodeItem = { name: "Promo Applied", price: "-$12" };
-    setItems((prevItems) => [...prevItems, promoCodeItem]);
-    togglePromoBox();
-  };
-
-  const handleKeyDown = (event: { key: string }) => {
-    if (event.key === "Enter") {
-      // Handle Enter key press event
-      const promoCodeItem = { name: "Promo Code", price: "$12" };
-      setItems((prevItems) => [...prevItems, promoCodeItem]);
-      togglePromoBox();
-    }
-  };
-
+export const OrderSummary = ({ step }: OrderSummaryProps) => {
+  const container = classNames(
+    "border rounded-[16px] bg-[#FAFAFA] lg:flex-grow p-6",
+    step === "cart"
+      ? "lg:border-none lg:rounded-none lg:bg-transparent"
+      : "mb-[16px] lg:mb-[40px]"
+  );
   return (
-    <div className={orderContainer}>
-      <p className={titleClassName}>Order Summary</p>
-      {items.map((item, index) => (
-        <div key={index} className={itemClassName}>
-          <p>{item.name}</p>
-          <p>{item.price}</p>
-        </div>
-      ))}
-      <div className={totalClassName}>
-        <p>Total</p>
-        <p>{total}</p>
-      </div>
-      <button className={buttonClassName}>CHECKOUT</button>
-      <p className={promoTextClassName} onClick={() => togglePromoBox()}>
-        User a promo code
-      </p>
-      {promoBoxOpen && (
-        <div className="lg:border lg:rounded-[16px] lg:bg-[#FAFAFA] p-6 flex justify-center items-center mt-[16px]">
-          <div className={inputBoxContainer}>
-            <input
-              className={inputBox}
-              value={inputValue}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyDown}
-              placeholder="Promo code"
-            />
-            <div
-              className="flex items-center ml-2 cursor-pointer"
-              onClick={handleClick}
-            >
-              <Image
-                src="/message-send-icon.svg"
-                height={24}
-                width={24}
-                alt="Add Promo Code"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+    <div className={container}>
+      <AmountSummary />
+      {step === "cart" ? (
+        <>
+          <Button
+            color="primary"
+            className="w-full uppercase flex justify-center items-center mb-[24px]"
+          >
+            CHECKOUT
+          </Button>
+          <PromoCode />
+        </>
+      ) : null}
     </div>
   );
 };
