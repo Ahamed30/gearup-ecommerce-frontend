@@ -21,12 +21,11 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [isSizeSelected, setIsSizeSelected] = useState<boolean>(true);
   const [isFavourite, setIsFavouriteSelected] = useState<boolean>(false);
+  const { addToCart } = useCart();
 
   if (!productData) {
     return null;
   }
-  console.log("...", productData);
-  const { addToCart } = useCart();
 
   const {
     id,
