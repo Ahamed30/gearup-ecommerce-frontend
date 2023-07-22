@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode, Key } from "react";
 import { Cart, CartItemType } from "@/types";
+import { getCookie, setCookie } from "@/utils/cookie";
 
 interface CartContextType {
   addToCart: (item: CartItemType) => void; // when updating via backend these can be update to Promise<void> from void
@@ -8,6 +9,7 @@ interface CartContextType {
   // clearCartAlertState: () => void;
   removeFromCart: (itemId: Key, size: string) => void;
   updateCartItem: (itemId: string, updatedItem: CartItemType) => void;
+  updateCart: (cart: Cart) => void;
 }
 
 //@ts-expect-error: ignore initial context creation
@@ -24,7 +26,9 @@ export const CartContextProvider = ({
   cart: initialCart = null,
   children,
 }: CartContextProviderProps) => {
-  const [cart, setCart] = useState(initialCart);
+  const cartFromCookie: Cart | null = getCookie("cart");
+  // console.log("...", cartFromCookie);
+  const [cart, setCart] = useState(initialCart ?? cartFromCookie);
 
   const addToCart = (item: CartItemType) => {
     let isItemExists = false;
@@ -35,6 +39,7 @@ export const CartContextProvider = ({
             (cart.cartSubTotal ?? 0) + (item?.salePrice ?? item.price);
           element.quantity += 1;
           isItemExists = true;
+          setCookie("cart", cart);
           return;
         }
       });
@@ -47,6 +52,7 @@ export const CartContextProvider = ({
       updatedCart.itemCount = (updatedCart.itemCount ?? 0) + 1;
       updatedCart.cartSubTotal =
         (updatedCart.cartSubTotal ?? 0) + (item?.salePrice ?? item.price);
+      setCookie("cart", updatedCart);
       return updatedCart;
     });
   };
@@ -65,8 +71,10 @@ export const CartContextProvider = ({
       });
 
       updatedCart.itemCount = (updatedCart.itemCount ?? 1) - 1;
+      setCookie("cart", updatedCart);
       return updatedCart;
     });
+    console.log("-->", cart);
   };
 
   const updateCartItem = (itemId: Key, updatedItem: CartItemType) => {
@@ -76,16 +84,22 @@ export const CartContextProvider = ({
       updatedCart.items = updatedCart.items?.map((item) =>
         item.id === itemId ? updatedItem : item
       );
-
+      setCookie("cart", updatedCart);
       return updatedCart;
     });
   };
+
+  const updateCart = (cart: Cart) => {
+    setCart(cart);
+  };
+
   return (
     <CartContext.Provider
       value={{
         addToCart,
         removeFromCart,
         updateCartItem,
+        updateCart,
         cart,
       }}
     >

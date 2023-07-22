@@ -17,13 +17,14 @@ export const ShippingAddress = () => {
         <div className="md:flex md:gap-[20px]">
           <TextInput
             className="w-full lg:w-1/2 mb-[16px]"
+            type="text"
             placeholder="First Name*"
             required
           />
           <TextInput
             className="w-full lg:w-1/2  mb-[16px]"
             placeholder="Last Name"
-            required
+            type="text"
           />
         </div>
         <TextInput
@@ -37,6 +38,7 @@ export const ShippingAddress = () => {
           placeholder="Phone Number*"
           helper="E.g. (123) 456-7890"
           required
+          pattern="^\d{10}$"
         />
       </div>
     </div>

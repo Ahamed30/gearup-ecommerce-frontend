@@ -15,7 +15,12 @@ export const ContactDetails = () => {
       <Typography variant="paragraph" className={subTextClassName}>
         We will use these details to keep you inform about your delivery.
       </Typography>
-      <TextInput className="w-full lg:w-1/2" placeholder="Email*" required />
+      <TextInput
+        className="w-full lg:w-1/2"
+        type="email"
+        placeholder="Email*"
+        required
+      />
     </div>
   );
 };

@@ -64,10 +64,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           {productName}
         </Typography>
         <Button color="primary" size="md" className={buttonClass}>
-          {" "}
-          View Product -
-          <Typography as="span" variant="headline" color="#FFA52F">
-            &nbsp;${price}
+          <Typography as="span" variant="headline" color="#FFFFFF">
+            View Product -
+            <Typography as="span" variant="headline" color="#FFA52F">
+              &nbsp;${price}
+            </Typography>
           </Typography>
         </Button>
       </div>

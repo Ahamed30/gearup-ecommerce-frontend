@@ -43,9 +43,9 @@ export const Button = ({
         commonButtonClass,
         buttonColor[color],
         buttonSize[size],
-        className,
-        { ...props }
+        className
       )}
+      {...props}
     >
       {children}
     </button>

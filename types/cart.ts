@@ -19,4 +19,8 @@ export type Cart = {
   cartSubTotal?: number;
   discountAmount?: number;
   itemCount?: number;
+  deliveryType?: {
+    type: string;
+    price: number;
+  };
 };

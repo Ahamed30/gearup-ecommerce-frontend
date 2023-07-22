@@ -5,7 +5,7 @@ import Image from "next/image";
 import CustomCheckbox from "../CustomCheckBox/CustomCheckBox";
 import { Typography } from "../Typography";
 import { ContactDetails } from "./ContactDetails";
-import { ShippingAddress } from "./ShippingAddress.tsx";
+import { ShippingAddress } from "./ShippingAddress";
 import { DeliveryOptions } from "./DeliveryOptions";
 import { linkClassName, newsTextClassName, buttonClass } from "./style";
 import { Button } from "../Button";
@@ -24,6 +24,8 @@ export const Checkout = () => {
     isOver13: false,
     receiveNewsletter: false,
   });
+
+  const [selectedDeliveryType, setSelectedDeliveryType] = useState<String>();
 
   const handleChange = (e: {
     target: { name: string; value: string; type: string; checked: boolean };
