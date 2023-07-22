@@ -84,9 +84,10 @@ export const DeliveryOptions = () => {
         Delivery Options
       </Typography>
       <div className="flex flex-col items-start gap-[24px]">
-        {defaultDeliveryTypes.map((deliveryType) => {
+        {defaultDeliveryTypes.map((deliveryType, index) => {
           return (
             <DeliveryTypeCard
+              key={index}
               deliveryType={deliveryType}
               handleDeliveryType={handleDeliveryType}
               selectedDeliveryType={selectedDeliveryType}
