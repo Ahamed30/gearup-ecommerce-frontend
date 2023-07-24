@@ -14,19 +14,26 @@ type itemsType = {
 export const AmountSummary = ({ isBordered }: OrderSummaryProps) => {
   // const [inputValue, setInputValue] = useState("");
   const { cart } = useCart();
+  const [total, setTotal] = useState<number>(cart?.cartSubTotal ?? 0); // need to calculate total
 
   const [items, setItems] = useState<itemsType[]>([
     { name: "SubTotal", price: cart?.cartSubTotal ?? 0 },
     { name: "Estimated Tax", price: "-" },
   ]);
-  const total = cart?.cartSubTotal ?? 0; // need to calcualte total
 
   useEffect(() => {
+    setTotal((cart?.cartSubTotal ?? 0) + (cart?.deliveryType?.price ?? 0));
     setItems([
       { name: "SubTotal", price: cart?.cartSubTotal ?? 0 },
       { name: "Estimated Tax", price: "-" },
     ]);
-  }, [cart?.cartSubTotal]);
+    if (cart?.deliveryType?.price) {
+      setItems((prevItems) => [
+        ...prevItems,
+        { name: "Delivery Fee", price: cart?.deliveryType?.price ?? 0 },
+      ]);
+    }
+  }, [cart?.cartSubTotal, cart?.deliveryType]);
 
   return (
     <div>

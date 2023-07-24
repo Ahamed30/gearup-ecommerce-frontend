@@ -1,26 +1,29 @@
 // components/CustomCheckbox.js
-import { useState } from "react";
+import { InputHTMLAttributes, useState } from "react";
 import classNames from "classnames";
 import Image from "next/image";
 import { Typography } from "../Typography";
 import { openSans } from "@/styles";
 
-interface CustomCheckBoxProps {
+interface CustomCheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   text: string;
   className?: string;
-  required?: boolean;
+  isEnabled?: boolean;
 }
 
 const CustomCheckbox = ({
   text,
   className,
-  required = false,
+  isEnabled = false,
+  onChange,
+  ...props
 }: CustomCheckBoxProps) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(isEnabled);
   const fontOpenSans = openSans?.className;
 
-  const handleCheckboxChange = () => {
+  const handleCheckboxChange = (e: any) => {
     setChecked((prevChecked) => !prevChecked);
+    onChange?.(e);
   };
 
   return (
@@ -32,8 +35,8 @@ const CustomCheckbox = ({
           type="checkbox"
           className="hidden"
           checked={checked}
-          onChange={handleCheckboxChange}
-          required={required}
+          onChange={(e) => handleCheckboxChange(e)}
+          {...props}
         />
         {checked ? (
           <Image

@@ -30,8 +30,8 @@ export const DeliveryTypeCard = ({
   return (
     <div
       className={classNames(
-        "w-full flex p-4 items-start justify-between gap-[8px] rounded-[16px] cursor-pointer",
-        selectedDeliveryType === type ? "bg-[#FAFAFA]" : "border border-black"
+        "w-full flex p-4 items-start justify-between gap-[8px] rounded-[16px] border border-black cursor-pointer",
+        selectedDeliveryType === type ? "bg-[#FAFAFA]" : ""
       )}
       onClick={() => handleDeliveryType(type, price)}
     >
@@ -50,7 +50,13 @@ export const DeliveryTypeCard = ({
   );
 };
 
-export const DeliveryOptions = () => {
+type DeliveryOptionsProps = {
+  isDeliveryTypeSelected: boolean;
+};
+
+export const DeliveryOptions = ({
+  isDeliveryTypeSelected,
+}: DeliveryOptionsProps) => {
   const { cart, updateCart } = useCart();
   const [selectedDeliveryType, setSelectedDeliveryType] = useState<string>("");
   const defaultDeliveryTypes = [
@@ -71,6 +77,12 @@ export const DeliveryOptions = () => {
       ...cart,
       deliveryType: { type, price },
     };
+    // if (updatedCartWithDeliveryType?.cartSubTotal) {
+    //   updatedCartWithDeliveryType.cartSubTotal =
+    //     updatedCartWithDeliveryType?.cartSubTotal -
+    //     (cart?.deliveryType?.price ?? 0) +
+    //     price;
+    // }
     setSelectedDeliveryType(type);
     updateCart(updatedCartWithDeliveryType);
   };
@@ -95,6 +107,15 @@ export const DeliveryOptions = () => {
           );
         })}
       </div>
+      {!isDeliveryTypeSelected && (
+        <Typography
+          variant="headline"
+          color="#EF4444"
+          className="text-base my-[16px]"
+        >
+          Please select a delivery type*
+        </Typography>
+      )}
     </div>
   );
 };
