@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode, Key } from "react";
 import { Cart, CartItemType } from "@/types";
-import { getCookie, setCookie } from "@/utils/cookie";
+import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
 
 interface CartContextType {
   addToCart: (item: CartItemType) => void; // when updating via backend these can be update to Promise<void> from void
@@ -10,6 +10,7 @@ interface CartContextType {
   removeFromCart: (itemId: Key, size: string) => void;
   updateCartItem: (itemId: string, updatedItem: CartItemType) => void;
   updateCart: (cart: Cart) => void;
+  emptyCart: () => void;
 }
 
 //@ts-expect-error: ignore initial context creation
@@ -91,16 +92,23 @@ export const CartContextProvider = ({
 
   const updateCart = (cart: Cart) => {
     setCart(cart);
+    setCookie("cart", cart);
+  };
+
+  const emptyCart = () => {
+    removeCookie("cart");
+    setCart(null);
   };
 
   return (
     <CartContext.Provider
       value={{
+        cart,
         addToCart,
         removeFromCart,
         updateCartItem,
         updateCart,
-        cart,
+        emptyCart,
       }}
     >
       {children}

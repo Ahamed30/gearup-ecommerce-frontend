@@ -5,9 +5,12 @@ import { CartItems } from "../CartItems";
 import { Typography } from "../Typography";
 import { OrderSummary } from "../OrderSummary";
 import { useCart } from "@/context/CartContext";
+import { useState } from "react";
+import { Modal } from "../Modal";
 
 export const Cart = () => {
-  const { cart } = useCart();
+  const { cart, emptyCart } = useCart();
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   return (
     <div className="mb-[32px]">
@@ -47,12 +50,28 @@ export const Cart = () => {
                 </div>
               ) : (
                 <>
-                  <Typography
-                    variant="headline"
-                    className="text-xl lg:text-3xl font-semibold mb-[8px]"
-                  >
-                    Your Bag
-                  </Typography>
+                  <div className="flex justify-between">
+                    <Typography
+                      variant="headline"
+                      className="text-xl lg:text-3xl font-semibold mb-[8px]"
+                    >
+                      Your Bag
+                    </Typography>
+                    <Typography
+                      className="underline underline-offset-3 cursor-pointer"
+                      onClick={() => setShowModal(true)}
+                    >
+                      Empty Cart
+                    </Typography>
+                    {showModal && (
+                      <Modal
+                        title="Empty Cart"
+                        subText="Are you sure you want to empty the cart?"
+                        setShowModal={setShowModal}
+                        handleClick={emptyCart}
+                      />
+                    )}
+                  </div>
                   <Typography className="text-sm lg:text-base font-normal">
                     Items in your bag not reserved- check out now to make them
                     yours.

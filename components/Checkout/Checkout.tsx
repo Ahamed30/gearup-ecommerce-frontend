@@ -23,12 +23,32 @@ export const Checkout = () => {
   const [isDeliveryTypeSelected, setIsDeliveryTypeSelected] =
     useState<boolean>(true);
 
+  /**
+   * NOTE: THIS FUNCTION IS COMPLETED JUST NEED TO MOVE IT TO BACKEND DUE TO CORS POLICY
+   */
+  // const validateAddress = async () => {
+  //   console.log("-->", user?.deliveryAddress);
+  //   if (user?.deliveryAddress) {
+  //     const { city, state, country } = user?.deliveryAddress;
+  //     const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+  //     const res = await fetch(
+  //       proxyUrl +
+  //         `https://nominatim.openstreetmap.org/search?q=${city}%2C${state}%2C${country}`
+  //     )
+  //       .then((res) => res.json())
+  //       .catch((err) => console.error("Errorrrr", err));
+  //     console.log("Res", res);
+  //   }
+  // };
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (!cart?.deliveryType) {
       setIsDeliveryTypeSelected(false);
       return;
     }
+    console.log(":::", user);
+    // validateAddress(); // need to move this to backend
     // You can now use the formData object to send it to your backend or perform any other operations
     // need to empty the cart
     router.push("/orderConfirmation");

@@ -50,7 +50,7 @@ export const Address = ({ typeOfAddress }: AddressProps) => {
           variant="headline"
           className={classNames(titleClassName, "mb-[16px] md:mb-[32px]")}
         >
-          {typeOfAddress === "billing Address"
+          {typeOfAddress === "billingAddress"
             ? "Billing Address"
             : "Shipping Address"}
         </Typography>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { ProductSize } from "../ProductSize";
@@ -12,6 +12,7 @@ import {
   addToCartButtonClassName,
   favouriteButtonClassName,
 } from "./styles";
+import classNames from "classnames";
 
 interface ProductDetailsProps {
   productData?: ProductType;
@@ -21,6 +22,7 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [isSizeSelected, setIsSizeSelected] = useState<boolean>(true);
   const [isFavourite, setIsFavouriteSelected] = useState<boolean>(false);
+  const [showAddedToCart, setShowAddedToCart] = useState<boolean>(false);
   const { addToCart } = useCart();
 
   if (!productData) {
@@ -53,6 +55,7 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
       setIsSizeSelected(false);
       return;
     }
+    setShowAddedToCart(true);
     const currItem: CartItemType = {
       id,
       quantity: 1,
@@ -67,8 +70,16 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
     addToCart(currItem);
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAddedToCart(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [showAddedToCart]);
+
   return (
-    <div>
+    <div className="relative">
       {newProduct && (
         <Typography
           variant="headline"
@@ -141,6 +152,7 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
         >
           Add to cart
         </UnStyledButton>
+
         <UnStyledButton
           className={favouriteButtonClassName}
           onClick={handleFavoriteClick}
@@ -167,6 +179,27 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
           {productDescription}
         </Typography>
       </div>
+      {showAddedToCart && (
+        <div
+          className={classNames(
+            `block absolute top-0 right-0 py-4 px-7 rounded-lg bg-slate-50 border-2 border-green-500 transition-opacity`,
+            showAddedToCart ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <Typography variant="headline">Product Added to Cart</Typography>
+          <div
+            className="absolute top-0 right-0 cursor-pointer"
+            onClick={() => setShowAddedToCart(false)}
+          >
+            <Image
+              width={25}
+              height={25}
+              src={`/close-icon.svg`}
+              alt={`Close Icon`}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
