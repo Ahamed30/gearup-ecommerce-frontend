@@ -15,7 +15,7 @@ import {
 import classNames from "classnames";
 
 interface ProductDetailsProps {
-  productData?: ProductType;
+  productData: ProductType;
 }
 
 export const ProductDetails = ({ productData }: ProductDetailsProps) => {
@@ -24,10 +24,6 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
   const [isFavourite, setIsFavouriteSelected] = useState<boolean>(false);
   const [showAddedToCart, setShowAddedToCart] = useState<boolean>(false);
   const { addToCart } = useCart();
-
-  if (!productData) {
-    return null;
-  }
 
   const {
     id,
