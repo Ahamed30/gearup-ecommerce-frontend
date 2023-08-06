@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useCart } from "@/context/CartContext";
 import { ProductSize } from "../ProductSize";
-import { ProductType } from "@/types";
+import { CartItemType, ProductType } from "@/types";
 import { Typography } from "../Typography";
 import { Button, UnStyledButton } from "../Button";
 import {
@@ -11,29 +12,33 @@ import {
   addToCartButtonClassName,
   favouriteButtonClassName,
 } from "./styles";
+import classNames from "classnames";
 
 interface ProductDetailsProps {
-  productData?: ProductType;
+  productData: ProductType;
 }
 
 export const ProductDetails = ({ productData }: ProductDetailsProps) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [isSizeSelected, setIsSizeSelected] = useState<boolean>(true);
   const [isFavourite, setIsFavouriteSelected] = useState<boolean>(false);
-
-  if (!productData) {
-    return null;
-  }
+  const [showAddedToCart, setShowAddedToCart] = useState<boolean>(false);
+  const { addToCart } = useCart();
 
   const {
+    id,
     newProduct,
     productName,
     price,
     salePrice,
     size,
     productDescription,
+    heroImage,
+    color,
   } = productData;
 
   const handleSizeSelect = (size: string) => {
+    if (selectedSize == null) setIsSizeSelected(true);
     setSelectedSize(size);
   };
 
@@ -41,8 +46,36 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
     setIsFavouriteSelected(!isFavourite);
   };
 
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      setIsSizeSelected(false);
+      return;
+    }
+    setShowAddedToCart(true);
+    const currItem: CartItemType = {
+      id,
+      quantity: 1,
+      heroImage,
+      productName,
+      price,
+      salePrice,
+      size: selectedSize,
+      color,
+    };
+
+    addToCart(currItem);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAddedToCart(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [showAddedToCart]);
+
   return (
-    <div>
+    <div className="relative">
       {newProduct && (
         <Typography
           variant="headline"
@@ -98,11 +131,24 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
           selectedSize={selectedSize}
           handleSizeSelect={handleSizeSelect}
         />
+        {!isSizeSelected && (
+          <Typography
+            variant="headline"
+            color="#EF4444"
+            className="text-base mb-[16px]"
+          >
+            Please select a size*
+          </Typography>
+        )}
       </div>
       <div className="flex gap-[8px] mb-[8px]">
-        <UnStyledButton className={addToCartButtonClassName}>
+        <UnStyledButton
+          className={addToCartButtonClassName}
+          onClick={handleAddToCart}
+        >
           Add to cart
         </UnStyledButton>
+
         <UnStyledButton
           className={favouriteButtonClassName}
           onClick={handleFavoriteClick}
@@ -129,6 +175,27 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
           {productDescription}
         </Typography>
       </div>
+      {showAddedToCart && (
+        <div
+          className={classNames(
+            `block absolute top-0 right-0 py-4 px-7 rounded-lg bg-slate-50 border-2 border-green-500 transition-opacity`,
+            showAddedToCart ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <Typography variant="headline">Product Added to Cart</Typography>
+          <div
+            className="absolute top-0 right-0 cursor-pointer"
+            onClick={() => setShowAddedToCart(false)}
+          >
+            <Image
+              width={25}
+              height={25}
+              src={`/close-icon.svg`}
+              alt={`Close Icon`}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

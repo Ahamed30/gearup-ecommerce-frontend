@@ -8,5 +8,5 @@ export interface ProductCardType {
   salePrice?: String;
   newProduct?: Boolean;
   offerPercent?: String;
-  productImages?: AssetType[];
+  heroImage: AssetType;
 }

@@ -21,7 +21,7 @@ export const buttonSize = {
   lg: "",
 };
 
-export const commonButtonClass = `${fontRubik} text-white rounded-[8px] px-6`;
+export const commonButtonClass = `${fontRubik} text-white rounded-[8px] px-3 lg:px-6`;
 
 export const UnStyledButton = ({
   children,
@@ -43,9 +43,9 @@ export const Button = ({
         commonButtonClass,
         buttonColor[color],
         buttonSize[size],
-        className,
-        { ...props }
+        className
       )}
+      {...props}
     >
       {children}
     </button>

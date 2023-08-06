@@ -1,47 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useCart } from "@/context/CartContext";
 import { Typography } from "@/components/Typography";
 
 interface OrderSummaryProps {
   isBordered?: boolean;
 }
 
+type itemsType = {
+  name: string;
+  price: number | string;
+};
+
 export const AmountSummary = ({ isBordered }: OrderSummaryProps) => {
-  const [inputValue, setInputValue] = useState("");
+  // const [inputValue, setInputValue] = useState("");
+  const { cart } = useCart();
+  const [total, setTotal] = useState<number>(cart?.cartSubTotal ?? 0); // need to calculate total
 
-  const [items, setItems] = useState([
-    { name: "1 ITEM", price: "$130.00" },
-    { name: "Delivery", price: "$6.99" },
-    { name: "Sales Tax", price: "-" },
+  const [items, setItems] = useState<itemsType[]>([
+    { name: "SubTotal", price: cart?.cartSubTotal ?? 0 },
+    { name: "Estimated Tax", price: "-" },
   ]);
-  const total = "$136.99";
 
-  const handleInputChange = (event: { target: { value: string } }) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleKeyDown = (event: { key: string }) => {
-    if (event.key === "Enter") {
-      // Handle Enter key press event
-      const promoCodeItem = { name: "Promo Code", price: "$12" };
-      setItems((prevItems) => [...prevItems, promoCodeItem]);
-      // togglePromoBox();
+  useEffect(() => {
+    setTotal((cart?.cartSubTotal ?? 0) + (cart?.deliveryType?.price ?? 0));
+    setItems([
+      { name: "SubTotal", price: cart?.cartSubTotal ?? 0 },
+      { name: "Estimated Tax", price: "-" },
+    ]);
+    if (cart?.deliveryType?.price) {
+      setItems((prevItems) => [
+        ...prevItems,
+        { name: "Delivery Fee", price: cart?.deliveryType?.price ?? 0 },
+      ]);
     }
-  };
+  }, [cart?.cartSubTotal, cart?.deliveryType]);
 
   return (
     <div>
       <Typography
         variant="headline"
-        className="text-xl lg:text-3xl font-semibold mb-[16px] lg:mb-[24px]"
+        className="text-xl lg:text-2xl font-semibold mb-[16px] lg:mb-[24px]"
       >
         Order Summary
       </Typography>
       {items.map((item, index) => (
         <div key={index} className="flex justify-between mb-[16px]">
-          <Typography className="text-base lg:text-xl font-semibold">
+          <Typography className="text-base lg:text-lg font-semibold">
             {item.name}
           </Typography>
-          <Typography className="text-base lg:text-xl font-semibold">
+          <Typography className="text-base lg:text-lg font-semibold">
             {item.price}
           </Typography>
         </div>
@@ -49,13 +56,13 @@ export const AmountSummary = ({ isBordered }: OrderSummaryProps) => {
       <div className="flex justify-between mb-[16px] lg:mb-[24px]">
         <Typography
           variant="headline"
-          className="text-xl lg:text-2xl font-semibold"
+          className="text-lg lg:text-xl font-semibold"
         >
           Total
         </Typography>
         <Typography
           variant="headline"
-          className="text-xl lg:text-2xl font-semibold"
+          className="text-lg lg:text-xl font-semibold"
         >
           {total}
         </Typography>

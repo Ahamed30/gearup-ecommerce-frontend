@@ -15,11 +15,10 @@ interface ProductCardProps {
 export const ProductCard = ({ product }: ProductCardProps) => {
   if (!product) return;
 
-  const { id, productName, price, newProduct, productImages, offerPercent } =
+  const { id, productName, price, newProduct, offerPercent, heroImage } =
     product;
 
   //  need to update carousel
-  const imageUrl = productImages?.length == 1 ? productImages[0].url : "";
 
   return (
     <Link href={`/product/${id}`}>
@@ -29,14 +28,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           style={{ paddingBottom: "100%" }}
         >
           <div className="w-full p-4">
-            {productImages?.length == 1 && (
-              <Image
-                src={`${imageUrl}`}
-                alt={"Shoe"}
-                fill
-                className="rounded-[28px] p-2 object-cover"
-              />
-            )}
+            <Image
+              src={`${heroImage.url}`}
+              alt={"Shoe"}
+              fill
+              className="rounded-[28px] p-2 object-cover"
+            />
           </div>
           {newProduct && (
             <div className={classNames(tagClass, "bg-[#4A69E2]")}>
@@ -67,10 +64,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           {productName}
         </Typography>
         <Button color="primary" size="md" className={buttonClass}>
-          {" "}
-          View Product -
-          <Typography as="span" variant="headline" color="#FFA52F">
-            &nbsp;${price}
+          <Typography as="span" variant="headline" color="#FFFFFF">
+            View Product -
+            <Typography as="span" variant="headline" color="#FFA52F">
+              &nbsp;${price}
+            </Typography>
           </Typography>
         </Button>
       </div>
