@@ -57,7 +57,7 @@ export const Header = ({ data }: HeaderProps) => {
               width={20}
               height={20}
               src={"/search.svg"}
-              alt="Search Icon"
+              alt="navSearchIcon"
             />
           </UnStyledButton>
           <UnStyledButton className="mr-[16px] lg:mr-[40px]">
@@ -65,6 +65,7 @@ export const Header = ({ data }: HeaderProps) => {
           </UnStyledButton>
           {/* TODO: Need to change this to cart icon */}
           <UnStyledButton
+            id="cart"
             onClick={() => router.push("/cart")}
             className="flex flex-col justify-center items-center px-[6px] lg:py-[4px] lg:px-[8px] border rounded-3xl bg-[#FFA52F]"
           >
@@ -72,10 +73,7 @@ export const Header = ({ data }: HeaderProps) => {
           </UnStyledButton>
         </div>
       </div>
-      <MobileNavigation
-        isMobileNavBarOpen={isMobileNavBarOpen}
-        navLinks={navLinks}
-      />
+      {isMobileNavBarOpen && <MobileNavigation navLinks={navLinks} />}
       <DesktopSearchBox isDesktopSearchBoxOpen={isDesktopSearchBoxOpen} />
     </header>
   );

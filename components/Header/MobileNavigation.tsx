@@ -28,7 +28,7 @@ export const MobileNavigation = ({ navLinks }: MobileNavigationProps) => {
   });
 
   return (
-    <div className={containerClassName}>
+    <div className={containerClassName} role="mobileSearch">
       <MobileSearchBox />
       {navLinkContent}
     </div>
