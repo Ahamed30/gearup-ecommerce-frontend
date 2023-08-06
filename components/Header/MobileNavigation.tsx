@@ -5,20 +5,13 @@ import { LinkType } from "@/types";
 import { rubik } from "@/styles";
 
 interface MobileNavigationProps {
-  isMobileNavBarOpen?: Boolean;
   navLinks?: LinkType[];
 }
 
-export const MobileNavigation = ({
-  isMobileNavBarOpen,
-  navLinks,
-}: MobileNavigationProps) => {
+export const MobileNavigation = ({ navLinks }: MobileNavigationProps) => {
   const fontRubik = rubik?.className;
 
-  const containerClassName = classNames(
-    `${fontRubik} w-full font-semibold text-base pt-4 lg:hidden`,
-    isMobileNavBarOpen ? `block` : `hidden`
-  );
+  const containerClassName = `${fontRubik} w-full font-semibold text-base pt-4 lg:hidden block`;
 
   const navLinkContent = navLinks?.map((navLink) => {
     const { id, link, name } = navLink;
