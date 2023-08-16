@@ -73,8 +73,8 @@ export const LoginForm = () => {
           <AdditionalLogins />
         </div>
         <Typography>
-          By clicking 'Log In' you agree to our website KicksClub Terms &
-          Conditions, Kicks Privacy Notice and Terms & Conditions.
+          {`By clicking 'Log In' you agree to our website KicksClub Terms &
+          Conditions, Kicks Privacy Notice and Terms & Conditions.`}
         </Typography>
       </div>
     </div>
