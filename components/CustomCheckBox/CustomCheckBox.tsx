@@ -1,4 +1,3 @@
-// components/CustomCheckbox.js
 import { InputHTMLAttributes, useState } from "react";
 import classNames from "classnames";
 import Image from "next/image";
@@ -11,7 +10,7 @@ interface CustomCheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   isEnabled?: boolean;
 }
 
-const CustomCheckbox = ({
+export const CustomCheckbox = ({
   text,
   className,
   isEnabled = false,
@@ -40,13 +39,18 @@ const CustomCheckbox = ({
         />
         {checked ? (
           <Image
-            src="/checkbox-tick.svg"
+            src="/checkbox-true.svg"
             height={24}
             width={24}
             alt="Checked this box"
           />
         ) : (
-          <div className="w-6 h-6 bg-white border border-gray-300 rounded-md" />
+          <Image
+            src="/checkbox-false.svg"
+            height={24}
+            width={24}
+            alt="Checked this box"
+          />
         )}
       </div>
       <Typography
@@ -58,5 +62,3 @@ const CustomCheckbox = ({
     </label>
   );
 };
-
-export default CustomCheckbox;

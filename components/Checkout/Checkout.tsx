@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import CustomCheckbox from "../CustomCheckBox/CustomCheckBox";
 import { Typography } from "../Typography";
 import { ContactDetails } from "./ContactDetails";
 import { Address } from "./Address";
@@ -14,6 +13,7 @@ import { OrderDetails } from "../OrderDetails";
 import { useUser } from "@/context/UserContext";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
+import { CustomCheckbox } from "../CustomCheckBox";
 
 export const Checkout = () => {
   // {TODO: Need to move it to context}
