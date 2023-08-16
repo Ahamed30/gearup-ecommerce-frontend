@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should match the snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class="flex flex-wrap border rounded-xl bg-[#FAFAFA] p-4 lg:p-6 mb-6 lg:mb-8"
+  >
+    <div
+      class="w-full flex justify-center content-center relative"
+    >
+      <div
+        class="className hidden lg:flex font-semibold text-base absolute left-0 top-3"
+      />
+      <div
+        class="block lg:hidden absolute left-0 top-4"
+      >
+        <img
+          alt="Nav Menu"
+          data-nimg="1"
+          decoding="async"
+          height="20"
+          loading="lazy"
+          src="/nav-menu.svg"
+          style="color: transparent;"
+          width="20"
+        />
+      </div>
+      <div
+        class="flex justify-center items-center text-black"
+      >
+        <span
+          class="className font-bold text-[32px] cursor-pointer"
+        >
+          GearUp
+        </span>
+      </div>
+      <div
+        class="flex absolute right-0 top-3"
+      >
+        <button
+          class="hidden lg:block mr-[40px]"
+        >
+          <img
+            alt="navSearchIcon"
+            data-nimg="1"
+            decoding="async"
+            height="20"
+            loading="lazy"
+            src="/search.svg"
+            style="color: transparent;"
+            width="20"
+          />
+        </button>
+        <button
+          class="mr-[16px] lg:mr-[40px]"
+        >
+          <img
+            alt="User Icon"
+            data-nimg="1"
+            decoding="async"
+            height="20"
+            loading="lazy"
+            src="/user.svg"
+            style="color: transparent;"
+            width="20"
+          />
+        </button>
+        <button
+          class="flex flex-col justify-center items-center px-[6px] lg:py-[4px] lg:px-[8px] border rounded-3xl bg-[#FFA52F]"
+          id="cart"
+        >
+          0
+        </button>
+      </div>
+    </div>
+    <div
+      class="items-center justify-center w-full mt-8 hidden hidden"
+    >
+      <div
+        class="flex flex-col w-1/2"
+      >
+        <div
+          class="px-2 py-2.5 rounded-lg border justify-start items-center inline-flex border-[#232321]"
+        >
+          <div
+            class="flex items-center cursor-pointer"
+          >
+            <img
+              alt="Search Icon"
+              data-nimg="1"
+              decoding="async"
+              height="20"
+              loading="lazy"
+              src="/search.svg"
+              style="color: transparent;"
+              width="20"
+            />
+          </div>
+          <input
+            class="className w-full px-2 placeholder-[#79767C] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none"
+            placeholder="Search"
+            style="color: rgb(31, 26, 36);"
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+</DocumentFragment>
+`;

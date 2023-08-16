@@ -7,12 +7,12 @@ interface DesktopNavigationProps {
 }
 
 export const DesktopNavigation = ({ navLinks }: DesktopNavigationProps) => {
-  const navLinkContent = navLinks?.map((navLink) => {
+  const navLinkContent = navLinks?.map((navLink, index) => {
     const { id, link, name } = navLink;
 
     return (
       <Link
-        key={id}
+        key={`${index}::${id}`}
         href={`${link}`}
         className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-[#8F8C91] mr-[40px]"
       >

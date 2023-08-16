@@ -7,7 +7,7 @@ import {
   titleClassName,
 } from "../style";
 import { useCart } from "@/context/CartContext";
-import { Cart } from "@/types";
+import { CartType } from "@/types";
 import { useState } from "react";
 
 type DeliveryTypeCardProps = {
@@ -73,7 +73,7 @@ export const DeliveryOptions = ({
   ];
 
   const handleDeliveryType = (type: string, price: number) => {
-    const updatedCartWithDeliveryType: Cart = {
+    const updatedCartWithDeliveryType: CartType = {
       ...cart,
       deliveryType: { type, price },
     };

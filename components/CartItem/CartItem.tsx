@@ -6,11 +6,11 @@ import { Typography } from "../Typography";
 import { CartItemType } from "@/types";
 import { Modal } from "../Modal";
 
-interface CartItemsProps {
+interface CartItemProps {
   product: CartItemType;
 }
 
-export const CartItems = ({ product }: CartItemsProps) => {
+export const CartItem = ({ product }: CartItemProps) => {
   const router = useRouter();
   const { removeFromCart } = useCart();
   const [isFavourite, setIsFavouriteSelected] = useState<boolean>(false);
@@ -32,7 +32,7 @@ export const CartItems = ({ product }: CartItemsProps) => {
   };
 
   return (
-    <>
+    <div role="cartItem">
       <div className="flex gap-[16px] md:gap-[60px] lg:gap-[24px] mb-[16px]">
         <div className="relative w-1/2 lg:w-1/4 h-[200px] lg:h-[180px]">
           <Image
@@ -125,6 +125,6 @@ export const CartItems = ({ product }: CartItemsProps) => {
           handleClick={removeItem}
         />
       )}
-    </>
+    </div>
   );
 };
