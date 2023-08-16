@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CartItems } from "../CartItems";
+import { CartItem } from "../CartItem";
 import { Typography } from "../Typography";
 import { OrderSummary } from "../OrderSummary";
 import { useCart } from "@/context/CartContext";
@@ -79,9 +79,11 @@ export const Cart = () => {
                 </>
               )}
             </div>
-            {cart?.items?.map((item) => {
-              return <CartItems key={item?.id} product={item} />;
-            })}
+            <div>
+              {cart?.items?.map((item) => {
+                return <CartItem key={item?.id} product={item} />;
+              })}
+            </div>
           </div>
         </div>
         <OrderSummary step="cart" />

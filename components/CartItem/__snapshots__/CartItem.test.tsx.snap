@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart should match the snapshot 1`] = `
+<div>
+  <div
+    role="cartItem"
+  >
+    <div
+      class="flex gap-[16px] md:gap-[60px] lg:gap-[24px] mb-[16px]"
+    >
+      <div
+        class="relative w-1/2 lg:w-1/4 h-[200px] lg:h-[180px]"
+      >
+        <img
+          alt="ProductImage"
+          class="object-cover rounded-[24px]"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          sizes="100vw"
+          src="/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FtEoKFf1JQ1a2QsVIOTdH&w=3840&q=75"
+          srcset="/_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FtEoKFf1JQ1a2QsVIOTdH&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FtEoKFf1JQ1a2QsVIOTdH&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FtEoKFf1JQ1a2QsVIOTdH&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FtEoKFf1JQ1a2QsVIOTdH&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FtEoKFf1JQ1a2QsVIOTdH&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FtEoKFf1JQ1a2QsVIOTdH&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FtEoKFf1JQ1a2QsVIOTdH&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fmedia.graphassets.com%2FtEoKFf1JQ1a2QsVIOTdH&w=3840&q=75 3840w"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+        />
+      </div>
+      <div
+        class="w-3/4 flex-grow"
+      >
+        <div
+          class="lg:flex lg:justify-between gap-5"
+        >
+          <div
+            class="w-full"
+          >
+            <p
+              class="className text-base lg:text-xl font-semibold mb-[8px] uppercase"
+              style="color: rgb(35, 35, 33);"
+            >
+              ADIDAS 4DFWD X PARLEY RUNNING SHOES
+            </p>
+            <p
+              class="className text-sm lg:text-lg font-semibold mb-[8px]"
+              style="color: rgb(35, 35, 33);"
+            >
+              Yellow
+            </p>
+            <div
+              class="text-sm lg:w-full lg:text-lg font-semibold lg:flex  gap-10 mb-[8px] lg:mb-[32px]"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                <p
+                  class="className text-base lg:text-xl"
+                  style="color: rgb(35, 35, 33);"
+                >
+                  Size 
+                  10
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-2"
+              >
+                <p
+                  class="className text-base lg:text-xl"
+                  style="color: rgb(35, 35, 33);"
+                >
+                  Quantity 
+                  1
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-2"
+              >
+                <p
+                  class="className text-base lg:text-xl underline underline-offset-2 cursor-pointer"
+                  style="color: rgb(35, 35, 33);"
+                >
+                  Edit
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-row lg:flex-col mb-[8px] lg:mb-[32px] gap-3"
+          >
+            <p
+              class="className text-xl lg:text-2xl font-semibold"
+              style="color: rgb(239, 68, 68);"
+            >
+              $
+              100
+            </p>
+            <p
+              class="className text-xl lg:text-2xl font-semibold"
+              style="color: rgb(74, 105, 226);"
+            >
+              <s>
+                $
+                125
+              </s>
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex gap-[24px]"
+        >
+          <img
+            alt="Add to favourite"
+            class="cursor-pointer"
+            data-nimg="1"
+            decoding="async"
+            height="32"
+            loading="lazy"
+            src="/heart-black.svg"
+            style="color: transparent;"
+            width="32"
+          />
+          <img
+            alt="Delete Item"
+            class="cursor-pointer"
+            data-nimg="1"
+            decoding="async"
+            height="32"
+            loading="lazy"
+            src="/bin.svg"
+            style="color: transparent;"
+            width="32"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

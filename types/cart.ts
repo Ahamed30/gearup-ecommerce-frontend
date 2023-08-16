@@ -12,7 +12,7 @@ export type CartItemType = {
   color?: string;
 };
 
-export type Cart = {
+export type CartType = {
   __typename?: "Cart";
   items?: CartItemType[];
   appliedCoupons?: string[]; // need to add type Coupon with price and name

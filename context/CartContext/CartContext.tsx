@@ -1,15 +1,15 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode, Key } from "react";
-import { Cart, CartItemType } from "@/types";
+import { CartType, CartItemType } from "@/types";
 import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
 
-interface CartContextType {
+export interface CartContextType {
   addToCart: (item: CartItemType) => void; // when updating via backend these can be update to Promise<void> from void
-  cart: Cart | null;
+  cart: CartType | null;
   // clearCartAlertState: () => void;
   removeFromCart: (itemId: Key, size: string) => void;
   updateCartItem: (itemId: string, updatedItem: CartItemType) => void;
-  updateCart: (cart: Cart) => void;
+  updateCart: (cart: CartType) => void;
   emptyCart: () => void;
 }
 
@@ -19,7 +19,7 @@ const CartContext = createContext<CartContextType>(null);
 export const useCart = () => useContext(CartContext);
 
 export interface CartContextProviderProps {
-  cart?: Cart | null;
+  cart?: CartType | null;
   children: ReactNode;
 }
 
@@ -27,8 +27,7 @@ export const CartContextProvider = ({
   cart: initialCart = null,
   children,
 }: CartContextProviderProps) => {
-  const cartFromCookie: Cart | null = getCookie("cart");
-  // console.log("...", cartFromCookie);
+  const cartFromCookie: CartType | null = getCookie("cart");
   const [cart, setCart] = useState(initialCart ?? cartFromCookie);
 
   const addToCart = (item: CartItemType) => {
@@ -47,7 +46,7 @@ export const CartContextProvider = ({
     }
     if (isItemExists) return;
     setCart((prevCart) => {
-      const updatedCart: Cart = { ...prevCart };
+      const updatedCart: CartType = { ...prevCart };
 
       updatedCart.items = [...(prevCart?.items || []), item];
       updatedCart.itemCount = (updatedCart.itemCount ?? 0) + 1;
@@ -60,7 +59,7 @@ export const CartContextProvider = ({
 
   const removeFromCart = (itemId: Key, size: string) => {
     setCart((prevCart) => {
-      const updatedCart: Cart = { ...prevCart };
+      const updatedCart: CartType = { ...prevCart };
       updatedCart.items = updatedCart.items?.filter((item) => {
         if (item.id === itemId && item.size === size) {
           updatedCart.cartSubTotal =
@@ -80,7 +79,7 @@ export const CartContextProvider = ({
 
   const updateCartItem = (itemId: Key, updatedItem: CartItemType) => {
     setCart((prevCart) => {
-      const updatedCart: Cart = { ...prevCart };
+      const updatedCart: CartType = { ...prevCart };
 
       updatedCart.items = updatedCart.items?.map((item) =>
         item.id === itemId ? updatedItem : item
@@ -90,7 +89,7 @@ export const CartContextProvider = ({
     });
   };
 
-  const updateCart = (cart: Cart) => {
+  const updateCart = (cart: CartType) => {
     setCart(cart);
     setCookie("cart", cart);
   };
