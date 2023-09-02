@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header should match the snapshot 1`] = `
-<DocumentFragment>
+exports[`Header should render without crashing 1`] = `
+<div>
   <header
     class="flex flex-wrap border rounded-xl bg-[#FAFAFA] p-4 lg:p-6 mb-6 lg:mb-8"
   >
@@ -10,7 +10,26 @@ exports[`Header should match the snapshot 1`] = `
     >
       <div
         class="className hidden lg:flex font-semibold text-base absolute left-0 top-3"
-      />
+      >
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-[#8F8C91] mr-[40px]"
+          href="/"
+        >
+          Home
+        </a>
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-[#8F8C91] mr-[40px]"
+          href="/about"
+        >
+          About
+        </a>
+        <a
+          class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-[#8F8C91] mr-[40px]"
+          href="/contact"
+        >
+          Contact
+        </a>
+      </div>
       <div
         class="block lg:hidden absolute left-0 top-4"
       >
@@ -106,5 +125,5 @@ exports[`Header should match the snapshot 1`] = `
       </div>
     </div>
   </header>
-</DocumentFragment>
+</div>
 `;

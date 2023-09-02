@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Form should match the snapshot 1`] = `
+<div>
+  <div
+    class="w-full lg:w-1/2 px-4 lg:px-10"
+  >
+    <p
+      class="className text-2xl md:text-3xl font-bold mb-4"
+      style="color: rgb(35, 35, 33);"
+    >
+      Login
+    </p>
+    <p
+      class="className text-base md:text-xl font-semibold underline cursor underline-offset-5 cursor-pointer"
+      style="color: rgb(35, 35, 33);"
+    >
+      Forgot your password
+    </p>
+    <div
+      class="flex flex-col gap-6 py-6"
+    >
+      <form
+        class="flex flex-col gap-6"
+      >
+        <div
+          class="flex flex-col"
+        >
+          <div
+            class="px-2 py-2.5 rounded-lg border justify-start items-center inline-flex border-[#232321]"
+          >
+            <input
+              class="className w-full px-2 placeholder-[#79767C] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none"
+              placeholder="Email"
+              required=""
+              style="color: rgb(31, 26, 36);"
+              type="email"
+            />
+          </div>
+        </div>
+        <div
+          class="flex flex-col w-full lg:w-5/6"
+        >
+          <div
+            class="px-2 py-2.5 rounded-lg border justify-start items-center inline-flex border-[#232321]"
+          >
+            <input
+              class="className w-full px-2 placeholder-[#79767C] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none"
+              placeholder="Password"
+              required=""
+              style="color: rgb(31, 26, 36);"
+              type="password"
+            />
+          </div>
+        </div>
+        <label
+          class="flex items-center cursor-pointer"
+        >
+          <div
+            class="relative"
+          >
+            <input
+              class="hidden"
+              type="checkbox"
+            />
+            <img
+              alt="Checked this box"
+              data-nimg="1"
+              decoding="async"
+              height="24"
+              loading="lazy"
+              src="/checkbox-false.svg"
+              style="color: transparent;"
+              width="24"
+            />
+          </div>
+          <span
+            class="className ml-2 className text-base font-semibold"
+            style="color: rgb(35, 35, 33);"
+          >
+            Keep me logged in - applies to all log in options below. More info
+          </span>
+        </label>
+        <button
+          class="className text-white rounded-[8px] px-3 lg:px-6 bg-[#232321] hover:bg-[#4A69E2] text-xs lg:text-sm py-[12px] w-full lg:w-5/6 flex justify-between items-center cursor-pointer"
+          type="submit"
+        >
+          <p
+            class="className text-sm lg:text-base uppercase"
+            style="color: rgb(255, 255, 255);"
+          >
+            Email Login
+          </p>
+          <img
+            alt="Go forward"
+            data-nimg="1"
+            decoding="async"
+            height="16"
+            loading="lazy"
+            src="/arrow-forward.svg"
+            style="color: transparent;"
+            width="16"
+          />
+        </button>
+      </form>
+      <div
+        class="flex justify-between gap-x-2"
+      >
+        <div
+          class="border border-[#232321] rounded-xl py-4 px-10 lg:px-12 cursor-pointer"
+        >
+          <img
+            alt="google Login"
+            data-nimg="1"
+            decoding="async"
+            height="32"
+            loading="lazy"
+            src="/google-login.svg"
+            style="color: transparent;"
+            width="32"
+          />
+        </div>
+        <div
+          class="border border-[#232321] rounded-xl py-4 px-10 lg:px-12 cursor-pointer"
+        >
+          <img
+            alt="apple Login"
+            data-nimg="1"
+            decoding="async"
+            height="32"
+            loading="lazy"
+            src="/apple-login.svg"
+            style="color: transparent;"
+            width="32"
+          />
+        </div>
+        <div
+          class="border border-[#232321] rounded-xl py-4 px-10 lg:px-12 cursor-pointer"
+        >
+          <img
+            alt="facebook Login"
+            data-nimg="1"
+            decoding="async"
+            height="32"
+            loading="lazy"
+            src="/facebook-login.svg"
+            style="color: transparent;"
+            width="32"
+          />
+        </div>
+      </div>
+      <p
+        class="className"
+        style="color: rgb(35, 35, 33);"
+      >
+        By clicking 'Log In' you agree to our website KicksClub Terms &
+          Conditions, Kicks Privacy Notice and Terms & Conditions.
+      </p>
+    </div>
+  </div>
+</div>
+`;

@@ -10,6 +10,7 @@ import { UnStyledButton } from "../Button";
 import { HeaderType } from "@/types";
 import { graduate } from "@/styles";
 import { useCart } from "@/context/CartContext";
+import { useUser } from "@/context/UserContext";
 
 interface HeaderProps {
   data: HeaderType;
@@ -20,6 +21,7 @@ export const Header = ({ data }: HeaderProps) => {
   const [isDesktopSearchBoxOpen, setIsDesktopSearchBoxOpen] = useState(false);
   const { cart } = useCart();
   const router = useRouter();
+  const { isLoggedIn } = useUser();
   const { navLinks } = data;
 
   const onClickMobileMenuBar: () => void = () => {
@@ -60,7 +62,12 @@ export const Header = ({ data }: HeaderProps) => {
               alt="navSearchIcon"
             />
           </UnStyledButton>
-          <UnStyledButton className="mr-[16px] lg:mr-[40px]">
+          <UnStyledButton
+            className="mr-[16px] lg:mr-[40px]"
+            onClick={() =>
+              isLoggedIn ? router.push("/") : router.push("/auth/login")
+            }
+          >
             <Image width={20} height={20} src={"/user.svg"} alt="User Icon" />
           </UnStyledButton>
           {/* TODO: Need to change this to cart icon */}

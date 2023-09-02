@@ -13,12 +13,12 @@ export const MobileNavigation = ({ navLinks }: MobileNavigationProps) => {
 
   const containerClassName = `${fontRubik} w-full font-semibold text-base pt-4 lg:hidden block`;
 
-  const navLinkContent = navLinks?.map((navLink) => {
+  const navLinkContent = navLinks?.map((navLink, index) => {
     const { id, link, name } = navLink;
-
+    // {To check data issue for the above id}
     return (
       <Link
-        key={id}
+        key={index}
         href={`${link}`}
         className="block mt-1 text-black hover:text-[#8F8C91] hover:bg-gray-100 px-1 py-3"
       >
