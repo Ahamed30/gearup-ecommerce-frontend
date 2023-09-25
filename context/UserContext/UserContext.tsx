@@ -8,6 +8,8 @@ interface UserContextType {
     target: { name: string; value: string; type: string; checked: boolean };
   }) => void; // when updating via backend these can be update to Promise<void> from void
   updateAddress: (address: AddressType, typeOfAddress: string) => void;
+  isLoggedIn: boolean;
+  setIsLoggedIn: (loginStatus: boolean) => void;
 }
 
 //@ts-expect-error: ignore initial context creation
@@ -29,6 +31,7 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
     sameBillingDelivery: true,
     receiveNewsletter: false,
   });
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const handleChangeData = (e: {
     target: { name: string; value: string; type: string; checked: boolean };
@@ -60,6 +63,8 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
         user,
         handleChangeData,
         updateAddress,
+        isLoggedIn,
+        setIsLoggedIn,
       }}
     >
       {children}

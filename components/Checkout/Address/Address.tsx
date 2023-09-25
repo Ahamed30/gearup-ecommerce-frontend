@@ -38,9 +38,8 @@ export const Address = ({ typeOfAddress }: AddressProps) => {
 
     if (firstName && street && phoneNumber && city && state && country) {
       updateAddress(addressDetails, typeOfAddress);
-      console.log("...", addressDetails);
     }
-  }, [addressDetails]);
+  }, [addressDetails, typeOfAddress, updateAddress]);
 
   return (
     <div>

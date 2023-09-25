@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { CartContextProvider } from "./CartContext";
 import { UserContextProvider } from "./UserContext";
+import { AppContextProvider } from "./AppContext";
 
 interface ProviderProps {
   children: ReactNode;
@@ -10,8 +11,10 @@ interface ProviderProps {
 
 export const Provider = ({ children }: ProviderProps) => {
   return (
-    <UserContextProvider>
-      <CartContextProvider>{children}</CartContextProvider>
-    </UserContextProvider>
+    <AppContextProvider>
+      <UserContextProvider>
+        <CartContextProvider>{children}</CartContextProvider>
+      </UserContextProvider>
+    </AppContextProvider>
   );
 };

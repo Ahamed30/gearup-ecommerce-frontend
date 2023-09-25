@@ -1,4 +1,3 @@
-import { Key } from "react";
 import { Typography } from "../Typography";
 import { UnStyledButton } from "../Button";
 import Image from "next/image";

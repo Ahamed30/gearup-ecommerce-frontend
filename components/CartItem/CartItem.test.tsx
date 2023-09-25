@@ -3,6 +3,7 @@ import { CartItemType } from "@/types";
 import { CartItem } from "./CartItem";
 import { cartItemData } from "./__mocks__";
 import { CartContextProvider } from "@/context/CartContext";
+import { AppContextProvider } from "@/context/AppContext";
 
 const mockRouterPush = jest.fn();
 jest.mock("next/navigation", () => ({
@@ -13,9 +14,11 @@ jest.mock("next/navigation", () => ({
 
 const renderComponent = (cartItem: CartItemType = cartItemData) => {
   return render(
-    <CartContextProvider>
-      <CartItem product={cartItem} />
-    </CartContextProvider>
+    <AppContextProvider>
+      <CartContextProvider>
+        <CartItem product={cartItem} />
+      </CartContextProvider>
+    </AppContextProvider>
   );
 };
 
