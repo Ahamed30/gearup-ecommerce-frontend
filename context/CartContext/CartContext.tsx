@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import type { ReactNode, Key } from "react";
 import { CartType, CartItemType } from "@/types";
 import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
+import { useApp } from "../AppContext";
 
 export interface CartContextType {
   addToCart: (item: CartItemType) => void; // when updating via backend these can be update to Promise<void> from void
@@ -29,8 +30,10 @@ export const CartContextProvider = ({
 }: CartContextProviderProps) => {
   const cartFromCookie: CartType | null = getCookie("cart");
   const [cart, setCart] = useState(initialCart ?? cartFromCookie);
+  const { setIsLoading } = useApp();
 
   const addToCart = (item: CartItemType) => {
+    setIsLoading(true);
     let isItemExists = false;
     if (cart?.items) {
       cart.items.forEach((element) => {
@@ -44,6 +47,7 @@ export const CartContextProvider = ({
         }
       });
     }
+    setIsLoading(false);
     if (isItemExists) return;
     setCart((prevCart) => {
       const updatedCart: CartType = { ...prevCart };
@@ -74,7 +78,6 @@ export const CartContextProvider = ({
       setCookie("cart", updatedCart);
       return updatedCart;
     });
-    console.log("-->", cart);
   };
 
   const updateCartItem = (itemId: Key, updatedItem: CartItemType) => {

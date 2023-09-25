@@ -2,16 +2,12 @@ import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { Typography } from "@/components/Typography";
 
-interface OrderSummaryProps {
-  isBordered?: boolean;
-}
-
 type itemsType = {
   name: string;
   price: number | string;
 };
 
-export const AmountSummary = ({ isBordered }: OrderSummaryProps) => {
+export const AmountSummary = () => {
   // const [inputValue, setInputValue] = useState("");
   const { cart } = useCart();
   const [total, setTotal] = useState<number>(cart?.cartSubTotal ?? 0); // need to calculate total

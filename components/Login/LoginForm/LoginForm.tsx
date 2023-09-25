@@ -6,7 +6,7 @@ import { CustomCheckbox } from "@/components/CustomCheckBox";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
 import { useUser } from "@/context/UserContext";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
@@ -44,7 +44,7 @@ export const LoginForm = () => {
     if (isLoggedIn) {
       router.push("/");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, router]);
 
   return (
     <div className="w-full lg:w-1/2 px-4 lg:px-10">

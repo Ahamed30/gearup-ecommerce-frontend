@@ -47,7 +47,6 @@ export const Checkout = () => {
       setIsDeliveryTypeSelected(false);
       return;
     }
-    console.log(":::", user);
     // validateAddress(); // need to move this to backend
     // You can now use the formData object to send it to your backend or perform any other operations
     // need to empty the cart

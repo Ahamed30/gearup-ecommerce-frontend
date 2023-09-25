@@ -1,5 +1,4 @@
-// Header.test.tsx
-import { fireEvent, getByRole, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Header } from "./Header";
 import { UserContextProvider } from "@/context/UserContext";
 import { HeaderType } from "@/types";

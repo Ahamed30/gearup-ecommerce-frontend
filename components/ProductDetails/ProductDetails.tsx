@@ -51,7 +51,6 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
       setIsSizeSelected(false);
       return;
     }
-    setShowAddedToCart(true);
     const currItem: CartItemType = {
       id,
       quantity: 1,
@@ -64,6 +63,7 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
     };
 
     addToCart(currItem);
+    setShowAddedToCart(true);
   };
 
   useEffect(() => {

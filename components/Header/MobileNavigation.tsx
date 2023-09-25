@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import Link from "next/link";
 import { MobileSearchBox } from "../SearchBox";
 import { LinkType } from "@/types";
@@ -14,7 +13,7 @@ export const MobileNavigation = ({ navLinks }: MobileNavigationProps) => {
   const containerClassName = `${fontRubik} w-full font-semibold text-base pt-4 lg:hidden block`;
 
   const navLinkContent = navLinks?.map((navLink, index) => {
-    const { id, link, name } = navLink;
+    const { link, name } = navLink;
     // {To check data issue for the above id}
     return (
       <Link

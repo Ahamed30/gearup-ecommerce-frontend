@@ -5,7 +5,6 @@ import { ProductCard } from "../ProductCard";
 import { Typography } from "../Typography";
 import { Button } from "../Button";
 import { ProductGridType } from "@/types";
-import { Modal } from "../Modal";
 
 interface ProductGridProps {
   productGrid?: ProductGridType;
