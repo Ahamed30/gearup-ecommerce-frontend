@@ -1,18 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import classNames from "classnames";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
-import { ProductSize } from "../ProductSize";
 import { CartItemType, ProductType } from "@/types";
-import { Typography } from "../Typography";
-import { Button, UnStyledButton } from "../Button";
 import {
   newReleaseClassName,
   addToCartButtonClassName,
   favouriteButtonClassName,
 } from "./styles";
-import classNames from "classnames";
+import { Button, UnStyledButton } from "../Button";
+import { ProductSize } from "../ProductSize";
+import { Typography } from "../Typography";
 
 interface ProductDetailsProps {
   productData: ProductType;
@@ -78,34 +78,34 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
     <div className="relative">
       {newProduct && (
         <Typography
-          variant="headline"
-          color="#FFFFFF"
           className={newReleaseClassName}
+          color="#FFFFFF"
+          variant="headline"
         >
           New Release
         </Typography>
       )}
       <Typography
-        variant="headline"
         className="text-2xl lg:text-3xl font-semibold lg:uppercase mb-[16px]"
+        variant="headline"
       >
         {productName}
       </Typography>
       <div className="mb-[32px]">
         <Typography
           as="span"
-          variant="headline"
-          color="#4A69E2"
           className="text-2xl font-semibold mr-[16px]"
+          color="#4A69E2"
+          variant="headline"
         >
           {salePrice ? <s>${price}</s> : `$${price}`}
         </Typography>
         {salePrice && (
           <Typography
             as="span"
-            variant="headline"
-            color="#EF4444"
             className="text-2xl font-semibold"
+            color="#EF4444"
+            variant="headline"
           >
             ${salePrice}
           </Typography>
@@ -114,28 +114,28 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
       <div>
         <div className="flex justify-between mb-[8px]">
           <Typography
-            variant="headline"
             className="text-base font-semibold uppercase"
+            variant="headline"
           >
             Size
           </Typography>
           <Typography
-            variant="headline"
             className="text-base font-semibold uppercase underline underline-offset-2 cursor-pointer"
+            variant="headline"
           >
             Size Chart
           </Typography>
         </div>
         <ProductSize
-          size={size}
-          selectedSize={selectedSize}
           handleSizeSelect={handleSizeSelect}
+          selectedSize={selectedSize}
+          size={size}
         />
         {!isSizeSelected && (
           <Typography
-            variant="headline"
-            color="#EF4444"
             className="text-base mb-[16px]"
+            color="#EF4444"
+            variant="headline"
           >
             Please select a size*
           </Typography>
@@ -154,20 +154,20 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
           onClick={handleFavoriteClick}
         >
           <Image
-            height={16}
-            width={16}
-            src={isFavourite ? "/heart-red.svg" : "/heart.svg"}
             alt="Add to favourite"
+            height={16}
+            src={isFavourite ? "/heart-red.svg" : "/heart.svg"}
+            width={16}
           />
         </UnStyledButton>
       </div>
-      <Button color="secondary" className="w-full uppercase mb-[16px]">
+      <Button className="w-full uppercase mb-[16px]" color="secondary">
         Buy it now
       </Button>
       <div>
         <Typography
-          variant="headline"
           className="text-base font-semibold uppercase mb-[8px]"
+          variant="headline"
         >
           About this product
         </Typography>
@@ -188,10 +188,10 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
             onClick={() => setShowAddedToCart(false)}
           >
             <Image
-              width={25}
+              alt={`Close Icon`}
               height={25}
               src={`/close-icon.svg`}
-              alt={`Close Icon`}
+              width={25}
             />
           </div>
         </div>

@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Typography } from "../Typography";
-import { ContactDetails } from "./ContactDetails";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useCart } from "@/context/CartContext";
+import { useUser } from "@/context/UserContext";
 import { Address } from "./Address";
+import { ContactDetails } from "./ContactDetails";
 import { DeliveryOptions } from "./DeliveryOptions";
 import { linkClassName, newsTextClassName, buttonClass } from "./style";
 import { Button } from "../Button";
-import { OrderSummary } from "../OrderSummary";
-import { OrderDetails } from "../OrderDetails";
-import { useUser } from "@/context/UserContext";
-import { useCart } from "@/context/CartContext";
-import { useRouter } from "next/navigation";
 import { CustomCheckbox } from "../CustomCheckBox";
+import { OrderDetails } from "../OrderDetails";
+import { OrderSummary } from "../OrderSummary";
+import { Typography } from "../Typography";
 
 export const Checkout = () => {
   // {TODO: Need to move it to context}
@@ -64,7 +64,7 @@ export const Checkout = () => {
         onSubmit={handleSubmit}
       >
         {/* TODO: Once logged In show them saved address instead of contact details  */}
-        <Typography variant="headline" className={linkClassName}>
+        <Typography className={linkClassName} variant="headline">
           Login and Checkout faster
         </Typography>
         <ContactDetails />
@@ -72,38 +72,38 @@ export const Checkout = () => {
         <DeliveryOptions isDeliveryTypeSelected={isDeliveryTypeSelected} />
         <div className="mb-[32px]">
           <CustomCheckbox
-            text={`My billing and delivery information are the same`}
             className="mb-[24px]"
+            isEnabled
             name="sameBillingDelivery"
             onChange={(e) => handleChangeData(e)}
-            isEnabled
+            text={`My billing and delivery information are the same`}
           />
           {!user?.sameBillingDelivery && (
             <Address typeOfAddress="billingAddress" />
           )}
-          <Typography variant="headline" className={newsTextClassName}>
+          <Typography className={newsTextClassName} variant="headline">
             Also want product updates with our newsletter?
           </Typography>
           <CustomCheckbox
-            text={`Yes, I’d like to receive emails about exclusive sales and more.`}
             className="mb-[24px]"
             name="receiveNewsletter"
             onChange={(e) => handleChangeData(e)}
+            text={`Yes, I’d like to receive emails about exclusive sales and more.`}
           />
         </div>
-        <Button color="primary" type="submit" className={buttonClass}>
+        <Button className={buttonClass} color="primary" type="submit">
           <Typography
+            className="text-sm lg:text-base uppercase"
             color="#FFFFFF"
             variant="headline"
-            className="text-sm lg:text-base uppercase"
           >
             Review AND PAY
           </Typography>
           <Image
-            src="/arrow-forward.svg"
-            height={16}
-            width={16}
             alt="Go forward"
+            height={16}
+            src="/arrow-forward.svg"
+            width={16}
           />
         </Button>
       </form>

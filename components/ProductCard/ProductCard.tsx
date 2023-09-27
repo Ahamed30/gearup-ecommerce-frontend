@@ -1,12 +1,12 @@
 "use client";
 
+import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import classNames from "classnames";
-import { Button } from "../Button";
-import { Typography } from "../Typography";
 import { ProductCardType } from "@/types";
 import { buttonClass, productNameClass, tagClass } from "./styles";
+import { Button } from "../Button";
+import { Typography } from "../Typography";
 
 interface ProductCardProps {
   product?: ProductCardType;
@@ -29,18 +29,18 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         >
           <div className="w-full p-4">
             <Image
-              src={`${heroImage.url}`}
               alt={"Shoe"}
-              fill
               className="rounded-[28px] p-2 object-cover"
+              fill
+              src={`${heroImage.url}`}
             />
           </div>
           {newProduct && (
             <div className={classNames(tagClass, "bg-[#4A69E2]")}>
               <Typography
-                variant="headline"
                 className="text-[12px] font-semibold"
                 color="#FFFFFF"
+                variant="headline"
               >
                 New
               </Typography>
@@ -57,16 +57,16 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
         {/* {TODO: Need hover the text} */}
         <Typography
-          variant="headline"
-          title={`${productName}`}
           className={productNameClass}
+          title={`${productName}`}
+          variant="headline"
         >
           {productName}
         </Typography>
-        <Button color="primary" size="md" className={buttonClass}>
-          <Typography as="span" variant="headline" color="#FFFFFF">
+        <Button className={buttonClass} color="primary" size="md">
+          <Typography as="span" color="#FFFFFF" variant="headline">
             View Product -
-            <Typography as="span" variant="headline" color="#FFA52F">
+            <Typography as="span" color="#FFA52F" variant="headline">
               &nbsp;${price}
             </Typography>
           </Typography>

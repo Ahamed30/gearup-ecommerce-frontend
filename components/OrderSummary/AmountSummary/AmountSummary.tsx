@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useCart } from "@/context/CartContext";
 import { Typography } from "@/components/Typography";
+import { useCart } from "@/context/CartContext";
 
 type itemsType = {
   name: string;
@@ -34,13 +34,13 @@ export const AmountSummary = () => {
   return (
     <div>
       <Typography
-        variant="headline"
         className="text-xl lg:text-2xl font-semibold mb-[16px] lg:mb-[24px]"
+        variant="headline"
       >
         Order Summary
       </Typography>
       {items.map((item, index) => (
-        <div key={index} className="flex justify-between mb-[16px]">
+        <div className="flex justify-between mb-[16px]" key={index}>
           <Typography className="text-base lg:text-lg font-semibold">
             {item.name}
           </Typography>
@@ -51,14 +51,14 @@ export const AmountSummary = () => {
       ))}
       <div className="flex justify-between mb-[16px] lg:mb-[24px]">
         <Typography
-          variant="headline"
           className="text-lg lg:text-xl font-semibold"
+          variant="headline"
         >
           Total
         </Typography>
         <Typography
-          variant="headline"
           className="text-lg lg:text-xl font-semibold"
+          variant="headline"
         >
           {total}
         </Typography>

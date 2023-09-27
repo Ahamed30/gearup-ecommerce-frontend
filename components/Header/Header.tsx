@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { MobileNavigation } from "./MobileNavigation";
-import { DesktopNavigation } from "./DesktopNavigation";
-import { DesktopSearchBox } from "../SearchBox";
-import { UnStyledButton } from "../Button";
-import { HeaderType } from "@/types";
-import { graduate } from "@/styles";
+import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
+import { graduate } from "@/styles";
+import { HeaderType } from "@/types";
+import { DesktopNavigation } from "./DesktopNavigation";
+import { MobileNavigation } from "./MobileNavigation";
+import { UnStyledButton } from "../Button";
+import { DesktopSearchBox } from "../SearchBox";
 
 interface HeaderProps {
   data: HeaderType;
@@ -40,7 +40,7 @@ export const Header = ({ data }: HeaderProps) => {
           className="block lg:hidden absolute left-0 top-4"
           onClick={onClickMobileMenuBar}
         >
-          <Image width={20} height={20} src={"/nav-menu.svg"} alt="Nav Menu" />
+          <Image alt="Nav Menu" height={20} src={"/nav-menu.svg"} width={20} />
         </div>
         <div className="flex justify-center items-center text-black">
           <span
@@ -56,10 +56,10 @@ export const Header = ({ data }: HeaderProps) => {
             onClick={onClickMobileSearchBox}
           >
             <Image
-              width={20}
+              alt="navSearchIcon"
               height={20}
               src={"/search.svg"}
-              alt="navSearchIcon"
+              width={20}
             />
           </UnStyledButton>
           <UnStyledButton
@@ -68,13 +68,13 @@ export const Header = ({ data }: HeaderProps) => {
               isLoggedIn ? router.push("/") : router.push("/auth/login")
             }
           >
-            <Image width={20} height={20} src={"/user.svg"} alt="User Icon" />
+            <Image alt="User Icon" height={20} src={"/user.svg"} width={20} />
           </UnStyledButton>
           {/* TODO: Need to change this to cart icon */}
           <UnStyledButton
+            className="flex flex-col justify-center items-center px-[6px] lg:py-[4px] lg:px-[8px] border rounded-3xl bg-[#FFA52F]"
             id="cart"
             onClick={() => router.push("/cart")}
-            className="flex flex-col justify-center items-center px-[6px] lg:py-[4px] lg:px-[8px] border rounded-3xl bg-[#FFA52F]"
           >
             {cart?.itemCount ?? 0}
           </UnStyledButton>

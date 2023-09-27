@@ -41,9 +41,9 @@ export const ProductSize = ({
         return (
           <UnStyledButton
             className={sizeClassName}
+            disabled={!isSizeAvailable}
             key={index}
             onClick={() => handleSizeSelect(currSize)}
-            disabled={!isSizeAvailable}
           >
             {currSize}
           </UnStyledButton>

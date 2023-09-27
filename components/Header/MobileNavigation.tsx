@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { MobileSearchBox } from "../SearchBox";
-import { LinkType } from "@/types";
 import { rubik } from "@/styles";
+import { LinkType } from "@/types";
+import { MobileSearchBox } from "../SearchBox";
 
 interface MobileNavigationProps {
   navLinks?: LinkType[];
@@ -17,9 +17,9 @@ export const MobileNavigation = ({ navLinks }: MobileNavigationProps) => {
     // {To check data issue for the above id}
     return (
       <Link
-        key={index}
-        href={`${link}`}
         className="block mt-1 text-black hover:text-[#8F8C91] hover:bg-gray-100 px-1 py-3"
+        href={`${link}`}
+        key={index}
       >
         {name}
       </Link>

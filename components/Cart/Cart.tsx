@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { CartItem } from "../CartItem";
-import { Typography } from "../Typography";
-import { OrderSummary } from "../OrderSummary";
-import { useCart } from "@/context/CartContext";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+import { CartItem } from "../CartItem";
 import { Modal } from "../Modal";
+import { OrderSummary } from "../OrderSummary";
+import { Typography } from "../Typography";
 
 export const Cart = () => {
   const { cart, emptyCart } = useCart();
@@ -16,8 +16,8 @@ export const Cart = () => {
     <div className="mb-[32px]">
       <div className="mb-[24px]">
         <Typography
-          variant="headline"
           className="text-3xl font-semibold mb-[8px]"
+          variant="headline"
         >
           Saving to celebrate
         </Typography>
@@ -26,11 +26,11 @@ export const Cart = () => {
           while suppiles last. No code needed.
         </Typography>
         <Typography className="text-base font-semibold mb-[8px]">
-          <Link href="/" className="underline">
+          <Link className="underline" href="/">
             Join us
           </Link>{" "}
           or{" "}
-          <Link href="/" className="underline">
+          <Link className="underline" href="/">
             Sign-in
           </Link>
         </Typography>
@@ -42,8 +42,8 @@ export const Cart = () => {
               {!cart?.itemCount ? (
                 <div className="flex justify-center items-center">
                   <Typography
-                    variant="headline"
                     className="text-xl lg:text-3xl font-semibold mb-[8px]"
+                    variant="headline"
                   >
                     Your Bag is Empty!!!!!
                   </Typography>
@@ -52,8 +52,8 @@ export const Cart = () => {
                 <>
                   <div className="flex justify-between">
                     <Typography
-                      variant="headline"
                       className="text-xl lg:text-3xl font-semibold mb-[8px]"
+                      variant="headline"
                     >
                       Your Bag
                     </Typography>
@@ -65,10 +65,10 @@ export const Cart = () => {
                     </Typography>
                     {showModal && (
                       <Modal
-                        title="Empty Cart"
-                        subText="Are you sure you want to empty the cart?"
-                        setShowModal={setShowModal}
                         handleClick={emptyCart}
+                        setShowModal={setShowModal}
+                        subText="Are you sure you want to empty the cart?"
+                        title="Empty Cart"
                       />
                     )}
                   </div>
