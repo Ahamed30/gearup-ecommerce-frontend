@@ -1,11 +1,11 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Loader } from "@/components/Loader";
 import { useApp } from "@/context/AppContext";
 import { FooterType, HeaderType } from "@/types";
-import type { ReactNode } from "react";
 
 export interface DefaultLayoutProps {
   headerData: HeaderType;

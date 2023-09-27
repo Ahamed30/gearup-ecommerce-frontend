@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { SocialIcon } from "../SocialIcon";
 import { FooterType, LinkType } from "@/types";
-import { Typography } from "../Typography";
 import {
   gridContentLinkClassName,
   leftColumnDescriptionClassName,
   leftColumnTitleClassName,
   rightColumnContainer,
 } from "./style";
+import { SocialIcon } from "../SocialIcon";
+import { Typography } from "../Typography";
 
 interface FooterContentProps {
   footerData: FooterType;
@@ -21,7 +21,7 @@ export const FooterContent = ({ footerData }: FooterContentProps) => {
     return links?.map((navLink) => {
       const { id, name, link } = navLink;
       return (
-        <Link key={id} href={`${link}`} className={gridContentLinkClassName}>
+        <Link className={gridContentLinkClassName} href={`${link}`} key={id}>
           {name}
         </Link>
       );
@@ -31,11 +31,11 @@ export const FooterContent = ({ footerData }: FooterContentProps) => {
   const rightColumnContent = linkColumns?.map((linkColumn) => {
     const { id, title, links } = linkColumn;
     return (
-      <div key={id} className={rightColumnContainer}>
+      <div className={rightColumnContainer} key={id}>
         <Typography
-          variant="headline"
           className="text-[20px] lg:text-[24px] font-semibold mb-[8px]"
           color="#FFA52F"
+          variant="headline"
         >
           {title}
         </Typography>
@@ -49,15 +49,15 @@ export const FooterContent = ({ footerData }: FooterContentProps) => {
         <div className="w-full">
           <Typography
             as="h1"
-            variant="headline"
-            color="#FFA52F"
             className={leftColumnTitleClassName}
+            color="#FFA52F"
+            variant="headline"
           >
             {leftColumnTitle}
           </Typography>
           <Typography
-            color="#E7E7E3"
             className={leftColumnDescriptionClassName}
+            color="#E7E7E3"
           >
             {leftColumnDescription}
           </Typography>

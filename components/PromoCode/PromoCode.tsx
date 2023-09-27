@@ -1,5 +1,5 @@
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 import { TextInput } from "../TextInput";
 import { Typography } from "../Typography";
 
@@ -39,16 +39,15 @@ export const PromoCode = () => {
             className="w-3/4"
             // onChange={handleInputChange}
             // onKeyDown={handleKeyDown}
-            placeholder="Promo code"
             endIcon={
               <Image
-                src="/message-send-icon.svg"
-                height={24}
-                width={24}
                 alt="Add Promo Code"
-                // onClick={handlePromoClick}
+                height={24}
+                src="/message-send-icon.svg"
+                width={24}
               />
             }
+            placeholder="Promo code"
           />
         </div>
       )}

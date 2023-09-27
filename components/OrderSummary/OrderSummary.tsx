@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useRouter } from "next/navigation";
-import { Button } from "../Button";
 import { AmountSummary } from "./AmountSummary";
+import { Button } from "../Button";
 import { PromoCode } from "../PromoCode";
 
 interface OrderSummaryProps {
@@ -22,9 +22,9 @@ export const OrderSummary = ({ step }: OrderSummaryProps) => {
       {step === "cart" ? (
         <>
           <Button
-            onClick={() => router.push("/checkout")}
-            color="primary"
             className="w-full uppercase flex justify-center items-center mb-[24px]"
+            color="primary"
+            onClick={() => router.push("/checkout")}
           >
             CHECKOUT
           </Button>

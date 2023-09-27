@@ -1,6 +1,6 @@
-import { getCMSData } from "@/utils/getCMSData";
-import { getProductQuery } from "@/query";
 import { ProductDescription } from "@/components/ProductDescription";
+import { getProductQuery } from "@/query";
+import { getCMSData } from "@/utils/getCMSData";
 
 interface PageProps {
   params?: { slug: string[] };

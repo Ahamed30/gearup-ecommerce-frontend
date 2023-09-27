@@ -1,10 +1,10 @@
-import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useCart } from "@/context/CartContext";
-import { Typography } from "../Typography";
 import { CartItemType } from "@/types";
 import { Modal } from "../Modal";
+import { Typography } from "../Typography";
 
 interface CartItemProps {
   product: CartItemType;
@@ -36,18 +36,18 @@ export const CartItem = ({ product }: CartItemProps) => {
       <div className="flex gap-[16px] md:gap-[60px] lg:gap-[24px] mb-[16px]">
         <div className="relative w-1/2 lg:w-1/4 h-[200px] lg:h-[180px]">
           <Image
-            src={`${heroImage.url}`}
-            fill
-            className="object-cover rounded-[24px]"
             alt="ProductImage"
+            className="object-cover rounded-[24px]"
+            fill
+            src={`${heroImage.url}`}
           />
         </div>
         <div className="w-3/4 flex-grow">
           <div className="lg:flex lg:justify-between gap-5">
             <div className="w-full">
               <Typography
-                variant="headline"
                 className="text-base lg:text-xl font-semibold mb-[8px] uppercase"
+                variant="headline"
               >
                 {productName}
               </Typography>
@@ -80,17 +80,17 @@ export const CartItem = ({ product }: CartItemProps) => {
             <div className="flex flex-row lg:flex-col mb-[8px] lg:mb-[32px] gap-3">
               {salePrice && (
                 <Typography
-                  variant="headline"
-                  color="#EF4444"
                   className="text-xl lg:text-2xl font-semibold"
+                  color="#EF4444"
+                  variant="headline"
                 >
                   ${salePrice}
                 </Typography>
               )}
               <Typography
-                variant="headline"
-                color="#4A69E2"
                 className="text-xl lg:text-2xl font-semibold"
+                color="#4A69E2"
+                variant="headline"
               >
                 {salePrice ? <s>${price}</s> : `$${price}`}
               </Typography>
@@ -99,30 +99,30 @@ export const CartItem = ({ product }: CartItemProps) => {
 
           <div className="flex gap-[24px]">
             <Image
-              src={isFavourite ? "/heart-red.svg" : "/heart-black.svg"}
-              height={32}
-              width={32}
               alt="Add to favourite"
               className="cursor-pointer"
+              height={32}
               onClick={() => setIsFavouriteSelected(!isFavourite)}
+              src={isFavourite ? "/heart-red.svg" : "/heart-black.svg"}
+              width={32}
             />
             <Image
-              src="/bin.svg"
-              height={32}
-              width={32}
               alt="Delete Item"
               className="cursor-pointer"
+              height={32}
               onClick={() => setShowModal(true)}
+              src="/bin.svg"
+              width={32}
             />
           </div>
         </div>
       </div>
       {showModal && (
         <Modal
-          title="Remove Product"
-          subText="Are you sure you want to remove this product?"
-          setShowModal={setShowModal}
           handleClick={removeItem}
+          setShowModal={setShowModal}
+          subText="Are you sure you want to remove this product?"
+          title="Remove Product"
         />
       )}
     </div>

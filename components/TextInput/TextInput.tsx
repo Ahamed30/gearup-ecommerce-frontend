@@ -1,5 +1,5 @@
-import type { InputHTMLAttributes, ReactNode } from "react";
 import classNames from "classnames";
+import type { InputHTMLAttributes, ReactNode } from "react";
 import { openSans } from "@/styles";
 import { Typography } from "../Typography";
 
@@ -45,9 +45,9 @@ export const TextInput = ({
     <div className={classNames("flex flex-col", className)}>
       {title && (
         <Typography
-          variant="paragraph"
           className="text-[14px] font-normal mb-[8px]"
           color={state}
+          variant="paragraph"
         >
           {title}
         </Typography>
@@ -72,9 +72,9 @@ export const TextInput = ({
       </div>
       {helper && (
         <Typography
-          variant="paragraph"
           className="text-[12px] font-normal mt-[4px]"
           color={stateTextColor[state]}
+          variant="paragraph"
         >
           {helper}
         </Typography>

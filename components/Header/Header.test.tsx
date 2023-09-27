@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Header } from "./Header";
 import { UserContextProvider } from "@/context/UserContext";
 import { HeaderType } from "@/types";
+import { Header } from "./Header";
 
 // Mock the useRouter push function
 const mockRouterPush = jest.fn();

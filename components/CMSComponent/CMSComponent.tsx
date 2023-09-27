@@ -1,7 +1,7 @@
-import { HomePageType } from "@/types";
-import { ProductGrid } from "../ProductGrid";
-import { getCMSData } from "@/utils/getCMSData";
 import { getProductGridQuery } from "@/query";
+import { HomePageType } from "@/types";
+import { getCMSData } from "@/utils/getCMSData";
+import { ProductGrid } from "../ProductGrid";
 
 interface CMSComponentProps {
   data?: HomePageType;

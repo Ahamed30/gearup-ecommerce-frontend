@@ -9,13 +9,13 @@ export const Loader = () => {
   return (
     <div className="fixed">
       <ClipLoader
+        aria-label="Loading Spinner"
         color={"#fff"}
+        cssOverride={override}
+        data-testid="loader"
         loading={true}
         size={50}
-        aria-label="Loading Spinner"
-        data-testid="loader"
         speedMultiplier={0.7}
-        cssOverride={override}
       />
     </div>
   );

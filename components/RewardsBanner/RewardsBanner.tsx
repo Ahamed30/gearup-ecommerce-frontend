@@ -7,8 +7,8 @@ export const RewardsBanner = () => {
     <div className="border bg-[#FAFAFA] rounded-2xl p-6 w-full lg:w-1/2">
       <div className="flex flex-col gap-y-6 pb-10 lg:pb-16">
         <Typography
-          variant="headline"
           className="text-3xl md:text-4xl font-semibold"
+          variant="headline"
         >
           Join Kicks Club Get Rewarded Today.
         </Typography>
@@ -30,22 +30,22 @@ export const RewardsBanner = () => {
         </Typography>
       </div>
       <Button
+        className="w-full flex justify-between items-center cursor-pointer"
         color="primary"
         type="submit"
-        className="w-full flex justify-between items-center cursor-pointer"
       >
         <Typography
+          className="text-sm lg:text-base uppercase"
           color="#FFFFFF"
           variant="headline"
-          className="text-sm lg:text-base uppercase"
         >
           Join the club
         </Typography>
         <Image
-          src="/arrow-forward.svg"
-          height={16}
-          width={16}
           alt="Go forward"
+          height={16}
+          src="/arrow-forward.svg"
+          width={16}
         />
       </Button>
     </div>

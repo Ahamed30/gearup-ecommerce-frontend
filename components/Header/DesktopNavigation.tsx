@@ -12,9 +12,9 @@ export const DesktopNavigation = ({ navLinks }: DesktopNavigationProps) => {
 
     return (
       <Link
-        key={`${index}::${id}`}
-        href={`${link}`}
         className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-[#8F8C91] mr-[40px]"
+        href={`${link}`}
+        key={`${index}::${id}`}
       >
         {name}
       </Link>

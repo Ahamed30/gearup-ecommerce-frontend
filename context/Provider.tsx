@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { AppContextProvider } from "./AppContext";
 import { CartContextProvider } from "./CartContext";
 import { UserContextProvider } from "./UserContext";
-import { AppContextProvider } from "./AppContext";
 
 interface ProviderProps {
   children: ReactNode;

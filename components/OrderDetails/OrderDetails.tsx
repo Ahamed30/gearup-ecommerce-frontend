@@ -1,7 +1,6 @@
-import Image from "next/image";
-import { Typography } from "../Typography";
 import { useCart } from "@/context/CartContext";
 import { OrderDetailsItem } from "./OrderDetailItem";
+import { Typography } from "../Typography";
 
 export const OrderDetails = () => {
   const { cart } = useCart();
@@ -9,8 +8,8 @@ export const OrderDetails = () => {
     <div className="border rounded-[16px] bg-[#FAFAFA] p-[24px] lg:p-6">
       <div className="mb-[16px] lg:mb-[32px]">
         <Typography
-          variant="headline"
           className="text-xl lg:text-2xl font-semibold mb-[8px]"
+          variant="headline"
         >
           Order{cart?.itemCount ?? 1 > 1 ? `s` : ""}
         </Typography>

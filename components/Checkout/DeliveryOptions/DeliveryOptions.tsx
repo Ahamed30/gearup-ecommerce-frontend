@@ -1,14 +1,14 @@
 import classNames from "classnames";
+import { useState } from "react";
 import { Typography } from "@/components/Typography";
+import { useCart } from "@/context/CartContext";
+import { CartType } from "@/types";
 import {
   cardTextClassName,
   cardTitleClassName,
   priceClassName,
   titleClassName,
 } from "../style";
-import { useCart } from "@/context/CartContext";
-import { CartType } from "@/types";
-import { useState } from "react";
 
 type DeliveryTypeCardProps = {
   deliveryType: {
@@ -36,7 +36,7 @@ export const DeliveryTypeCard = ({
       onClick={() => handleDeliveryType(type, price)}
     >
       <div className="flex-grow">
-        <Typography variant="headline" className={cardTitleClassName}>
+        <Typography className={cardTitleClassName} variant="headline">
           {type}
         </Typography>
         <Typography className={cardTextClassName}>{description}</Typography>
@@ -90,8 +90,8 @@ export const DeliveryOptions = ({
   return (
     <div className="mb-[32px]">
       <Typography
-        variant="headline"
         className={classNames(titleClassName, "mb-[16px] md:mb-[32px]")}
+        variant="headline"
       >
         Delivery Options
       </Typography>
@@ -99,9 +99,9 @@ export const DeliveryOptions = ({
         {defaultDeliveryTypes.map((deliveryType, index) => {
           return (
             <DeliveryTypeCard
-              key={index}
               deliveryType={deliveryType}
               handleDeliveryType={handleDeliveryType}
+              key={index}
               selectedDeliveryType={selectedDeliveryType}
             />
           );
@@ -109,9 +109,9 @@ export const DeliveryOptions = ({
       </div>
       {!isDeliveryTypeSelected && (
         <Typography
-          variant="headline"
-          color="#EF4444"
           className="text-base my-[16px]"
+          color="#EF4444"
+          variant="headline"
         >
           Please select a delivery type*
         </Typography>

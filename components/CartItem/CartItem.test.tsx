@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { CartItemType } from "@/types";
-import { CartItem } from "./CartItem";
-import { cartItemData } from "./__mocks__";
-import { CartContextProvider } from "@/context/CartContext";
 import { AppContextProvider } from "@/context/AppContext";
+import { CartContextProvider } from "@/context/CartContext";
+import { CartItemType } from "@/types";
+import { cartItemData } from "./__mocks__";
+import { CartItem } from "./CartItem";
 
 const mockRouterPush = jest.fn();
 jest.mock("next/navigation", () => ({

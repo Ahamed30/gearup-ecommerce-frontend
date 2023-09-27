@@ -1,8 +1,8 @@
 import { SubscribeFormType } from "@/types";
 import { headerTextClassName, logoContainer, logoNameClass } from "./style";
-import { Typography } from "../Typography";
-import { TextInput } from "../TextInput";
 import { Button } from "../Button";
+import { TextInput } from "../TextInput";
+import { Typography } from "../Typography";
 
 export interface SubscribeFormProps {
   subscribeFormData?: SubscribeFormType;
@@ -19,28 +19,28 @@ export const SubscribeForm = ({ subscribeFormData }: SubscribeFormProps) => {
         <div className="w-full">
           <Typography
             as="h3"
-            variant="headline"
-            color="#FFFFFF"
             className={headerTextClassName}
+            color="#FFFFFF"
+            variant="headline"
           >
             {headerText}
           </Typography>
           <Typography
-            color="#E7E5E4"
             className="text-base lg:text-xl font-semibold mb-[24px] lg:mb-[32px]"
+            color="#E7E5E4"
           >
             {subText}
           </Typography>
           <div className="flex flex-row gap-4">
             <TextInput
-              type="email"
               className="w-1/2"
-              state="dark"
               placeholder="Email address"
+              state="dark"
+              type="email"
             />
             <Button
-              color="primary"
               className="flex justify-center items-center uppercase"
+              color="primary"
             >
               Submit
             </Button>

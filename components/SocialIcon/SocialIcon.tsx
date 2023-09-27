@@ -12,16 +12,16 @@ export const SocialIcon = ({ socialIcons }: SocialIconProps) => {
   const iconImageContent = socialIcons?.map((iconName, index) => {
     return (
       <Link
-        target="_blank"
+        className="transition duration-300 ease-in-out "
         href={`www.${iconName}.com`}
         key={index}
-        className="transition duration-300 ease-in-out "
+        target="_blank"
       >
         <Image
-          width={24}
+          alt={`${iconName}`}
           height={24}
           src={`/${iconName}-icon.svg`}
-          alt={`${iconName}`}
+          width={24}
         />
       </Link>
     );
@@ -30,9 +30,9 @@ export const SocialIcon = ({ socialIcons }: SocialIconProps) => {
   return (
     <div className="gap-2">
       <Typography
-        variant="headline"
-        color="#FFA52F"
         className="text-[20px] lg:text-[24px] font-semibold mb-[16px]"
+        color="#FFA52F"
+        variant="headline"
       >
         Follow us
       </Typography>

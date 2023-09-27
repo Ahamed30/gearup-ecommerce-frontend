@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { SubscribeForm } from "../SubscribeForm";
-import { FooterContent } from "./FooterContent";
 import { openSans } from "@/styles";
 import { FooterType } from "@/types";
+import { FooterContent } from "./FooterContent";
+import { SubscribeForm } from "../SubscribeForm";
 
 interface FooterProps {
   data: FooterType;
@@ -30,9 +30,9 @@ export const Footer = ({ data }: FooterProps) => {
         </tbody>
       </table>
       <Link
+        className={`${fontOpenSans} flex justify-center text-center`}
         href={`https://github.com/Ahamed30`}
         target="_blank"
-        className={`${fontOpenSans} flex justify-center text-center`}
       >
         © All rights reserved | Made with ❤️ by Dhanish Ahamed
       </Link>

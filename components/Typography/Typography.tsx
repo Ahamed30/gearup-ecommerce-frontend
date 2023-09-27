@@ -1,6 +1,6 @@
+import classNames from "classnames";
 import { createElement } from "react";
 import type { ElementType, HTMLAttributes, ReactNode } from "react";
-import classNames from "classnames";
 import { openSans, rubik } from "@/styles";
 
 const fontRubik = rubik?.className;

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import classNames from "classnames";
+import Image from "next/image";
 import { TextInput } from "../TextInput";
 
 interface DesktopSearchBoxProps {
@@ -17,12 +17,12 @@ export const DesktopSearchBox = ({
   return (
     <div className={searchBoxClassName}>
       <TextInput
-        type="text"
+        className="w-1/2"
         placeholder="Search"
         startIcon={
-          <Image width={20} height={20} src={"/search.svg"} alt="Search Icon" />
+          <Image alt="Search Icon" height={20} src={"/search.svg"} width={20} />
         }
-        className="w-1/2"
+        type="text"
       />
     </div>
   );
