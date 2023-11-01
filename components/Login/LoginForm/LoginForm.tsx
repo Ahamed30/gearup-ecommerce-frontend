@@ -2,16 +2,25 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect } from "react";
+import { signIn } from "next-auth/react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { CustomCheckbox } from "@/components/CustomCheckBox";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
+import { useApp } from "@/context/AppContext";
 import { useUser } from "@/context/UserContext";
 
 export const LoginForm = () => {
   const { isLoggedIn, setIsLoggedIn } = useUser();
+  const { setIsLoading } = useApp();
   const router = useRouter();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [isCredentialsWrong, setIsCredentialsWrong] = useState(false);
 
   const AdditionalLogins = () => {
     const additionalLoginIcons = ["google", "apple", "facebook"];
@@ -32,12 +41,27 @@ export const LoginForm = () => {
     });
   };
 
-  const handleSubmit = (e: FormEvent) => {
-    // TODO: handle login operations
-    // if valid
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsCredentialsWrong(false);
+    setIsLoading(true);
+    const { email, password } = formData;
+    signIn("credentials", {
+      email,
+      password,
+      redirect: true,
+      callbackUrl: "/",
+    });
+    setIsLoading(false);
     setIsLoggedIn(true);
-    router.push("/");
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   useEffect(() => {
@@ -60,11 +84,28 @@ export const LoginForm = () => {
       >
         Forgot your password
       </Typography>
+      {isCredentialsWrong && (
+        <Typography
+          className="text-base mt-4"
+          color="#EF4444"
+          variant="headline"
+        >
+          Unable to login! Invalid email or password
+        </Typography>
+      )}
       <div className="flex flex-col gap-6 py-6">
         <form className="flex flex-col gap-6" onSubmit={(e) => handleSubmit(e)}>
-          <TextInput placeholder="Email" required type="email" />
+          <TextInput
+            name="email"
+            onChange={handleChange}
+            placeholder="Email"
+            required
+            type="email"
+          />
           <TextInput
             className="w-full lg:w-5/6"
+            name="password"
+            onChange={handleChange}
             placeholder="Password"
             required
             type="password"

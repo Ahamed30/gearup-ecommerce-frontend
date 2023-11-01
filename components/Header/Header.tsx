@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
@@ -82,6 +83,7 @@ export const Header = ({ data }: HeaderProps) => {
       </div>
       {isMobileNavBarOpen && <MobileNavigation navLinks={navLinks} />}
       <DesktopSearchBox isDesktopSearchBoxOpen={isDesktopSearchBoxOpen} />
+      <UnStyledButton onClick={() => signOut()}>SignOut</UnStyledButton>
     </header>
   );
 };

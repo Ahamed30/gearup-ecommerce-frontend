@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+import { AppContextProvider } from "@/context/AppContext";
 import { UserContextProvider } from "@/context/UserContext";
 import { LoginForm } from "./LoginForm";
 
@@ -11,9 +12,11 @@ jest.mock("next/navigation", () => ({
 
 const renderComponent = () => {
   return render(
-    <UserContextProvider>
-      <LoginForm />
-    </UserContextProvider>
+    <AppContextProvider>
+      <UserContextProvider>
+        <LoginForm />
+      </UserContextProvider>
+    </AppContextProvider>
   );
 };
 

@@ -124,6 +124,9 @@ exports[`Header should render without crashing 1`] = `
         </div>
       </div>
     </div>
+    <button>
+      SignOut
+    </button>
   </header>
 </div>
 `;

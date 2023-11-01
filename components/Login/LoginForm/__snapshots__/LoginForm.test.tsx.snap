@@ -31,6 +31,7 @@ exports[`Login Form should match the snapshot 1`] = `
           >
             <input
               class="className w-full px-2 placeholder-[#79767C] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none"
+              name="email"
               placeholder="Email"
               required=""
               style="color: rgb(31, 26, 36);"
@@ -46,6 +47,7 @@ exports[`Login Form should match the snapshot 1`] = `
           >
             <input
               class="className w-full px-2 placeholder-[#79767C] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none"
+              name="password"
               placeholder="Password"
               required=""
               style="color: rgb(31, 26, 36);"
