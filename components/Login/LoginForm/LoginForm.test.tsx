@@ -3,10 +3,9 @@ import { AppContextProvider } from "@/context/AppContext";
 import { UserContextProvider } from "@/context/UserContext";
 import { LoginForm } from "./LoginForm";
 
-const mockRouterPush = jest.fn();
 jest.mock("next/navigation", () => ({
-  useRouter: () => ({
-    push: mockRouterPush,
+  useSearchParams: () => ({
+    get: String,
   }),
 }));
 

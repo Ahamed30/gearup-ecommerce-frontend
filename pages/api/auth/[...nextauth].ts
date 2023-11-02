@@ -11,7 +11,7 @@ export const authOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {},
-      async authorize(credentials, req): Promise<any> {
+      async authorize(credentials): Promise<any> {
         return await signInWithEmailAndPassword(
           auth,
           (credentials as any).email || "",

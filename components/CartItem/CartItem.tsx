@@ -119,7 +119,11 @@ export const CartItem = ({ product }: CartItemProps) => {
       </div>
       {showModal && (
         <Modal
-          handleClick={removeItem}
+          acceptButton={{
+            title: "Yes, I'm sure",
+            handleClick: removeItem,
+          }}
+          cancelButtonText="Cancel"
           setShowModal={setShowModal}
           subText="Are you sure you want to remove this product?"
           title="Remove Product"

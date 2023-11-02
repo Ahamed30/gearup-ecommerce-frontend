@@ -65,7 +65,11 @@ export const Cart = () => {
                     </Typography>
                     {showModal && (
                       <Modal
-                        handleClick={emptyCart}
+                        acceptButton={{
+                          title: "Yes, I'm sure",
+                          handleClick: emptyCart,
+                        }}
+                        cancelButtonText="Cancel"
                         setShowModal={setShowModal}
                         subText="Are you sure you want to empty the cart?"
                         title="Empty Cart"

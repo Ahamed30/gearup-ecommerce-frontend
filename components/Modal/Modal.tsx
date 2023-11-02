@@ -6,14 +6,19 @@ interface ModalProps {
   title?: string;
   subText?: string;
   setShowModal: (value: boolean) => void;
-  handleClick: () => void;
+  acceptButton?: {
+    title: string;
+    handleClick: () => void;
+  };
+  cancelButtonText?: string;
 }
 
 export const Modal = ({
   title,
   subText,
   setShowModal,
-  handleClick,
+  acceptButton,
+  cancelButtonText,
 }: ModalProps) => {
   return (
     <div role="dialog">
@@ -51,20 +56,24 @@ export const Modal = ({
               </Typography>
             </div>
             <div className="flex items-center justify-center gap-5 p-6 border-t border-solid border-blueGray-200 rounded-b">
-              <UnStyledButton
-                className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2 ease-linear transition-all duration-150"
-                onClick={handleClick}
-                type="button"
-              >
-                {`Yes, I'm sure`}
-              </UnStyledButton>
-              <UnStyledButton
-                className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 ease-linear transition-all duration-150"
-                onClick={() => setShowModal(false)}
-                type="button"
-              >
-                No, cancel
-              </UnStyledButton>
+              {acceptButton ? (
+                <UnStyledButton
+                  className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2 ease-linear transition-all duration-150"
+                  onClick={acceptButton.handleClick}
+                  type="button"
+                >
+                  {acceptButton.title}
+                </UnStyledButton>
+              ) : null}
+              {cancelButtonText ? (
+                <UnStyledButton
+                  className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 ease-linear transition-all duration-150"
+                  onClick={() => setShowModal(false)}
+                  type="button"
+                >
+                  No, cancel
+                </UnStyledButton>
+              ) : null}
             </div>
           </div>
         </div>

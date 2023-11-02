@@ -23,6 +23,11 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(nextUrl);
   }
 
+  if (nextUrl.pathname.startsWith("/auth") && session) {
+    nextUrl.pathname = "/";
+    return NextResponse.redirect(nextUrl);
+  }
+
   return response;
 }
 

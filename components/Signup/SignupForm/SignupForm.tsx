@@ -2,20 +2,18 @@
 
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "@/components/Button";
 import { CustomCheckbox } from "@/components/CustomCheckBox";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
 import { useApp } from "@/context/AppContext";
-import { useUser } from "@/context/UserContext";
 import { auth } from "@/firebase/firebaseConfig";
 
 export const SignupForm = () => {
-  const { isLoggedIn, setIsLoggedIn } = useUser();
   const { setIsLoading } = useApp();
-  const router = useRouter();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -34,7 +32,6 @@ export const SignupForm = () => {
       password
     )
       .then((userCredential) => {
-        setIsLoggedIn(true);
         return userCredential;
       })
       .catch((error) => {
@@ -54,6 +51,12 @@ export const SignupForm = () => {
         displayName: name,
       });
     }
+    signIn("credentials", {
+      email,
+      password,
+      redirect: true,
+      callbackUrl: "/",
+    });
     setIsLoading(false);
   };
 
@@ -65,21 +68,18 @@ export const SignupForm = () => {
     });
   };
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.push("/");
-    }
-  }, [isLoggedIn, router]);
-
   return (
     <div className="w-full lg:w-1/2 px-4 lg:px-10">
-      <Typography
-        className="text-2xl md:text-3xl font-bold mb-4"
-        variant="headline"
-      >
+      <Typography className="text-2xl md:text-3xl font-bold" variant="headline">
         Sign Up
       </Typography>
       <div className="flex flex-col gap-6 py-6">
+        <Typography>
+          Already have an account?{" "}
+          <Link className="underline font-bold" href="/auth/login">
+            Login
+          </Link>
+        </Typography>
         <form className="flex flex-col gap-6" onSubmit={(e) => handleSubmit(e)}>
           <TextInput
             name="name"

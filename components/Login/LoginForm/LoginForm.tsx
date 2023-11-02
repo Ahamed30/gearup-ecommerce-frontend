@@ -1,26 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "@/components/Button";
 import { CustomCheckbox } from "@/components/CustomCheckBox";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
 import { useApp } from "@/context/AppContext";
-import { useUser } from "@/context/UserContext";
 
 export const LoginForm = () => {
-  const { isLoggedIn, setIsLoggedIn } = useUser();
   const { setIsLoading } = useApp();
-  const router = useRouter();
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [isCredentialsWrong, setIsCredentialsWrong] = useState(false);
+
+  const searchParams = useSearchParams();
+  const [isCredentialsWrong, setIsCredentialsWrong] = useState(
+    Boolean(searchParams?.get("error"))
+  );
 
   const AdditionalLogins = () => {
     const additionalLoginIcons = ["google", "apple", "facebook"];
@@ -41,7 +43,7 @@ export const LoginForm = () => {
     });
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsCredentialsWrong(false);
     setIsLoading(true);
@@ -53,7 +55,6 @@ export const LoginForm = () => {
       callbackUrl: "/",
     });
     setIsLoading(false);
-    setIsLoggedIn(true);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,12 +65,6 @@ export const LoginForm = () => {
     });
   };
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.push("/");
-    }
-  }, [isLoggedIn, router]);
-
   return (
     <div className="w-full lg:w-1/2 px-4 lg:px-10">
       <Typography
@@ -78,11 +73,11 @@ export const LoginForm = () => {
       >
         Login
       </Typography>
-      <Typography
-        className="text-base md:text-xl font-semibold underline cursor underline-offset-5 cursor-pointer"
-        variant="headline"
-      >
-        Forgot your password
+      <Typography className="mt-4">
+        New user?{" "}
+        <Link className="underline font-bold" href="/auth/signup">
+          Signup
+        </Link>
       </Typography>
       {isCredentialsWrong && (
         <Typography
@@ -110,6 +105,12 @@ export const LoginForm = () => {
             required
             type="password"
           />
+          <Link
+            className="text-base md:text-lg font-semibold underline cursor underline-offset-5 cursor-pointer mb-4"
+            href="/auth/forgot-password"
+          >
+            Forgot your password
+          </Link>
           <CustomCheckbox text="Keep me logged in - applies to all log in options below. More info" />
           <Button
             className="w-full lg:w-5/6 flex justify-between items-center cursor-pointer"
