@@ -31,10 +31,11 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
     productName,
     price,
     salePrice,
-    size,
+    allSizes,
     productDescription,
     heroImage,
     color,
+    inStock,
   } = productData;
 
   const handleSizeSelect = (size: string) => {
@@ -73,6 +74,19 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
 
     return () => clearTimeout(timer);
   }, [showAddedToCart]);
+
+  if (!inStock) {
+    return (
+      <div className="flex justify-center items-center">
+        <Typography
+          className="text-2xl lg:text-3xl font-semibold lg:uppercase mb-[16px]"
+          variant="headline"
+        >
+          Sorry! Out Of Stock.
+        </Typography>
+      </div>
+    );
+  }
 
   return (
     <div className="relative">
@@ -127,9 +141,9 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
           </Typography>
         </div>
         <ProductSize
+          allSizes={allSizes}
           handleSizeSelect={handleSizeSelect}
           selectedSize={selectedSize}
-          size={size}
         />
         {!isSizeSelected && (
           <Typography
