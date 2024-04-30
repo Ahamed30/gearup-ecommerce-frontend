@@ -1,17 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { FormEvent, useEffect } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "@/components/Button";
 import { CustomCheckbox } from "@/components/CustomCheckBox";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
-import { useUser } from "@/context/UserContext";
+import { useApp } from "@/context/AppContext";
 
 export const LoginForm = () => {
-  const { isLoggedIn, setIsLoggedIn } = useUser();
-  const router = useRouter();
+  const { setIsLoading } = useApp();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const searchParams = useSearchParams();
+  const [isCredentialsWrong, setIsCredentialsWrong] = useState(
+    Boolean(searchParams?.get("error"))
+  );
 
   const AdditionalLogins = () => {
     const additionalLoginIcons = ["google", "apple", "facebook"];
@@ -33,18 +44,26 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = (e: FormEvent) => {
-    // TODO: handle login operations
-    // if valid
     e.preventDefault();
-    setIsLoggedIn(true);
-    router.push("/");
+    setIsCredentialsWrong(false);
+    setIsLoading(true);
+    const { email, password } = formData;
+    signIn("credentials", {
+      email,
+      password,
+      redirect: true,
+      callbackUrl: "/",
+    });
+    setIsLoading(false);
   };
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.push("/");
-    }
-  }, [isLoggedIn, router]);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   return (
     <div className="w-full lg:w-1/2 px-4 lg:px-10">
@@ -54,21 +73,44 @@ export const LoginForm = () => {
       >
         Login
       </Typography>
-      <Typography
-        className="text-base md:text-xl font-semibold underline cursor underline-offset-5 cursor-pointer"
-        variant="headline"
-      >
-        Forgot your password
+      <Typography className="mt-4">
+        New user?{" "}
+        <Link className="underline font-bold" href="/auth/signup">
+          Signup
+        </Link>
       </Typography>
+      {isCredentialsWrong && (
+        <Typography
+          className="text-base mt-4"
+          color="#EF4444"
+          variant="headline"
+        >
+          Unable to login! Invalid email or password
+        </Typography>
+      )}
       <div className="flex flex-col gap-6 py-6">
         <form className="flex flex-col gap-6" onSubmit={(e) => handleSubmit(e)}>
-          <TextInput placeholder="Email" required type="email" />
+          <TextInput
+            name="email"
+            onChange={handleChange}
+            placeholder="Email"
+            required
+            type="email"
+          />
           <TextInput
             className="w-full lg:w-5/6"
+            name="password"
+            onChange={handleChange}
             placeholder="Password"
             required
             type="password"
           />
+          <Link
+            className="text-base md:text-lg font-semibold underline cursor underline-offset-5 cursor-pointer mb-4"
+            href="/auth/forgot-password"
+          >
+            Forgot your password
+          </Link>
           <CustomCheckbox text="Keep me logged in - applies to all log in options below. More info" />
           <Button
             className="w-full lg:w-5/6 flex justify-between items-center cursor-pointer"

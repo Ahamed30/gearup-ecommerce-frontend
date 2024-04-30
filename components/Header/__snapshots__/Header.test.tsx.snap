@@ -54,22 +54,8 @@ exports[`Header should render without crashing 1`] = `
         </span>
       </div>
       <div
-        class="flex absolute right-0 top-3"
+        class="flex absolute items-center right-0 top-3"
       >
-        <button
-          class="hidden lg:block mr-[40px]"
-        >
-          <img
-            alt="navSearchIcon"
-            data-nimg="1"
-            decoding="async"
-            height="20"
-            loading="lazy"
-            src="/search.svg"
-            style="color: transparent;"
-            width="20"
-          />
-        </button>
         <button
           class="mr-[16px] lg:mr-[40px]"
         >
@@ -80,6 +66,20 @@ exports[`Header should render without crashing 1`] = `
             height="20"
             loading="lazy"
             src="/user.svg"
+            style="color: transparent;"
+            width="20"
+          />
+        </button>
+        <button
+          class="hidden lg:block mr-[40px]"
+        >
+          <img
+            alt="navSearchIcon"
+            data-nimg="1"
+            decoding="async"
+            height="20"
+            loading="lazy"
+            src="/search.svg"
             style="color: transparent;"
             width="20"
           />

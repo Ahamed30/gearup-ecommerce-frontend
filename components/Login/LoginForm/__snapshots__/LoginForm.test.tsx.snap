@@ -12,10 +12,23 @@ exports[`Login Form should match the snapshot 1`] = `
       Login
     </p>
     <p
-      class="className text-base md:text-xl font-semibold underline cursor underline-offset-5 cursor-pointer"
+      class="className mt-4"
       style="color: rgb(35, 35, 33);"
     >
-      Forgot your password
+      New user?
+       
+      <a
+        class="underline font-bold"
+        href="/auth/signup"
+      >
+        Signup
+      </a>
+    </p>
+    <p
+      class="className text-base mt-4"
+      style="color: rgb(239, 68, 68);"
+    >
+      Unable to login! Invalid email or password
     </p>
     <div
       class="flex flex-col gap-6 py-6"
@@ -31,6 +44,7 @@ exports[`Login Form should match the snapshot 1`] = `
           >
             <input
               class="className w-full px-2 placeholder-[#79767C] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none"
+              name="email"
               placeholder="Email"
               required=""
               style="color: rgb(31, 26, 36);"
@@ -46,6 +60,7 @@ exports[`Login Form should match the snapshot 1`] = `
           >
             <input
               class="className w-full px-2 placeholder-[#79767C] text-[16px] font-normal tracking-wide bg-transparent focus:outline-none"
+              name="password"
               placeholder="Password"
               required=""
               style="color: rgb(31, 26, 36);"
@@ -53,6 +68,12 @@ exports[`Login Form should match the snapshot 1`] = `
             />
           </div>
         </div>
+        <a
+          class="text-base md:text-lg font-semibold underline cursor underline-offset-5 cursor-pointer mb-4"
+          href="/auth/forgot-password"
+        >
+          Forgot your password
+        </a>
         <label
           class="flex flex-row gap-2 items-center cursor-pointer"
         >

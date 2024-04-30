@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import Cookies from "js-cookie";
+import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { AddressType, UserType } from "@/types";
 
@@ -31,7 +32,12 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
     sameBillingDelivery: true,
     receiveNewsletter: false,
   });
+
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsLoggedIn(Boolean(Cookies.get("session_user")));
+  }, []);
 
   const handleChangeData = (e: {
     target: { name: string; value: string; type: string; checked: boolean };
