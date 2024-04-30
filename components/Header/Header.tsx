@@ -2,14 +2,13 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
-import { useUser } from "@/context/UserContext";
 import { graduate } from "@/styles";
 import { HeaderType } from "@/types";
 import { DesktopNavigation } from "./DesktopNavigation";
 import { MobileNavigation } from "./MobileNavigation";
+import { AccountLink } from "../AccountLink";
 import { UnStyledButton } from "../Button";
 import { DesktopSearchBox } from "../SearchBox";
 
@@ -22,7 +21,6 @@ export const Header = ({ data }: HeaderProps) => {
   const [isDesktopSearchBoxOpen, setIsDesktopSearchBoxOpen] = useState(false);
   const { cart } = useCart();
   const router = useRouter();
-  const { isLoggedIn } = useUser();
   const { navLinks } = data;
 
   const onClickMobileMenuBar: () => void = () => {
@@ -51,7 +49,8 @@ export const Header = ({ data }: HeaderProps) => {
             GearUp
           </span>
         </div>
-        <div className="flex absolute right-0 top-3">
+        <div className="flex absolute items-center right-0 top-3">
+          <AccountLink />
           <UnStyledButton
             className="hidden lg:block mr-[40px]"
             onClick={onClickMobileSearchBox}
@@ -62,14 +61,6 @@ export const Header = ({ data }: HeaderProps) => {
               src={"/search.svg"}
               width={20}
             />
-          </UnStyledButton>
-          <UnStyledButton
-            className="mr-[16px] lg:mr-[40px]"
-            onClick={() =>
-              isLoggedIn ? router.push("/") : router.push("/auth/login")
-            }
-          >
-            <Image alt="User Icon" height={20} src={"/user.svg"} width={20} />
           </UnStyledButton>
           {/* TODO: Need to change this to cart icon */}
           <UnStyledButton
@@ -83,7 +74,6 @@ export const Header = ({ data }: HeaderProps) => {
       </div>
       {isMobileNavBarOpen && <MobileNavigation navLinks={navLinks} />}
       <DesktopSearchBox isDesktopSearchBoxOpen={isDesktopSearchBoxOpen} />
-      <UnStyledButton onClick={() => signOut()}>SignOut</UnStyledButton>
     </header>
   );
 };

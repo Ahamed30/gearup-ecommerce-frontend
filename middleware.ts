@@ -1,20 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-// import { getSession } from "next-auth/react";
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
   const { nextUrl } = request;
 
-  // const requestForNextAuth = {
-  //   headers: {
-  //     cookie: request.headers.get("cookie") ?? undefined,
-  //   },
-  // };
+  const sessionUser = request.cookies.get("next-auth.session-token");
 
-  // const session = await getSession({ req: requestForNextAuth });
+  if (sessionUser) {
+    response.cookies.set("session_user", String(sessionUser.value));
+  } else {
+    response.cookies.delete("session_user");
+  }
 
-  // Need to check session condition below (&& !session)
-  if (nextUrl.pathname === "/checkout") {
+  if (nextUrl.pathname === "/checkout" && !sessionUser) {
     const origPathName = nextUrl.pathname;
 
     nextUrl.pathname = "/auth/login";
@@ -24,13 +22,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(nextUrl);
   }
 
-  // Need to check session condition below (&& session)
-  if (nextUrl.pathname.startsWith("/auth")) {
+  if (sessionUser && nextUrl.pathname.startsWith("/auth")) {
     nextUrl.pathname = "/";
     return NextResponse.redirect(nextUrl);
   }
 
   return response;
 }
-
-export const config = {};
