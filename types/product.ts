@@ -7,10 +7,16 @@ export interface ProductType {
   productDescription?: string;
   price: number;
   salePrice?: number;
-  size?: string[];
+  allSizes?: SizeWithInventory[];
   newProduct?: boolean;
   offerPercent?: string;
   heroImage: AssetType;
   productImages: AssetType[];
   color?: string;
+  inStock?: false;
+}
+
+export interface SizeWithInventory {
+  size: string;
+  inventoryCount: number;
 }

@@ -1,39 +1,34 @@
 import classNames from "classnames";
-import { SHOE_SIZE } from "@/constants";
 import { rubik } from "@/styles";
+import { SizeWithInventory } from "@/types";
 import { UnStyledButton } from "../Button";
 
 interface ProductSizeProps {
-  size?: string[];
+  allSizes?: SizeWithInventory[];
   selectedSize: string | null;
   handleSizeSelect: (size: string) => void;
 }
 
 export const ProductSize = ({
-  size,
+  allSizes,
   selectedSize,
   handleSizeSelect,
 }: ProductSizeProps) => {
   const fontRubik = rubik?.className;
 
-  let shoeIndex = 0;
-
-  const totalSizeLength = size?.length || 0;
-
   return (
     <div className="mb-[32px]">
-      {SHOE_SIZE.map((currSize, index) => {
-        const isSizeAvailable =
-          shoeIndex < totalSizeLength && size && size[shoeIndex] === currSize;
-        shoeIndex += isSizeAvailable ? 1 : 0;
+      {allSizes?.map(({ size, inventoryCount }, index) => {
+        const isSizeAvailable = inventoryCount > 0;
+
         const sizeClassName = classNames(
           fontRubik,
           "px-[16px] py-[8px] rounded-[8px] mr-[8px] mb-[4px]",
           {
             "bg-[#232321] text-[#FFFFFF]":
-              selectedSize === currSize && isSizeAvailable,
+              selectedSize === size && isSizeAvailable,
             "bg-[#FFFFFF] text-[#232321]":
-              selectedSize !== currSize && isSizeAvailable,
+              selectedSize !== size && isSizeAvailable,
             "bg-[#D2D1D3] text-[#8F8C91]": !isSizeAvailable,
           }
         );
@@ -43,9 +38,9 @@ export const ProductSize = ({
             className={sizeClassName}
             disabled={!isSizeAvailable}
             key={index}
-            onClick={() => handleSizeSelect(currSize)}
+            onClick={() => handleSizeSelect(size)}
           >
-            {currSize}
+            {size}
           </UnStyledButton>
         );
       })}
