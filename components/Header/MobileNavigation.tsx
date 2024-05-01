@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { signOut } from "next-auth/react";
 import { useUser } from "@/context/UserContext";
 import { rubik } from "@/styles";
 import { LinkType } from "@/types";
@@ -12,7 +11,7 @@ interface MobileNavigationProps {
 
 export const MobileNavigation = ({ navLinks }: MobileNavigationProps) => {
   const fontRubik = rubik?.className;
-  const { isLoggedIn } = useUser();
+  const { isLoggedIn, handleSignOut } = useUser();
 
   const containerClassName = `${fontRubik} w-full font-semibold text-base pt-4 lg:hidden block`;
 
@@ -37,7 +36,7 @@ export const MobileNavigation = ({ navLinks }: MobileNavigationProps) => {
       {isLoggedIn ? (
         <UnStyledButton
           className="w-full text-base underline underline-offset-4 px-1 pt-3 border-t-2 border-gray-400 text-left"
-          onClick={() => signOut()}
+          onClick={() => handleSignOut()}
         >
           Sign Out
         </UnStyledButton>

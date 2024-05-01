@@ -25,7 +25,7 @@ export const ForgotPassword = () => {
         setIsEmailSent(true);
       })
       .catch((err) => {
-        console.error("Errrrr", err);
+        console.error("Error in forgot password", err);
       });
     setIsLoading(false);
   };

@@ -7,6 +7,16 @@ jest.mock("next/navigation", () => ({
   useSearchParams: () => ({
     get: String,
   }),
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}));
+
+// Mock Firebase Authentication
+jest.mock("firebase/auth", () => ({
+  getAuth: jest.fn(() => ({
+    currentUser: { uid: "test-user-id" },
+  })),
 }));
 
 const renderComponent = () => {
