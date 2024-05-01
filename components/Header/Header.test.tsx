@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { AppContextProvider } from "@/context/AppContext";
 import { UserContextProvider } from "@/context/UserContext";
 import { HeaderType } from "@/types";
 import { Header } from "./Header";
@@ -9,6 +10,7 @@ jest.mock("next/navigation", () => ({
   useRouter: () => ({
     push: mockRouterPush,
   }),
+  usePathname: () => {},
 }));
 
 // Mock the useCart hook
@@ -18,6 +20,13 @@ jest.mock("@/context/CartContext", () => ({
       itemCount: 0,
     },
   }),
+}));
+
+// Mock Firebase Authentication
+jest.mock("firebase/auth", () => ({
+  getAuth: jest.fn(() => ({
+    currentUser: { uid: "test-user-id" },
+  })),
 }));
 
 // Test data for the Header component
@@ -37,9 +46,11 @@ const navLinks = [
 
 const renderComponent = (data: HeaderType = testData) => {
   return render(
-    <UserContextProvider>
-      <Header data={data} />
-    </UserContextProvider>
+    <AppContextProvider>
+      <UserContextProvider>
+        <Header data={data} />
+      </UserContextProvider>
+    </AppContextProvider>
   );
 };
 

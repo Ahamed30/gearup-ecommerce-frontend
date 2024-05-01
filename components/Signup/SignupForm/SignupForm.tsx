@@ -1,19 +1,16 @@
 "use client";
 
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "@/components/Button";
 import { CustomCheckbox } from "@/components/CustomCheckBox";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
-import { useApp } from "@/context/AppContext";
-import { auth } from "@/firebase/firebaseConfig";
+import { useUser } from "@/context/UserContext";
 
 export const SignupForm = () => {
-  const { setIsLoading } = useApp();
+  const { handleSignUp } = useUser();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -22,42 +19,11 @@ export const SignupForm = () => {
   });
   const [isEmailExists, setIsEmailExists] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
-    setIsLoading(true);
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const { name, email, password } = formData;
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    )
-      .then((userCredential) => {
-        return userCredential;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        if (
-          errorCode === "auth/email-already-exists" ||
-          errorCode === "auth/email-already-in-use"
-        ) {
-          setIsEmailExists(true);
-        }
-        console.error("Unable to register", errorMessage);
-      });
-
-    if (userCredential) {
-      await updateProfile(userCredential.user, {
-        displayName: name,
-      });
-    }
-    signIn("credentials", {
-      email,
-      password,
-      redirect: true,
-      callbackUrl: "/",
-    });
-    setIsLoading(false);
+    const isSignedUp = handleSignUp(name, email, password);
+    if (!isSignedUp) setIsEmailExists(true);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

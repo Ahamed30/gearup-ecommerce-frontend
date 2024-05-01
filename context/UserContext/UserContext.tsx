@@ -1,7 +1,16 @@
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
+import { auth } from "@/firebase/firebaseConfig";
 import { AddressType, UserType } from "@/types";
+import { useApp } from "../AppContext";
 
 interface UserContextType {
   user: UserType | null;
@@ -10,6 +19,13 @@ interface UserContextType {
   }) => void; // when updating via backend these can be update to Promise<void> from void
   updateAddress: (address: AddressType, typeOfAddress: string) => void;
   isLoggedIn: boolean;
+  handleLogin: (email: string, password: string) => void;
+  handleSignUp: (
+    name: string,
+    email: string,
+    password: string
+  ) => Promise<boolean>;
+  handleSignOut: () => void;
   setIsLoggedIn: (loginStatus: boolean) => void;
 }
 
@@ -23,7 +39,6 @@ export interface UserContextProviderProps {
 }
 
 export const UserContextProvider = ({ children }: UserContextProviderProps) => {
-  // console.log("...", cartFromCookie);
   const [user, setUser] = useState<UserType>({
     email: "",
     deliveryAddress: null,
@@ -34,6 +49,8 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const router = useRouter();
+  const { setIsLoading } = useApp();
 
   useEffect(() => {
     setIsLoggedIn(Boolean(Cookies.get("session_user")));
@@ -63,6 +80,77 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
     });
   };
 
+  const handleLogin = async (email: string, password: string) => {
+    setIsLoading(true);
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        fetch("/api/login", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${await userCredential.user.getIdToken()}`,
+          },
+        }).then((response) => {
+          if (response.status == 200) {
+            setIsLoggedIn(true);
+            router.push(sessionStorage.getItem("previousPage") ?? "/");
+            return response;
+          }
+        });
+      })
+      .catch((error) => console.error(error));
+    setIsLoading(false);
+  };
+
+  const handleSignUp = async (
+    name: string,
+    email: string,
+    password: string
+  ) => {
+    setIsLoading(true);
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    )
+      .then(async (userCredential) => {
+        handleLogin(email, password);
+        return userCredential;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (
+          errorCode === "auth/email-already-exists" ||
+          errorCode === "auth/email-already-in-use"
+        ) {
+          return false;
+        }
+        console.error("Unable to register", errorMessage);
+      });
+
+    if (userCredential) {
+      await updateProfile(userCredential.user, {
+        displayName: name,
+      });
+    }
+    router.push(sessionStorage.getItem("previousPage") ?? "/");
+    setIsLoading(false);
+    return true;
+  };
+
+  const handleSignOut = async () => {
+    setIsLoading(true);
+    await signOut(auth);
+
+    await fetch("/api/logout", {
+      method: "POST",
+    }).catch((err) => {
+      console.error("Failed to SignOut", err);
+    });
+    setIsLoggedIn(false);
+    setIsLoading(false);
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -71,6 +159,9 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
         updateAddress,
         isLoggedIn,
         setIsLoggedIn,
+        handleLogin,
+        handleSignUp,
+        handleSignOut,
       }}
     >
       {children}

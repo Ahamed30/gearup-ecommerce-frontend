@@ -1,6 +1,5 @@
 "use client";
 
-import { SessionProvider } from "next-auth/react";
 import type { ReactNode } from "react";
 import { AppContextProvider } from "./AppContext";
 import { CartContextProvider } from "./CartContext";
@@ -12,12 +11,10 @@ interface ProviderProps {
 
 export const Provider = ({ children }: ProviderProps) => {
   return (
-    <SessionProvider>
-      <AppContextProvider>
-        <UserContextProvider>
-          <CartContextProvider>{children}</CartContextProvider>
-        </UserContextProvider>
-      </AppContextProvider>
-    </SessionProvider>
+    <AppContextProvider>
+      <UserContextProvider>
+        <CartContextProvider>{children}</CartContextProvider>
+      </UserContextProvider>
+    </AppContextProvider>
   );
 };

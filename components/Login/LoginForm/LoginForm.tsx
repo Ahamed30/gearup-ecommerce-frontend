@@ -3,16 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "@/components/Button";
 import { CustomCheckbox } from "@/components/CustomCheckBox";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
 import { useApp } from "@/context/AppContext";
+import { useUser } from "@/context/UserContext";
 
 export const LoginForm = () => {
   const { setIsLoading } = useApp();
+  const { handleLogin } = useUser();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -43,17 +44,11 @@ export const LoginForm = () => {
     });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsCredentialsWrong(false);
-    setIsLoading(true);
     const { email, password } = formData;
-    signIn("credentials", {
-      email,
-      password,
-      redirect: true,
-      callbackUrl: "/",
-    });
+    handleLogin(email, password);
     setIsLoading(false);
   };
 

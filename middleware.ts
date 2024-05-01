@@ -4,7 +4,7 @@ export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
   const { nextUrl } = request;
 
-  const sessionUser = request.cookies.get("next-auth.session-token");
+  const sessionUser = request.cookies.get("session_user");
 
   if (sessionUser) {
     response.cookies.set("session_user", String(sessionUser.value));

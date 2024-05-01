@@ -12,6 +12,6 @@ const firebaseConfig = {
 };
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-const auth = getAuth();
+const auth = getAuth(app);
 
 export { app, auth };

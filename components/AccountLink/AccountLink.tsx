@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useUser } from "@/context/UserContext";
 import { AccountNavigationMenu } from "../AccountNavigationMenu";
@@ -10,13 +10,19 @@ export const AccountLink = () => {
   const { isLoggedIn } = useUser();
   const [openDropDown, setOpenDropDown] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+
+  const routeToLoginPage = () => {
+    sessionStorage.setItem("previousPage", pathname ?? "/");
+    router.push("auth/login");
+  };
 
   return (
     <>
       {!isLoggedIn ? (
         <UnStyledButton
           className="mr-[16px] lg:mr-[40px]"
-          onClick={() => (isLoggedIn ? null : router.push("/auth/login"))}
+          onClick={routeToLoginPage}
         >
           <Image alt="User Icon" height={20} src={"/user.svg"} width={20} />
         </UnStyledButton>
