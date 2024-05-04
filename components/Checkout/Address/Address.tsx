@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
 import { useUser } from "@/context/UserContext";
@@ -30,16 +30,12 @@ export const Address = ({ typeOfAddress }: AddressProps) => {
       ...prevData,
       [name]: value,
     }));
-  };
-
-  useEffect(() => {
     const { firstName, street, phoneNumber, city, state, country } =
       addressDetails;
-
     if (firstName && street && phoneNumber && city && state && country) {
       updateAddress(addressDetails, typeOfAddress);
     }
-  }, [addressDetails, typeOfAddress, updateAddress]);
+  };
 
   return (
     <div>
