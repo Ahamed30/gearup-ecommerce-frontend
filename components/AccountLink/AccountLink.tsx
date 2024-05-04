@@ -14,7 +14,7 @@ export const AccountLink = () => {
 
   const routeToLoginPage = () => {
     sessionStorage.setItem("previousPage", pathname ?? "/");
-    router.push("auth/login");
+    router.replace("/auth/login");
   };
 
   return (

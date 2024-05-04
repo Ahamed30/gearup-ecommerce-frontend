@@ -2,16 +2,13 @@ import { useState, useCallback, useEffect } from "react";
 import { Breakpoint, BreakpointSize } from "@/types";
 
 interface Size {
-  width: number | undefined;
-  height: number | undefined;
+  width?: number;
+  height?: number;
 }
 
 export const useBreakpoint = () => {
   const [breakpoint, setBreakpoint] = useState<Breakpoint>();
-  const [windowSize, setWindowSize] = useState<Size>({
-    width: undefined,
-    height: undefined,
-  });
+  const [windowSize, setWindowSize] = useState<Size>();
 
   const handleResize = useCallback(() => {
     setWindowSize({
@@ -19,18 +16,18 @@ export const useBreakpoint = () => {
       height: window.innerHeight,
     });
 
-    if (windowSize.width) {
-      if (windowSize.width < BreakpointSize[Breakpoint.Medium]) {
+    if (windowSize?.width) {
+      if (windowSize?.width < BreakpointSize[Breakpoint.Medium]) {
         setBreakpoint(Breakpoint.Small);
-      } else if (windowSize.width < BreakpointSize[Breakpoint.Large]) {
+      } else if (windowSize?.width < BreakpointSize[Breakpoint.Large]) {
         setBreakpoint(Breakpoint.Medium);
-      } else if (windowSize.width < BreakpointSize[Breakpoint.XLarge]) {
+      } else if (windowSize?.width < BreakpointSize[Breakpoint.XLarge]) {
         setBreakpoint(Breakpoint.Large);
       } else {
         setBreakpoint(Breakpoint.XLarge);
       }
     }
-  }, [windowSize.width]);
+  }, [windowSize?.width]);
 
   useEffect(() => {
     handleResize();

@@ -21,9 +21,12 @@ export default async function ProductPage({ params }: PageProps) {
   );
 
   const productData: ProductType = {
-    ...productDataFromCMS.product,
-    allSizes: productSizeMapper(productDataFromCMS.product.size, inventoryData),
-    inStock: inventoryData.inStock,
+    ...productDataFromCMS?.product,
+    allSizes: productSizeMapper(
+      productDataFromCMS?.product?.size,
+      inventoryData
+    ),
+    inStock: inventoryData?.inStock,
   };
 
   return <ProductDescription productData={productData} />;

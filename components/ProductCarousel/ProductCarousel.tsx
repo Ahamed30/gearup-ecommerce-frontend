@@ -32,7 +32,7 @@ export const ProductCarousel = ({ productImages }: ProductCarouselProps) => {
         spaceBetween={10}
         thumbs={{ swiper: activeImage }}
       >
-        {productImages.map((image) => {
+        {productImages?.map((image) => {
           return (
             <SwiperSlide key={image.id}>
               <div className="relative w-full h-[300px] lg:h-[450px]">
@@ -54,7 +54,7 @@ export const ProductCarousel = ({ productImages }: ProductCarouselProps) => {
         slidesPerView={isTablet || isMobile ? 3.5 : 4.5}
         spaceBetween={10}
       >
-        {productImages.map((image) => {
+        {productImages?.map((image) => {
           return (
             <SwiperSlide className="cursor-pointer" key={image.id}>
               <div className="relative w-30 h-20">
