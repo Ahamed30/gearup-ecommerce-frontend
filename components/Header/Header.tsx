@@ -68,7 +68,7 @@ export const Header = ({ data }: HeaderProps) => {
             id="cart"
             onClick={() => router.push("/cart")}
           >
-            {cart?.itemCount ?? 0}
+            {cart?.itemsCount ?? 0}
           </UnStyledButton>
         </div>
       </div>

@@ -39,7 +39,7 @@ export const Cart = () => {
         <div className="w-full lg:w-3/5">
           <div className="border rounded-[16px] bg-[#FAFAFA] p-4 lg:p-6">
             <div className="mb-[32px]">
-              {!cart?.itemCount ? (
+              {!cart?.itemsCount ? (
                 <div className="flex justify-center items-center">
                   <Typography
                     className="text-xl lg:text-3xl font-semibold mb-[8px]"

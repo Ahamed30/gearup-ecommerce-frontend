@@ -12,6 +12,14 @@
     "test:update": "jest --updateSnapshot",
     "eslint": "npx eslint ."
   },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:8080",
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  },
   "dependencies": {
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",

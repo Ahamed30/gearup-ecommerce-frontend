@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -53,6 +54,17 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const { setIsLoading } = useApp();
 
   useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser((prevData) => {
+          return { ...prevData, email: String(user.email) };
+        });
+      } else {
+        setUser((prevData) => {
+          return { ...prevData, email: "" };
+        });
+      }
+    });
     setIsLoggedIn(Boolean(Cookies.get("session_user")));
   }, []);
 

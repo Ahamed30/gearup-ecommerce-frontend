@@ -19,7 +19,7 @@ export const CartItem = ({ product }: CartItemProps) => {
   const {
     id,
     productName,
-    heroImage,
+    heroImageURL,
     size,
     quantity,
     price,
@@ -28,7 +28,7 @@ export const CartItem = ({ product }: CartItemProps) => {
   } = product;
 
   const removeItem = () => {
-    removeFromCart(id, size);
+    removeFromCart(id ?? "", size);
   };
 
   return (
@@ -39,7 +39,7 @@ export const CartItem = ({ product }: CartItemProps) => {
             alt="ProductImage"
             className="object-cover rounded-[24px]"
             fill
-            src={`${heroImage.url}`}
+            src={`${heroImageURL}`}
           />
         </div>
         <div className="w-3/4 flex-grow">

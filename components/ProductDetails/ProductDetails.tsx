@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useUser } from "@/context/UserContext";
 import { CartItemType, ProductType } from "@/types";
 import {
   newReleaseClassName,
@@ -24,6 +25,7 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
   const [isFavourite, setIsFavouriteSelected] = useState<boolean>(false);
   const [showAddedToCart, setShowAddedToCart] = useState<boolean>(false);
   const { addToCart } = useCart();
+  const { user } = useUser();
 
   const {
     id,
@@ -34,7 +36,6 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
     allSizes,
     productDescription,
     heroImage,
-    color,
     inStock,
   } = productData;
 
@@ -53,14 +54,15 @@ export const ProductDetails = ({ productData }: ProductDetailsProps) => {
       return;
     }
     const currItem: CartItemType = {
-      id,
-      quantity: 1,
-      heroImage,
+      userId: user?.email ?? "",
+      heroImageId: String(heroImage.id),
+      heroImageURL: heroImage.url ?? "",
       productName,
+      productId: String(id),
       price,
       salePrice,
       size: selectedSize,
-      color,
+      quantity: 1,
     };
 
     addToCart(currItem);

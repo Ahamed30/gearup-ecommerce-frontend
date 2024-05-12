@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { AppContextProvider } from "@/context/AppContext";
 import { CartContextProvider } from "@/context/CartContext";
+import { UserContextProvider } from "@/context/UserContext";
 import { CartItemType } from "@/types";
 import { cartItemData } from "./__mocks__";
 import { CartItem } from "./CartItem";
@@ -15,12 +16,22 @@ jest.mock("next/navigation", () => ({
 const renderComponent = (cartItem: CartItemType = cartItemData) => {
   return render(
     <AppContextProvider>
-      <CartContextProvider>
-        <CartItem product={cartItem} />
-      </CartContextProvider>
+      <UserContextProvider>
+        <CartContextProvider>
+          <CartItem product={cartItem} />
+        </CartContextProvider>
+      </UserContextProvider>
     </AppContextProvider>
   );
 };
+
+// Mock Firebase Authentication
+jest.mock("firebase/auth", () => ({
+  getAuth: jest.fn(() => ({
+    currentUser: { uid: "test-user-id" },
+  })),
+  onAuthStateChanged: jest.fn(),
+}));
 
 describe("Cart", () => {
   test("should match the snapshot", () => {

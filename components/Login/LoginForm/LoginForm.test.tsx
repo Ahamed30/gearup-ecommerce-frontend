@@ -17,6 +17,7 @@ jest.mock("firebase/auth", () => ({
   getAuth: jest.fn(() => ({
     currentUser: { uid: "test-user-id" },
   })),
+  onAuthStateChanged: jest.fn(),
 }));
 
 const renderComponent = () => {

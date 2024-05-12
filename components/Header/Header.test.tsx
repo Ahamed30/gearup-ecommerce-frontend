@@ -17,7 +17,7 @@ jest.mock("next/navigation", () => ({
 jest.mock("@/context/CartContext", () => ({
   useCart: () => ({
     cart: {
-      itemCount: 0,
+      itemsCount: 0,
     },
   }),
 }));
@@ -27,6 +27,7 @@ jest.mock("firebase/auth", () => ({
   getAuth: jest.fn(() => ({
     currentUser: { uid: "test-user-id" },
   })),
+  onAuthStateChanged: jest.fn(),
 }));
 
 // Test data for the Header component

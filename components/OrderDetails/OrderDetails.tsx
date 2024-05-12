@@ -11,7 +11,7 @@ export const OrderDetails = () => {
           className="text-xl lg:text-2xl font-semibold mb-[8px]"
           variant="headline"
         >
-          Order{cart?.itemCount ?? 1 > 1 ? `s` : ""}
+          Order{cart?.itemsCount ?? 1 > 1 ? `s` : ""}
         </Typography>
       </div>
       <div className="flex flex-col gap-7">

@@ -2,7 +2,7 @@ import { ProductDescription } from "@/components/ProductDescription";
 import { getProductQuery } from "@/query";
 import { ProductType } from "@/types";
 import { getCMSData } from "@/utils/getCMSData";
-import { handleDataOperation } from "@/utils/handleDataOperation";
+import { handlefetchOperation } from "@/utils/handlefetchOperation";
 import { productSizeMapper } from "@/utils/productSizeMapper";
 
 interface PageProps {
@@ -15,7 +15,7 @@ export default async function ProductPage({ params }: PageProps) {
 
   const productDataFromCMS = await getCMSData(getProductQuery(id));
 
-  const inventoryData = await handleDataOperation(
+  const inventoryData = await handlefetchOperation(
     `/product/inventory?productId=${id}`,
     "GET"
   );

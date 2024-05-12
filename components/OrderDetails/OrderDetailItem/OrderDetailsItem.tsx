@@ -7,7 +7,7 @@ interface OrderDetailItemProps {
 }
 
 export const OrderDetailsItem = ({ product }: OrderDetailItemProps) => {
-  const { productName, heroImage, color, size, quantity, salePrice, price } =
+  const { productName, heroImageURL, color, size, quantity, salePrice, price } =
     product;
   return (
     <div className="flex gap-[16px] lg:gap-[24px]">
@@ -16,7 +16,7 @@ export const OrderDetailsItem = ({ product }: OrderDetailItemProps) => {
           alt="ProductImage"
           className="object-cover rounded-[24px]"
           fill
-          src={`${heroImage.url}`}
+          src={`${heroImageURL}`}
         />
       </div>
       <div className="w-3/4 flex-grow">

@@ -1,13 +1,13 @@
 export type FetchMethods = "POST" | "GET" | "PUT" | "DELETE";
 
-export async function handleDataOperation(
+export async function handlefetchOperation(
   pathName: String,
   method: FetchMethods,
   body?: BodyInit
 ) {
   const data = await fetch(`${process.env.BACKEND_API}${pathName}`, {
     method,
-    body,
+    body: JSON.stringify(body),
     headers: {
       "Content-Type": "application/json",
     },
