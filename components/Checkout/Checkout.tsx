@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
+import { handlefetchOperation } from "@/utils/handlefetchOperation";
 import { Address } from "./Address";
-import { ContactDetails } from "./ContactDetails";
 import { DeliveryOptions } from "./DeliveryOptions";
 import { linkClassName, newsTextClassName, buttonClass } from "./style";
 import { Button } from "../Button";
@@ -17,8 +17,8 @@ import { Typography } from "../Typography";
 
 export const Checkout = () => {
   // {TODO: Need to move it to context}
-  const { user, handleChangeData } = useUser();
-  const { cart } = useCart();
+  const { user, handleChangeData, isLoggedIn } = useUser();
+  const { cart, setCart, setOrder } = useCart();
   const router = useRouter();
   const [isDeliveryTypeSelected, setIsDeliveryTypeSelected] =
     useState<boolean>(true);
@@ -41,16 +41,32 @@ export const Checkout = () => {
   //   }
   // };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (!cart?.deliveryType) {
       setIsDeliveryTypeSelected(false);
       return;
     }
     // validateAddress(); // need to move this to backend
-    // You can now use the formData object to send it to your backend or perform any other operations
-    // need to empty the cart
-    router.push("/orderConfirmation");
+    const checkoutData = {
+      userId: user?.email,
+      ...user?.deliveryAddress,
+    };
+    await handlefetchOperation(
+      `/checkout/setCheckout`,
+      "POST",
+      checkoutData as unknown as BodyInit
+    );
+    const placeOrderData = await handlefetchOperation(
+      `/order/placeOrder`,
+      "POST",
+      {
+        userId: user?.email,
+      } as unknown as BodyInit
+    );
+    setOrder(cart);
+    setCart(null);
+    router.push(`/orderConfirmation/${placeOrderData?.id}`);
   };
 
   useEffect(() => {
@@ -64,10 +80,13 @@ export const Checkout = () => {
         onSubmit={handleSubmit}
       >
         {/* TODO: Once logged In show them saved address instead of contact details  */}
-        <Typography className={linkClassName} variant="headline">
-          Login and Checkout faster
-        </Typography>
-        <ContactDetails />
+        {isLoggedIn ? (
+          <Typography className={linkClassName} variant="headline">
+            Login and Checkout faster
+          </Typography>
+        ) : null}
+        {/* TODO: Need use this field for optional email. BE change required */}
+        {/* <ContactDetails /> */}
         <Address typeOfAddress="deliveryAddress" />
         <DeliveryOptions isDeliveryTypeSelected={isDeliveryTypeSelected} />
         <div className="mb-[32px]">

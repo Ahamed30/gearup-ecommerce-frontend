@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import type { ReactNode, Key } from "react";
+import type { ReactNode, Key, Dispatch, SetStateAction } from "react";
 import { CartType, CartItemType } from "@/types";
 import { getCookie, removeCookie, setCookie } from "@/utils/cookie";
 import { handlefetchOperation } from "@/utils/handlefetchOperation";
@@ -14,6 +14,9 @@ export interface CartContextType {
   updateCartItem: (itemId: string, updatedItem: CartItemType) => void;
   updateCart: (cart: CartType) => void;
   emptyCart: () => void;
+  order: CartType | null;
+  setOrder: Dispatch<SetStateAction<CartType | null>>;
+  setCart: Dispatch<SetStateAction<CartType | null>>;
 }
 
 //@ts-expect-error: ignore initial context creation
@@ -32,18 +35,19 @@ export const CartContextProvider = ({
 }: CartContextProviderProps) => {
   const cartFromCookie: CartType | null = getCookie("cart");
   const [cart, setCart] = useState(initialCart ?? cartFromCookie);
+  const [order, setOrder] = useState<CartType | null>(null);
   const { setIsLoading } = useApp();
-  const { user } = useUser();
+  const { user, isLoggedIn } = useUser();
 
   useEffect(() => {
-    if (user?.email) {
+    if (isLoggedIn) {
       refreshCartData();
     }
     if (cart && !user?.email) {
       setCart(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.email]);
+  }, [isLoggedIn]);
 
   const refreshCartData = async () => {
     setIsLoading(true);
@@ -175,6 +179,9 @@ export const CartContextProvider = ({
         updateCartItem,
         updateCart,
         emptyCart,
+        order,
+        setOrder,
+        setCart,
       }}
     >
       {children}

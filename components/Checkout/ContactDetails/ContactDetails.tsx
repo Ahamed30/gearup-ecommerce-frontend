@@ -5,7 +5,7 @@ import { useUser } from "@/context/UserContext";
 import { subTextClassName, titleClassName } from "../style";
 
 export const ContactDetails = () => {
-  const { handleChangeData } = useUser();
+  const { handleChangeData, user } = useUser();
   return (
     <div className="mb-[16px] lg:mb-[32px]">
       <Typography
@@ -24,6 +24,7 @@ export const ContactDetails = () => {
         placeholder="Email*"
         required
         type="email"
+        value={user?.email}
       />
     </div>
   );

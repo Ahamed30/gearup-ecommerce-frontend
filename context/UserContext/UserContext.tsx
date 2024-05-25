@@ -5,7 +5,6 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
@@ -59,13 +58,13 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
         setUser((prevData) => {
           return { ...prevData, email: String(user.email) };
         });
+        setIsLoggedIn(true);
       } else {
         setUser((prevData) => {
           return { ...prevData, email: "" };
         });
       }
     });
-    setIsLoggedIn(Boolean(Cookies.get("session_user")));
   }, []);
 
   const handleChangeData = (e: {
