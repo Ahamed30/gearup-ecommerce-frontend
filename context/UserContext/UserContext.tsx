@@ -103,12 +103,12 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
         }).then((response) => {
           if (response.status == 200) {
             setIsLoggedIn(true);
-            router.push(sessionStorage.getItem("previousPage") ?? "/");
             return response;
           }
         });
       })
       .catch((error) => console.error(error));
+    window.location.replace(sessionStorage.getItem("previousPage") ?? "/");
     setIsLoading(false);
   };
 
@@ -158,6 +158,7 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
     }).catch((err) => {
       console.error("Failed to SignOut", err);
     });
+    window.location.reload();
     setIsLoggedIn(false);
     setIsLoading(false);
   };

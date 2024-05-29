@@ -13,11 +13,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (nextUrl.pathname === "/checkout" && !sessionUser) {
-    const origPathName = nextUrl.pathname;
-
     nextUrl.pathname = "/auth/login";
-
-    nextUrl.searchParams.set("returnTo", origPathName);
 
     return NextResponse.redirect(nextUrl);
   }

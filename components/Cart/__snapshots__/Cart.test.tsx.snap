@@ -126,11 +126,15 @@ exports[`Cart should match the snapshot 1`] = `
             </p>
           </div>
         </div>
-        <button
-          class="className text-white rounded-[8px] px-3 lg:px-6 bg-[#232321] hover:bg-[#4A69E2] text-xs lg:text-sm py-[12px] w-full uppercase flex justify-center items-center mb-[24px]"
+        <a
+          href="/checkout"
         >
-          CHECKOUT
-        </button>
+          <button
+            class="className text-white rounded-[8px] px-3 lg:px-6 bg-[#232321] hover:bg-[#4A69E2] text-xs lg:text-sm py-[12px] w-full uppercase flex justify-center items-center mb-[24px]"
+          >
+            CHECKOUT
+          </button>
+        </a>
         <div>
           <p
             class="className cursor-pointer text-xl font-semibold underline underline-offset-4"

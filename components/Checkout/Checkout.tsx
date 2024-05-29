@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useApp } from "@/context/AppContext";
 import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
 import { handlefetchOperation } from "@/utils/handlefetchOperation";
@@ -20,6 +21,7 @@ export const Checkout = () => {
   const { user, handleChangeData, isLoggedIn } = useUser();
   const { cart, setCart, setOrder } = useCart();
   const router = useRouter();
+  const { setIsLoading } = useApp();
   const [isDeliveryTypeSelected, setIsDeliveryTypeSelected] =
     useState<boolean>(true);
 
@@ -47,6 +49,7 @@ export const Checkout = () => {
       setIsDeliveryTypeSelected(false);
       return;
     }
+    setIsLoading(true);
     // validateAddress(); // need to move this to backend
     const checkoutData = {
       userId: user?.email,
@@ -66,6 +69,7 @@ export const Checkout = () => {
     );
     setOrder(cart);
     setCart(null);
+    setIsLoading(false);
     router.push(`/orderConfirmation/${placeOrderData?.id}`);
   };
 

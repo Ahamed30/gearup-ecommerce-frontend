@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { AmountSummary } from "./AmountSummary";
 import { Button } from "../Button";
 import { PromoCode } from "../PromoCode";
@@ -9,7 +9,6 @@ interface OrderSummaryProps {
 }
 
 export const OrderSummary = ({ step }: OrderSummaryProps) => {
-  const router = useRouter();
   const container = classNames(
     "border rounded-[16px] bg-[#FAFAFA] lg:flex-grow p-6",
     step === "cart"
@@ -21,13 +20,14 @@ export const OrderSummary = ({ step }: OrderSummaryProps) => {
       <AmountSummary />
       {step === "cart" ? (
         <>
-          <Button
-            className="w-full uppercase flex justify-center items-center mb-[24px]"
-            color="primary"
-            onClick={() => router.push("/checkout")}
-          >
-            CHECKOUT
-          </Button>
+          <Link href="/checkout">
+            <Button
+              className="w-full uppercase flex justify-center items-center mb-[24px]"
+              color="primary"
+            >
+              CHECKOUT
+            </Button>
+          </Link>
           <PromoCode />
         </>
       ) : null}
