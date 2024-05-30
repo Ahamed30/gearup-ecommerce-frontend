@@ -3,12 +3,14 @@ import Link from "next/link";
 import { AmountSummary } from "./AmountSummary";
 import { Button } from "../Button";
 import { PromoCode } from "../PromoCode";
+import { useCart } from "@/context/CartContext";
 
 interface OrderSummaryProps {
   step?: "checkout" | "cart";
 }
 
 export const OrderSummary = ({ step }: OrderSummaryProps) => {
+  const { cart } = useCart();
   const container = classNames(
     "border rounded-[16px] bg-[#FAFAFA] lg:flex-grow p-6",
     step === "cart"
@@ -18,7 +20,7 @@ export const OrderSummary = ({ step }: OrderSummaryProps) => {
   return (
     <div className={container}>
       <AmountSummary />
-      {step === "cart" ? (
+      {step === "cart" && cart?.itemsCount ? (
         <>
           <Link href="/checkout">
             <Button

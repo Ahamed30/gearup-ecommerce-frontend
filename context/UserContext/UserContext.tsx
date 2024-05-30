@@ -103,12 +103,14 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
         }).then((response) => {
           if (response.status == 200) {
             setIsLoggedIn(true);
+            window.location.replace(
+              sessionStorage.getItem("previousPage") ?? "/"
+            );
             return response;
           }
         });
       })
       .catch((error) => console.error(error));
-    window.location.replace(sessionStorage.getItem("previousPage") ?? "/");
     setIsLoading(false);
   };
 
